@@ -1,0 +1,83 @@
+.updateBtn{
+    width: 100% !important;
+    max-width: 50% !important;
+    margin: auto !important;
+    margin-top: 50px !important;
+}
+.aside.aside-dark{
+    background-color: #fff !important;
+}
+.aside-dark .menu .menu-item .menu-link .menu-title {
+    color: #181c32 !important;
+    font-weight: 500;
+}
+.aside-dark .menu .menu-item .menu-link.active {
+    background-color: transparent !important;
+    
+    border-right: 6px solid #2e953e;
+}
+.aside-dark .menu .menu-item .menu-link.active span{
+    color: #2e953e !important;
+    font-weight: 600;
+}
+.aside-dark .menu .menu-item .menu-link.active .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
+    fill: #50cd89 !important;
+}
+
+element.style {
+}
+.aside.aside-dark .aside-logo {
+    background-color: #181824;
+}
+.aside.aside-dark .aside-logo{
+    background-color: #fff !important;
+    border-bottom: 2px solid #eff2f5;
+    padding: 20px;
+}
+.aside.aside-dark .aside-toggle svg [fill]:not(.permanent):not(g) {
+    fill: #2e953e;
+}
+.aside-dark .menu .menu-item .menu-link:hover:not(.disabled):not(.active), .aside-dark .menu .menu-item.hover>.menu-link:not(.disabled):not(.active) {
+    transition: color .2s ease,background-color .2s ease;
+    background-color: #fff !important;
+    color: #fff;
+}
+.aside-dark .menu .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-icon .svg-icon svg [fill]:not(.permanent):not(g), .aside-dark .menu .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-icon .svg-icon svg [fill]:not(.permanent):not(g),
+.btn.btn-light-primary .svg-icon svg [fill]:not(.permanent):not(g),
+.btn-check:active+.btn.btn-active-color-primary .svg-icon svg [fill]:not(.permanent):not(g), .btn-check:checked+.btn.btn-active-color-primary .svg-icon svg [fill]:not(.permanent):not(g), .btn.btn-active-color-primary.active .svg-icon svg [fill]:not(.permanent):not(g), .btn.btn-active-color-primary.show .svg-icon svg [fill]:not(.permanent):not(g), .btn.btn-active-color-primary:active:not(.btn-active) .svg-icon svg [fill]:not(.permanent):not(g), .btn.btn-active-color-primary:focus:not(.btn-active) .svg-icon svg [fill]:not(.permanent):not(g), .btn.btn-active-color-primary:hover:not(.btn-active) .svg-icon svg [fill]:not(.permanent):not(g), .show>.btn.btn-active-color-primary .svg-icon svg [fill]:not(.permanent):not(g),
+.btn-check:active+.btn.btn-active-color-primary .svg-icon svg [fill]:not(.permanent):not(g), .btn-check:checked+.btn.btn-active-color-primary .svg-icon svg [fill]:not(.permanent):not(g), .btn.btn-active-color-primary.active .svg-icon svg [fill]:not(.permanent):not(g), .btn.btn-active-color-primary.show .svg-icon svg [fill]:not(.permanent):not(g), .btn.btn-active-color-primary:active:not(.btn-active) .svg-icon svg [fill]:not(.permanent):not(g), .btn.btn-active-color-primary:focus:not(.btn-active) .svg-icon svg [fill]:not(.permanent):not(g), .btn.btn-active-color-primary:hover:not(.btn-active) .svg-icon svg [fill]:not(.permanent):not(g), .show>.btn.btn-active-color-primary .svg-icon svg [fill]:not(.permanent):not(g),
+.btn-check:active+.btn.btn-active-light-primary .svg-icon svg [fill]:not(.permanent):not(g), .btn-check:checked+.btn.btn-active-light-primary .svg-icon svg [fill]:not(.permanent):not(g), .btn.btn-active-light-primary.active .svg-icon svg [fill]:not(.permanent):not(g), .btn.btn-active-light-primary.show .svg-icon svg [fill]:not(.permanent):not(g), .btn.btn-active-light-primary:active:not(.btn-active) .svg-icon svg [fill]:not(.permanent):not(g), .btn.btn-active-light-primary:focus:not(.btn-active) .svg-icon svg [fill]:not(.permanent):not(g), .btn.btn-active-light-primary:hover:not(.btn-active) .svg-icon svg [fill]:not(.permanent):not(g), .show>.btn.btn-active-light-primary .svg-icon svg [fill]:not(.permanent):not(g) {
+    fill: #2e953e !important;
+}
+#kt_post .bg-success,
+.btn-check:active+.btn.btn-light-primary, .btn-check:checked+.btn.btn-light-primary, .btn.btn-light-primary.active, .btn.btn-light-primary.show, .btn.btn-light-primary:active:not(.btn-active), .btn.btn-light-primary:focus:not(.btn-active), .btn.btn-light-primary:hover:not(.btn-active), .show>.btn.btn-light-primary,
+.btn-check:active+.btn.btn-primary, .btn-check:checked+.btn.btn-primary, .btn.btn-primary.active, .btn.btn-primary.show, .btn.btn-primary:active:not(.btn-active), .btn.btn-primary:focus:not(.btn-active), .btn.btn-primary:hover:not(.btn-active), .show>.btn.btn-primary {
+    background-color: #2e953e!important;
+}
+
+.menu-state-title-primary .menu-item .menu-link.active .menu-title,
+.text-hover-primary:hover {
+    color: #2e953e !important;
+}
+.btn.btn-primary {
+    color: #fff;
+    border-color: #2e953e !important;
+    background-color: #2e953e !important;
+}
+.btn.btn-light-primary {
+    color: #2e953e;
+    border-color: #ecf8ff;
+    background-color: #f7f9fb;
+}
+
+.scrolltop{
+    background-color: #2e953e !important;
+}
+
+@media (min-width: 992px)
+{
+    .aside .aside-logo {
+        height: 100px !important;
+        
+    }
+}
