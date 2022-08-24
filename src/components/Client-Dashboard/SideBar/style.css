@@ -1,0 +1,125 @@
+.side__bar {
+    padding: 30px 0px;
+    position: fixed;
+    left: 0px;
+    background-color: #1695b9;
+    border-radius: 15px;
+    box-shadow: 0 1.6rem 3rem rgb(0 0 0 / 10%);
+    margin: 1rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 96%;
+    transition: all .5s linear;
+}
+
+.side__bar.opened {
+    width: 15%;
+}
+
+.side__bar.closed {
+    width: 5%;
+}
+
+.side__bar.closed .side__bar__top h4,
+.side__bar.closed .side__bar__body .list__div ul li a span,
+.side__bar.closed .side__bar__footer ul li a span {
+    font-size: 0px;
+}
+
+.side__bar.closed .side__bar__body .list__div ul li,
+.side__bar.closed .side__bar__footer ul li {
+    text-align: center;
+}
+
+.side__bar.closed .side__bar__body .list__div ul li i,
+.side__bar.closed .side__bar__body .list__div ul li svg,
+.side__bar.closed .side__bar__footer ul li i {
+    margin: auto;
+}
+
+.side__bar.closed .side__bar__top {
+    justify-content: center !important;
+}
+
+.side__bar.closed+.dashboard__content {
+    padding-left: 7%;
+}
+
+.side__bar .side__bar__top {
+    padding: 0px 15px;
+}
+
+.side__bar .side__bar__top h4 {
+    font-family: 'Kaisei Opti', serif;
+    color: #fff;
+}
+
+.side__bar .side__bar__top i {
+    color: #fff;
+    cursor: pointer;
+}
+
+.side__bar__top i:hover .side__bar.closed{
+    width: 15%;
+}
+
+.side__bar .side__bar__body {
+    height: 100%;
+}
+
+.side__bar ul {
+    padding: 0px;
+    list-style: none;
+}
+
+.side__bar ul li {
+    padding: 5px 15px;
+    padding-bottom: 20px;
+
+}
+
+.side__bar ul li a {
+    font-weight: 300;
+    font-family: Poppins;
+    font-size: 12px;
+    cursor: pointer;
+    color: #fff !important;
+}
+
+.side__bar ul li a:hover,
+.side__bar ul li a.active {
+    font-weight: 600;
+}
+
+.side__bar ul li a i,
+.side__bar ul li a svg {
+    margin-right: 20px;
+    font-size: 19px;
+}
+
+@media screen and (max-width: 1200px) {
+
+    .side__bar ul li a i,
+    .side__bar ul li a svg {
+        margin-right: 5px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .side__bar {
+        margin: 0px;
+        height: 100%;
+        border-radius: 0px;
+        width: 50px;
+    }
+
+    .dashboard__content {
+        padding-left: 50px !important;
+    }
+
+    .side__bar .side__bar__top h4,
+    .side__bar ul li a {
+        font-size: 0px;
+    }
+}

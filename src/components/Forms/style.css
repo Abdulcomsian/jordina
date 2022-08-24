@@ -1,0 +1,75 @@
+.payment_icon-card {
+    background-color: white;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    box-shadow: rgb(51 51 51 / 8%) 0px 2px 4px;
+    cursor: pointer;
+    padding: 15px 25px;
+}
+
+.payment_icon-card img {
+    width: 85px;
+}
+.payment_icon-card p{
+    margin: 0px;
+}
+.style_divider{
+    margin: 30px 0px;
+}
+.style_divider span{
+    color: rgb(139, 138, 135);
+    font-size: 1.25rem;
+    padding: 0px 20px;
+}
+.card__number--input .month__year--ccv--input{
+    position: absolute;
+    right: 15px;
+    top: 16px;
+    width: 100%;
+    text-align: right;
+}
+.card__number--input{
+    position: relative;
+}
+.card__number--input .month__year--ccv--input .month__year--input input{
+    width: 35px;
+    border: none;
+    background: transparent;
+    text-align: center;
+}
+.checkbox__input--label{
+    display: flex;
+    align-items: baseline;
+    margin-top: 30px;
+    text-align: left;
+}
+.checkbox__input--label input{
+    margin-right: 20px;
+    position: relative;
+}
+.checkbox__input--label input:checked::before{
+    content: "";
+    width: 13px;
+    height: 13px;
+    background-color: #af6fac;
+    position: absolute;
+    border-radius: 3px;
+}
+.checkbox__input--label input:checked::after{
+    content: "✔";
+    color: #fff;
+    position: absolute;
+    top: -1px;
+    left: 2px;
+    font-size: 10px;
+}
+.height__weight--field{
+    display: flex;
+    justify-content: space-between;
+}
+.height__weight--field .form-group{
+    width: 49%;
+}

@@ -1,0 +1,100 @@
+.about__main__section{
+    padding: 197px 20px 0px;
+}
+.about__main__section .main__image{
+    position: relative;
+    display: inline-block;
+}
+/* .about__main__section .main__image::before{
+    content: "";
+    background-image: url("../../assets/images/about-before.png");
+    position: absolute;
+    left: -20%;
+    bottom: -180px;
+    background-repeat: no-repeat;
+    width: 367px;
+    height: 548px;
+    background-size: contain;
+    z-index: -1;
+}
+.about__main__section .main__image::after{
+    content: "";
+    background-image: url("../../assets/images/about-after.png");
+    position: absolute;
+    right: -20%;
+    top: -25%;
+    background-repeat: no-repeat;
+    width: 649px;
+    height: 714px;
+    background-size: contain;
+    z-index: -1;
+} */
+.team__of__doctor{
+    padding: 40px 160px 90px;
+}
+.team__of__doctor p{
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 39.16px;
+}
+/*************** Our - Mission - CSS **************/
+.our__mission{
+    padding: 0px 80px;
+}
+.our__mission .our__mission__box{
+    padding: 58px 137px;
+    background: rgba(253, 203, 168, 0.5);
+}
+.our__mission .our__mission__box h2{
+    font-size: 50px;
+    line-height: 60px;
+    font-family: NotoSerifRegular;
+}
+.our__mission .our__mission__box p{
+    font-size: 50px;
+    line-height: 60px;
+    font-family: NotoSerifRegular;
+    color: #383D23;
+    text-align: center;
+    font-weight: 700;
+}
+/************ Value - Prop - CSS *************/
+.value__prop__section{
+    padding: 90px;
+}
+.value__prop__section .value__box{
+    padding: 54px 64px 0px;
+    border: 2px solid #512500;
+    border-radius: 50px;
+    width: 100%;
+    max-width: 585px;
+    margin: auto;
+}
+.value__prop__section .value__box h1{
+    font-size: 50px;
+    line-height: 60px;
+    font-family: NotoSerifRegular;
+}
+.value__prop__section .value__box img{
+    width: 100%;
+}
+.value__prop__section .value__box p{
+    font-size: 20px;
+    line-height: 32.63px;
+}
+.value__prop__section .value__box.position__change{
+    position: relative;
+    top: 25%;
+}
+/************* Shop - Our - CSS ******************/
+.shop_our{
+    padding: 95px 0px;
+    background: #D7E8ED;
+    margin-top: 50px;
+}
+.shop_our h2{
+    color: #000;
+}
+.shop_our .common__btn{
+    padding: 17px 48px;
+}

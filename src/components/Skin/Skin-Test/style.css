@@ -1,0 +1,12 @@
+.title{
+    font-size: 22px !important;
+    margin-bottom: 20px !important;
+}
+.main_skin-condition .form_box{
+    padding: 40px 35px;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    max-width: 70%;
+    margin: auto;
+}

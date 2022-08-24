@@ -1,0 +1,25 @@
+.sidebar__dashboard__content{
+    width: 100%;
+}
+.dashboard__content{  
+    width: 100%;
+    padding-left: 17%;
+    margin: 15px 15px;
+    transition: all .5s linear;
+}
+.box__shadow{
+    box-shadow: 0 1.6rem 3rem rgb(0 0 0 / 10%);
+    border-radius: 1rem;
+}
+.loader{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 99999;
+}
+.loader span{
+    margin: auto !important;
+}
+.blur{
+    filter: blur(2px);
+}

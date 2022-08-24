@@ -1,0 +1,29 @@
+.client__profile .client__header{
+    padding: 20px; 
+}
+.client__profile .client__header .img__div img{
+    width: 100px;
+    border: 5px solid #f6f6f6;
+    border-radius: 100%;
+    background: #91ccdd;
+}
+.client__profile h4{
+    font-size: 16px;
+    color: #323232;
+    font-family: Poppins;
+    font-weight: 600;
+}
+.client__profile .client__header .client__info p{
+    font-size: 12px;
+    font-family: 'Poppins';
+    color: #808191;
+}
+.basic__information .form-control{
+    border-color: #8081912b !important;
+    margin-bottom: 20px;
+}
+.basic__information .common__btn{
+    border-radius: 8px !important;
+    border: none;
+    background-color: #1696b9;
+}

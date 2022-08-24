@@ -1,38 +1,108 @@
-.App {
-  text-align: center;
-}
+@keyframes left-right {
+  0% {
+    transform: translateX(0)
+  }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  100% {
+    transform: translateX(-10px)
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@keyframes up-down {
+  0% {
+    transform: translateY(0)
+  }
+
+  100% {
+    transform: translateY(-10px)
+  }
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
+@keyframes rotation {
+  0% {
     transform: rotate(0deg);
   }
-  to {
-    transform: rotate(360deg);
+
+  100% {
+    transform: rotate(1turn);
   }
 }
+@font-face {
+  font-family: SofiaProBold;
+  src: url(./assets/fonts/SofiaProBold.ttf);
+}
+@font-face {
+  font-family: SofiaProLight;
+  src: url(./assets/fonts/SofiaProLight.ttf);
+}
+@font-face {
+  font-family: SofiaProMedium;
+  src: url(./assets/fonts/SofiaProMedium.ttf);
+}
+@font-face {
+  font-family: PolyRegular;
+  src: url(./assets/fonts/Poly-Regular.otf);
+}
+@font-face {
+  font-family: NotoSerifRegular;
+  src: url(./assets/fonts/NotoSerif-Regular.ttf);
+}
+p,h1,h2,h3,h4,h5,h6,span,label{
+  margin: 0px !important;
+  padding: 0px !important;
+}
+body {
+  font-family: SofiaProLight !important;
+  height: 100vh;
+  /* background-color: #f5f5fc !important; */
+}
+
+button:focus,
+input:focus,
+select:focus {
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+a:hover,a{
+  text-decoration: none !important;
+}
+.common__title{
+  color: #333333;
+  font-size: 41.3px;
+  font-weight: 700;
+  font-family: Poppins;
+}
+.common__text{
+  font-size: 20px;
+  font-weight: 400;
+  font-family: Poppins;
+  line-height: 32.63px;
+}
+.common__title span{
+  font-weight: 400;
+}
+.common-btn {
+  color: rgb(255, 255, 255) !important;
+  background-color: #AF6FAC !important;
+  letter-spacing: 0.5px !important;
+  border: none !important;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-family: SofiaProMedium !important;
+}
+.common__btn{
+  font-size: 16px;
+  line-height: 20.8px;
+  letter-spacing: 0.5px;
+  background: #AF6FAC;
+  border-radius: 32px;
+  padding: 20px 46px; 
+  color: #fff;
+  cursor: pointer;
+  font-weight: 500;
+  display: inline-block;
+}
+.common__btn:hover{
+  color: #fff;
+}
+

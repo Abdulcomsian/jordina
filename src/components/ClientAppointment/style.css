@@ -1,0 +1,80 @@
+.client__appointment{
+    box-shadow: 0 1.6rem 3rem rgb(0 0 0 / 10%);
+    border-radius: 1rem;
+}
+.client__appointment .upcoming__appointment h4{
+    font-size: 18px;
+    font-weight: 700;
+    font-family: Poppins;
+    color: #323232;
+}
+.client__appointment .upcoming__appointment h4 svg{
+    font-size: 27px;
+}
+.table__div table thead{
+    background-color: #f5f5f5;
+}
+.table__div table thead th{
+    padding: 13px;
+    font-size: 13px;
+    color: #323232;
+    font-weight: 700;
+    font-family: Poppins;
+}
+.table__div table tbody td{
+    padding: 13px;
+}
+.table__div table tbody td .date__time span{
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    margin-right: 10px !important;
+}
+table tr:nth-child(even) td{
+    background-color: #f5f5f5;
+}
+table tr:nth-child(odd) td{
+    background-color: #fff;
+}
+table td span.view__appointment{
+    font-size: 14px;
+    color: #31a9cb7a;
+    cursor: pointer;
+    
+}
+.common__text{
+    padding: 10px 13px !important;
+    border-radius: 10px;
+    color: #46bdaa;
+    font-weight: 600;
+    font-size: 13px;
+}
+.approved__text{
+    background-color: #edf8f7;
+}
+.cancel__text{
+    background-color: #f3542166;
+    color: #f45421;
+}
+.rejected__text{
+    background-color: #1f212866;
+    color: #1f2128;
+}
+.approved{
+    background-color: #46bdaa;
+}
+.cancel{
+    background-color: #f45421;
+}
+.rejected{
+    background-color: #1f2128;
+}
+@media screen and (max-width: 7868px) {
+    .table__div table thead th:nth-child(1){
+        min-width: 200px;
+    }
+    .table__div table thead th:nth-child(2){
+        min-width: 150px;
+    }
+}
