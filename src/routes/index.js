@@ -7,6 +7,8 @@ import ProductDetail from "../components/Product/ProductDetail";
 import About from "../components/About/index";
 import ClientDashboard from "../components/Client-Dashboard";
 import ClientProfile from "../components/ClientProfile";
+import Login from "../components/Auth/Login";
+import Register from "../components/Auth/Register";
 
 function AppRoute() {
   return (
@@ -19,6 +21,8 @@ function AppRoute() {
         <Route exact path="/appointment" element={<FormScreen />} />
         <Route exact path="/client-dashboard" element={<ClientDashboard />} />
         <Route exact path="/profile" element={<ClientProfile />} />
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/register" element={<Register />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     
