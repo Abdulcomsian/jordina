@@ -21,6 +21,7 @@ Route::post('/login', [AuthController::class, 'loginUser']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('registerStepTwo', [AuthController::class,'registerStepTwo']);
+    Route::post('registerStepthree', [AuthController::class,'registerStepThree']);
 
 });
 

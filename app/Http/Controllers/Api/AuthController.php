@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Gender;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -97,6 +98,64 @@ class AuthController extends ApiController
       
             $user->question = json_encode($collection);
             $user->save();
+
+            return $this->successResponse("", 'Second Step Completed, question Has been submitted', 200);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function registerStepThree(Request $request)
+    {
+        try {
+            //Validated
+            $validateUser = Validator::make($request->all(), 
+            [
+                'gender' => 'required',
+                'height' => 'required',
+                'weight' => 'required',
+                'skin_allergy' => 'required'
+            ]);
+
+            if($validateUser->fails()){
+                return $this->errorResponse($validateUser->messages(), 401);
+            }
+
+            $user_id = Auth::id();
+            $chk_gender = Gender::where('user_id', $user_id)->first();
+            if($chk_gender)
+            {
+                $gender = Gender::find($chk_gender);
+            }
+            else{
+                $gender = new Gender();
+            }
+            $gender->user_id = $user_id;
+            $gender->gender = $request->gender;
+            $gender->gender_info = $request->gender_info;
+            $gender->height = $request->height;
+            $gender->weight = $request->weight;
+            $gender->female_info = $request->female_info;
+            $gender->female_specfic_info = $request->female_specfic_info;
+            $gender->female_info_time = $request->female_info_time;
+            $gender->female_info_comment = $request->female_info_comment;
+            $gender->skin_allergy = $request->skin_allergy;
+            $gender->past_medicine = $request->past_medicine;
+            $gender->current_medicine = $request->current_medicine;
+            if($request->hasfile('image'))
+            {
+                $image = $request->file('image');
+                $extensions =$image->extension();
+
+                $image_name =time().'.'. $extensions;
+                $image->move('blog/',$image_name);
+                $gender->face_image=$image_name;
+            }
+            $gender->save();
 
             return $this->successResponse("", 'Second Step Completed, question Has been submitted', 200);
 
