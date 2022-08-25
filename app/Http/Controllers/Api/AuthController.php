@@ -58,6 +58,46 @@ class AuthController extends ApiController
     }
 
     /**
+     * Second Step after successfully Register
+     * @param Request $request
+     * @return User 
+     */
+    public function registerStepTwo(Request $request)
+    {
+        try {
+            //Validated
+            $validateUser = Validator::make($request->all(), 
+            [
+                'skin_condition' => 'required',
+                'question_1' => 'required',
+                'question_2' => 'required',
+                'question_3' => 'required',
+                'question_4' => 'required',
+                'question_5' => 'required',
+                'question_6' => 'required'
+            ]);
+
+            if($validateUser->fails()){
+                return $this->errorResponse($validateUser->messages(), 422);
+            }
+
+            $user_id = Auth::id();
+
+            $user = User::find($user_id);
+            $user->skin_condition = $request->skin_condition;
+            $user->save();
+
+            return $this->successResponse("", 'Second Step Completed, question Has been submitted', 200);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
      * Login The User
      * @param Request $request
      * @return User
