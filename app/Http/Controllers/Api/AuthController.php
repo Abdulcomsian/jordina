@@ -117,7 +117,7 @@ class AuthController extends ApiController
 
             if(!Auth::attempt($request->only(['email', 'password']))){
 
-                return $this->errorResponse('Email & Password does not match with our record.', 422);
+                return $this->errorResponse('Email & Password does not match with our record.', 404);
 
             }
 
