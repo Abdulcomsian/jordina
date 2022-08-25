@@ -31,7 +31,7 @@ class AuthController extends ApiController
             ]);
 
             if($validateUser->fails()){
-                return $this->errorResponse($validateUser->messages(), 422);
+                return $this->errorResponse($validateUser->messages(), 401);
             }
 
             $user = User::create([
@@ -47,7 +47,7 @@ class AuthController extends ApiController
             $success['token'] =  $user->createToken('API TOKEN')->plainTextToken;
             $success['name'] =  $user->first_name.' '.$user->last_name;
 
-            return $this->successResponse($success, 'User register successfully.');
+            return $this->successResponse($success, 'User register successfully.',200);
 
         } catch (\Throwable $th) {
             return response()->json([
@@ -78,7 +78,7 @@ class AuthController extends ApiController
             ]);
 
             if($validateUser->fails()){
-                return $this->errorResponse($validateUser->messages(), 422);
+                return $this->errorResponse($validateUser->messages(), 401);
             }
 
             $user_id = Auth::id();
@@ -112,12 +112,12 @@ class AuthController extends ApiController
             ]);
 
             if($validateUser->fails()){
-                return $this->errorResponse($validateUser->messages(), 422);
+                return $this->errorResponse($validateUser->messages(), 401);
             }
 
             if(!Auth::attempt($request->only(['email', 'password']))){
 
-                return $this->errorResponse('Email & Password does not match with our record.', 404);
+                return $this->errorResponse('Email & Password does not match with our record.', 401);
 
             }
 
