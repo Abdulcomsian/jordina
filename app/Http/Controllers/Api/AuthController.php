@@ -85,6 +85,17 @@ class AuthController extends ApiController
 
             $user = User::find($user_id);
             $user->skin_condition = $request->skin_condition;
+
+            $collection = collect([
+                "question 1"=> $request->question_1,
+                "question 2"=> $request->question_2,
+                "question 3"=> $request->question_3,
+                "question 4"=> $request->question_4,
+                "question 5"=> $request->question_5,
+                "question 6"=> $request->question_6,
+            ]);
+      
+            $user->question = json_encode($collection);
             $user->save();
 
             return $this->successResponse("", 'Second Step Completed, question Has been submitted', 200);

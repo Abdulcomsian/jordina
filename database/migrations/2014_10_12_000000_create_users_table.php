@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('state')->nullable();
             $table->string('skin_condition')->nullable();
+            $table->longText('question')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
