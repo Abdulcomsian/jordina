@@ -23,6 +23,23 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+/*****************ADMIN ROUTES*******************/
+Route::prefix('admin')->middleware('can:admin')->group(function(){
+    Route::resource('diseases', DiseasesController::class);
+});
+/********************DASHBOARD ROUTES END******************************/
+
+/*****************Doctor ROUTES*******************/
+Route::prefix('doctor')->middleware('can:doctor')->group(function(){
+    Route::get('/disease',[DiseasesController::class, 'index'])->name('show-disease');
+});
+/********************DASHBOARD ROUTES END******************************/
+
+/*****************User ROUTES*******************/
+Route::prefix('user')->middleware('can:user')->group(function(){
+});
+/********************DASHBOARD ROUTES END******************************/
+
 //Customer History
 Route::get('customers-history', [HomeController::class, 'customerHistory'])->name('customers.history');
 Route::get('customer-edit', [HomeController::class, 'customerEdit'])->name('customers.edit');
@@ -30,7 +47,7 @@ Route::get('customer-edit', [HomeController::class, 'customerEdit'])->name('cust
 //Users
 Route::resource('users', UsersController::class);
 
-Route::resource('diseases', DiseasesController::class);
+
 Route::get('diseases-list/{id?}', [DiseasesController::class, 'diseasesList'])->name('diseases.list');
 
 //Insurance Companies Management
