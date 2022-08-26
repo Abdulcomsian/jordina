@@ -12,20 +12,18 @@ import Register from "../components/Auth/Register";
 
 function AppRoute() {
   return (
-    
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/products" element={<AllProduct />} />
-        <Route exact path="/products-detail" element={<ProductDetail />} />
-        <Route exact path="/about" element={<About />} />
-        <Route exact path="/appointment" element={<FormScreen />} />
-        <Route exact path="/client-dashboard" element={<ClientDashboard />} />
-        <Route exact path="/profile" element={<ClientProfile />} />
-        <Route exact path="/login" element={<Login />} />
-        <Route exact path="/register" element={<Register />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    
+    <Routes>
+      <Route exact path="/" element={<Home />} />
+      <Route exact path="/products" element={<AllProduct />} />
+      <Route exact path="/products-detail" element={<ProductDetail />} />
+      <Route exact path="/about" element={<About />} />
+      <Route exact path="/appointment" element={<FormScreen />} />
+      <Route exact path="/client-dashboard" element={<ClientDashboard />} />
+      <Route exact path="/profile" element={<ClientProfile />} />
+      <Route exact path="/login" element={<Login />} />
+      <Route exact path="/register" element={<Register />} />
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
   );
 }
 export default AppRoute;

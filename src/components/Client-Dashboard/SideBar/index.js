@@ -14,7 +14,7 @@ const SideBar = ({ profileClick, appoinmentClick, medicationClick }) => {
         {sideBarToggle ? (
           <i className="fa-solid fa-angles-left" onClick={sideBarHandler}></i>
         ) : (
-          <i class="fa-solid fa-angles-right" onClick={sideBarHandler}></i>
+          <i className="fa-solid fa-angles-right" onClick={sideBarHandler}></i>
         )}
       </div>
       <div className="side__bar__body">

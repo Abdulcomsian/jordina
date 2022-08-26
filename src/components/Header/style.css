@@ -2,10 +2,23 @@
     justify-content: end;
 }
 header{
-    padding: 27px 30px 0px;
+    padding: 0px;
     width: 100%;
     position: absolute;
-    z-index: 999999999999;
+    z-index: 100009;
+}
+header .top__header ul{
+    padding: 0px;
+    list-style: none;
+    padding: 5px 20px;
+}
+header .top__header ul li a{
+    color: #fff !important;
+    font-weight: 600;
+    cursor: pointer;
+}
+header .top__header{
+    background: #af6fac;
 }
 /* header:after{
     content: "";
@@ -26,7 +39,7 @@ header hr{
     margin: 27px 0px 0px !important;
 }
 header .navbar{
-    padding: 0px;
+    padding: 27px 30px 0px;
 }
 header .navbar-brand{
     color: #fff !important;

@@ -9,18 +9,14 @@ const Login = (props) => {
   const [password, setPassword] = useState("");
   let regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   const postLoginHandler = async (type, e) => {
-
-    console.log("handle request ");
     try {
       if (email != "" && password !== "") {
         console.log(email)
         if (regEmail.test(email) === false) {
-          alert("Email is Not Correct");
           setEmail(email);
           return false;
         } else {
           setEmail(email);
-          alert("Email is Correct");
           try {
             await props.loginHandler(email, password);
           } catch (err) {
@@ -38,14 +34,14 @@ const Login = (props) => {
         <Row className="auth__bg justify-content-center">
           <Col className="d-flex align-items-center justify-content-center">
             <div className="form__div bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
-              <div class="text-center text-md-center mb-4 mt-md-0">
-                <h3 class="mb-0">Sign in to Jordina</h3>
+              <div className="text-center text-md-center mb-4 mt-md-0">
+                <h3 className="mb-0">Sign in to Jordina</h3>
                 <form className="mt-4">
                   <div className="input__div text-start mb-4">
                     <label>Your Email</label>
                     <div className="d-flex align-items-center position-relative">
                       <span className="position-absolute icon__span">
-                        <i class="fa-solid fa-envelope"></i>
+                        <i className="fa-solid fa-envelope"></i>
                       </span>
                       <input
                         className="form-control"
@@ -58,7 +54,7 @@ const Login = (props) => {
                     <label>Your Password</label>
                     <div className="d-flex align-items-center position-relative">
                       <span className="position-absolute icon__span">
-                        <i class="fa-solid fa-lock"></i>
+                        <i className="fa-solid fa-lock"></i>
                       </span>
                       <input
                         type="password"
@@ -77,12 +73,12 @@ const Login = (props) => {
                       <a>Lost Password?</a>
                     </label>
                   </div>
-                  <a className="mb-4" onClick={(e) => postLoginHandler(e)}>
+                  <a className="mb-4 auth__btn" onClick={(e) => postLoginHandler(e)}>
                     Sign In
                   </a>
                   <div className="text-center">
-                    <p>
-                      Not registered? <b>Create account</b>
+                    <p className="link__text">
+                      Not registered? <b><a href="/Jordina/register">Create account</a></b>
                     </p>
                   </div>
                 </form>

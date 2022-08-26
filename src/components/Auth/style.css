@@ -2,6 +2,9 @@
     height: 100vh;
     background-color: #f5f8fb;
 }
+.main__register{
+    height: auto !important;
+}
 .main__login .auth__bg{
     background-image: url(https://demo.themesberg.com/volt-react-dashboard/static/media/signin.58ee1d5a.svg);
     background-repeat: no-repeat;
@@ -19,16 +22,6 @@
     font-weight: 600;
     margin-bottom: 8px !important;
 }
-.main__login .form__div button{
-    border: none;
-    width: 100%;
-    background-color: #1695b9;
-    padding: 15px;
-    font-size: 16px;
-    font-family: Poppins;
-    border-radius: 8px;
-    color: #fff;
-}
 .main__login .form__div .form-control{
     border: .0625rem solid #d1d7e0 !important;
 }
@@ -37,9 +30,22 @@
     top: 20px;
     color: #1695b9;
 }
-.icon__span i{
+.icon__span i,
+.link__text a,
+.link__text a:hover{
     color: #1695b9;
 }
-.main__login .form__div .input__div input{
+.main__login .form__div .input__div input,
+.main__login .form__div .input__div select{
     padding-left: 40px;
+}
+.main__login .form__div a.auth__btn{
+    display: inline-block;
+    width: 100%;
+    padding: 15px 0px;
+    background: #1696b9;
+    font-size: 20px;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 600;
 }

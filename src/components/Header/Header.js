@@ -2,10 +2,15 @@ import React, { useState } from "react";
 import { Container, Form, Nav, Navbar } from "react-bootstrap";
 import Images from "../../constant/images/index";
 import MobileHeader from "./Mobile-Header";
+import { useNavigate } from "react-router-dom";
+import Loader from "../Loader/index";
 import "./style.css";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const authenticated = localStorage.getItem("authenticated");
   const [openHeader, setOpenHeader] = useState(false);
+  const [loader, showLoader] = useState(false);
   const mobileHeaderOpen = () => {
     if (window.innerWidth < 992) {
       if (openHeader) {
@@ -15,8 +20,35 @@ const Header = () => {
       }
     }
   };
+  const logOutUser = () => {
+    showLoader(true);
+    
+    setTimeout(() => {
+      localStorage.removeItem("authenticated");
+      window.location.reload(true);
+      showLoader(false);
+    }, 3000);
+  };
   return (
+    <>
+       {loader && <Loader showLoader={loader} />}
     <header>
+      
+      {authenticated && (
+        <div className="top__header">
+          <ul className="d-flex justify-content-end align-items-center">
+            <li className="me-4">
+              <a>Jessica</a>
+            </li>
+            <li>
+              <a onClick={logOutUser}>
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      )}
+
       <Navbar expand="lg">
         <Container fluid>
           <Navbar.Brand href="#" className="site__name">
@@ -42,8 +74,14 @@ const Header = () => {
                 <li>
                   <Nav.Link href="#action1">My account</Nav.Link>
                 </li>
+
                 <li>
-                  <Nav.Link href="/Jordina/appointment" className="get__started--btn">
+                  <Nav.Link
+                    href={
+                      authenticated ? "/Jordina/appointment" : "Jordina/register"
+                    }
+                    className="get__started--btn"
+                  >
                     Get Started
                   </Nav.Link>
                 </li>
@@ -78,11 +116,16 @@ const Header = () => {
               </ul>
             </div>
           </Navbar.Collapse>
-          <MobileHeader openHeader={openHeader} mobileHeaderOpen={mobileHeaderOpen} />
+          <MobileHeader
+            openHeader={openHeader}
+            mobileHeaderOpen={mobileHeaderOpen}
+          />
         </Container>
       </Navbar>
       <hr></hr>
     </header>
+    </>
+   
   );
 };
 export default Header;
