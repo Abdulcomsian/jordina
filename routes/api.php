@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,17 @@ Route::post('/register', [AuthController::class, 'registerStepOne']);
 Route::post('/login', [AuthController::class, 'loginUser']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-
+    // authuntication
     Route::post('registerStepTwo', [AuthController::class,'registerStepTwo']);
     Route::post('registerStepthree', [AuthController::class,'registerStepThree']);
+
+    //profile
+    Route::get('edit-profile/{id}', [ProfileController::class,'edit_profile']);
+    Route::put('update-profile/{id}', [ProfileController::class,'update_profile']);
+    Route::post('update-password', [ProfileController::class,'update_password']);
+
+
+    Route::post('/logout', [AuthController::class, 'logout']);
 
 });
 

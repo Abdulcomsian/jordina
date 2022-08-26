@@ -57,7 +57,8 @@ class AdminUserSeeder extends Seeder
             'email' => 'user@domain.com',
             'password' => bcrypt('12345678'),
             'state' => 'Acne',
-            'skin_condition' => 'Redness'
+            'skin_condition' => 'Redness',
+            'address' => 'Islamabad'
         ]);
 
         $role = Role::create([

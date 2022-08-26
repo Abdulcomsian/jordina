@@ -206,4 +206,25 @@ class AuthController extends ApiController
             ], 500);
         }
     }
+
+    public function logout(Request $request)
+    {
+        // dd($request);
+        try {
+            if(!Auth::id()){
+                return $this->errorResponse('You are already logout.', 401);
+            }
+            else
+            {
+                $request->user()->currentAccessToken()->delete();
+                return $this->successResponse("", 'Successfully Logout', 200);
+            }
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
 }
