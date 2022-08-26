@@ -15,8 +15,12 @@ use App\Http\Controllers\Admin\DiseasesController;
 |
 */
 
+// Route::get('/', function () {
+//     return view('admin.layouts.master');
+// });
+
 Route::get('/', function () {
-    return view('admin.layouts.master');
+    return view('welcome');
 });
 
 Auth::routes();

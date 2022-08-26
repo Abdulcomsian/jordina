@@ -82,6 +82,7 @@
                         <span class="menu-title">View History Customer</span>
                     </a>
                 </div>--}}
+                @if(Auth::user()->hasRole('Admin'))
                 <div class="menu-item">
                     <a class="menu-link" href="{{route('users.index')}}">
 										<span class="menu-icon">
@@ -134,6 +135,45 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     {{ csrf_field() }}
                 </form>
+                @endif
+                @if(Auth::user()->hasRole('Doctor'))
+                <div class="menu-item">
+                    <a class="menu-link" href="{{route('show-disease')}}">
+										<span class="menu-icon">
+											<!--begin::Svg Icon | path: icons/duotone/Design/Sketch.svg-->
+											<span class="svg-icon svg-icon-2">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
+                                                     viewBox="0 0 24 24" version="1.1">
+													<polygon fill="#000000" opacity="0.3" points="5 3 19 3 23 8 1 8"/>
+													<polygon fill="#000000" points="23 8 12 20 1 8"/>
+												</svg>
+											</span>
+                                            <!--end::Svg Icon-->
+										</span>
+                        <span class="menu-title"> Disease</span>
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link" href="{{ route('logout') }}"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+										<span class="menu-icon">
+											<!--begin::Svg Icon | path: icons/duotone/Design/Sketch.svg-->
+											<span class="svg-icon svg-icon-2">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
+                                                     viewBox="0 0 24 24" version="1.1">
+													<polygon fill="#000000" opacity="0.3" points="5 3 19 3 23 8 1 8"/>
+													<polygon fill="#000000" points="23 8 12 20 1 8"/>
+												</svg>
+											</span>
+                                            <!--end::Svg Icon-->
+										</span>
+                        <span class="menu-title">Logout</span>
+                    </a>
+                </div>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+                @endif
             </div>
             <!--end::Menu-->
         </div>
