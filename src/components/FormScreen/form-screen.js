@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import {Container, Row, Col } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import Images from "../../constant/images/index";
 import BounceLoader from "react-spinners/BounceLoader";
 import PersonalInfo from "../Forms/personal-information";
@@ -8,9 +8,15 @@ import SkinTestForm from "../Forms/skin-test-form";
 import FormHeader from "../Header/Form-Header/from-header";
 import PaymentForm from "../Forms/payment-form";
 import GenderForm from "../Forms/gender-form";
+import { connect } from "react-redux";
+import Loader from "../Loader/index";
 import "./style.css";
 
-const FormScreen = () => {
+const FormScreen = (props) => {
+  const { navigation, token, error } = props;
+  console.log("Token :", props)
+  const authenticated = localStorage.getItem("authenticated");
+  const [showLoader, setshowLoader] = useState(false);
   const [showModal, setModalShow] = useState(false);
   const [showPersonalInfo, setPersonalInfo] = useState(true);
   const [showSkinCondition, setSkinCondition] = useState(false);
@@ -58,8 +64,30 @@ const FormScreen = () => {
       setProgressBarWidth("50%");
     }, 1000);
   };
+  useEffect(() => {
+    (async () => {
+      if (token) {
+        if (authenticated) {
+          console.log("Use Effect Token Form Screen");
+          setTimeout(() => {
+            showLoader(false);
+          }, 3000);
+        }
+
+        // console.log("Use Effect :", token, authenticated);
+      }
+      // else if (error !== null) {
+      //   console.log("here !", errorMessage, error);
+      //   setTimeout(() => {
+      //     showLoader(false);
+      //     showErrorMessage(true);
+      //   }, 3000);
+      // }
+    })();
+  }, [token]);
   return (
     <>
+      {showLoader && <Loader showLoader={showLoader} loaderColor={"#AF6FAC"} />}
       {showModal && (
         <div className="modal_view">
           <BounceLoader color="#AF6FAC" />
@@ -117,4 +145,9 @@ const FormScreen = () => {
     </>
   );
 };
-export default FormScreen;
+const mapStateToProps = (state) => ({
+  token: localStorage.getItem("token"),
+});
+
+const mapDispatchToProps = (dispatch) => ({});
+export default connect(mapStateToProps, mapDispatchToProps)(FormScreen);

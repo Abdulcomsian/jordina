@@ -2,11 +2,11 @@ import React from "react";
 import BounceLoader from "react-spinners/BounceLoader";
 import "./style.css";
 
-const Loader = ({ showLoader }) => {
+const Loader = ({ showLoader, loaderColor }) => {
   return (
     showLoader && (
       <div className="modal_view">
-        <BounceLoader color="#AF6FAC" />
+        <BounceLoader color={loaderColor} />
         <p>Please Wait a Second .. !</p>
       </div>
     )

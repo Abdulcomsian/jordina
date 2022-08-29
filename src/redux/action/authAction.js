@@ -11,8 +11,19 @@ export const login = (email, password) => {
         data: body,
       });
       const response = request;
+      if (response.status === 200) {
+        dispatch({
+          type: Actions.LOGIN_SUCCESS,
+          payload: response.data,
+        });
+      }
     } catch (err) {
-      throw new Error(err.response.data.message);
+      dispatch({
+        type: Actions.LOGIN_FAIL,
+        payload: err.response.data,
+      });
+      // console.log("Error :", err.response.data)
+      // throw new Error(err.response.data.message);
     }
   };
 };
@@ -43,7 +54,7 @@ export const register = (
         data: body,
       });
       const response = request;
-      if (response.status == 200) {
+      if (response.status === 200) {
         dispatch({
           type: Actions.REGISTER_SUCCESS,
           payload: response.data,
@@ -52,7 +63,10 @@ export const register = (
         // console.log("API Response :", response.request.response.status)
       }
     } catch (err) {
-      throw new Error(err);
+      dispatch({
+        type: Actions.REGISTER_FAIL,
+        payload: err.response.data,
+      });
     }
   };
 };

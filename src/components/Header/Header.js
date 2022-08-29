@@ -25,13 +25,14 @@ const Header = () => {
     
     setTimeout(() => {
       localStorage.removeItem("authenticated");
+      localStorage.removeItem("token");
       window.location.reload(true);
       showLoader(false);
     }, 3000);
   };
   return (
     <>
-       {loader && <Loader showLoader={loader} />}
+       {loader && <Loader showLoader={loader} loaderColor={"#AF6FAC"} />}
     <header>
       
       {authenticated && (
@@ -42,7 +43,7 @@ const Header = () => {
             </li>
             <li>
               <a onClick={logOutUser}>
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <i className="fa-solid fa-arrow-right-from-bracket"></i>
               </a>
             </li>
           </ul>

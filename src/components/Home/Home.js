@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Header from "../Header/Header";
 import Footer from "../Footer";
 import LearnMore from "../Forms/learn-more";
 import images from "../../constant/images";
+import { connect } from "react-redux";
 import "./style.css";
 
-const HomeScreen = () => {
+const HomeScreen = (props) => {
+  const { token } = props;
+  const authToken = localStorage.getItem("token");
+  useEffect(() => {
+    console.log("Home Props :", props.token,authToken);
+  }, [token]);
+  
   return (
     <div className="home_main-section">
       <Header />
@@ -39,7 +46,7 @@ const HomeScreen = () => {
               </Row>
             </Container>
           </div>
-           <div id="skin_discover" className="service__section">
+          <div id="skin_discover" className="service__section">
             <Container fluid>
               <Row>
                 <Col lg={4}>
@@ -134,7 +141,7 @@ const HomeScreen = () => {
                   </Col>
                 </Row>
               </div>
-               <div className="service__box">
+              <div className="service__box">
                 <Row className="flex-row-reverse">
                   <Col lg={4}>
                     <div className="product__img__box text-center">
@@ -159,7 +166,7 @@ const HomeScreen = () => {
                   </Col>
                 </Row>
               </div>
-             <div className="service__box">
+              <div className="service__box">
                 <Row>
                   <Col lg={4}>
                     <div className="product__img__box text-center">
@@ -311,7 +318,7 @@ const HomeScreen = () => {
                         of $49.99
                       </p>
                       <div className="img__box">
-                        <img src={images.step1} className="img-fluid"/>
+                        <img src={images.step1} className="img-fluid" />
                       </div>
                     </div>
                   </Col>
@@ -330,7 +337,10 @@ const HomeScreen = () => {
                           </p>
                         </div>
                         <div className="img__box">
-                          <img src={images.step2} className="img-fluid step__one__img" />
+                          <img
+                            src={images.step2}
+                            className="img-fluid step__one__img"
+                          />
                         </div>
                       </div>
                       <div className="step__box mt-4">
@@ -362,7 +372,7 @@ const HomeScreen = () => {
               </div>
             </Container>
           </div>
-         <div id="our_product" className="apostrophe__section">
+          <div id="our_product" className="apostrophe__section">
             <Container fluid>
               <Row>
                 <Col>
@@ -419,12 +429,17 @@ const HomeScreen = () => {
             </Container>
           </div>
           <div className="want__to__learn__more">
-            <LearnMore/>
+            <LearnMore />
           </div>
         </div>
       </main>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
-export default HomeScreen;
+const mapStateToProps = (state) => ({
+  token: state.auth.token
+});
+
+const mapDispatchToProps = (dispatch) => ({});
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
