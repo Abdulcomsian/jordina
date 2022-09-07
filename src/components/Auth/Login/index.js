@@ -7,14 +7,23 @@ import Loader from "../../Loader/index";
 import "../style.css";
 
 const Login = (props) => {
-  const { navigation, token, error } = props;
+  const { token, error, authenticated, statusLogout } = props;
+  console.log(
+    "Token :",
+    token,
+    "Error :",
+    error,
+    "Authenticated :",
+    authenticated,
+    "Logout Status",
+    statusLogout
+  );
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loader, showLoader] = useState(false);
   const [errorMessage, showErrorMessage] = useState(false);
-  const authenticated = localStorage.getItem("authenticated");
   localStorage.getItem("token");
   let regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   const postLoginHandler = async (type, e) => {
@@ -42,7 +51,7 @@ const Login = (props) => {
     (async () => {
       if (token) {
         if (authenticated) {
-          localStorage.setItem("token",token);
+          localStorage.setItem("token", token);
           console.log("Use Effect Token");
           setTimeout(() => {
             showLoader(false);
@@ -59,7 +68,7 @@ const Login = (props) => {
         }, 3000);
       }
     })();
-  }, [token, error]);
+  }, [token, error, authenticated]);
   return (
     <>
       {loader && <Loader showLoader={loader} loaderColor={"#1696b9"} />}
@@ -155,6 +164,8 @@ const Login = (props) => {
 const mapStateToProps = (state) => ({
   token: state.auth.token,
   error: state.auth.error,
+  authenticated: state.auth.authenticated,
+  statusLogout: state.auth.statusLogout
 });
 
 const mapDispatchToProps = (dispatch) => ({

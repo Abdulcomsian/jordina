@@ -4,7 +4,6 @@ import images from "../../../constant/images";
 import "./style.css";
 
 const MobileHeader = ({ openHeader, mobileHeaderOpen }) => {
-    console.log(openHeader)
   return (
     <div
       className="mobile__header__main"

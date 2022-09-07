@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { useDispatch, useSelector, connect } from "react-redux";
+import { connect } from "react-redux";
 import { register } from "../../../redux/action/authAction";
 import { useNavigate } from "react-router-dom";
 import BounceLoader from "react-spinners/BounceLoader";
 import "../style.css";
-import finalPropsSelectorFactory, {
-  pureFinalPropsSelectorFactory,
-} from "react-redux/es/connect/selectorFactory";
 
 const Register = (props) => {
-  const { navigation, token, errorEmail, errorFirstName, errorLastName } =
+  const { navigation, token, errorEmail, errorFirstName, errorLastName, authenticated } =
     props;
+    console.log("Index:", token)
   const navigate = useNavigate();
-  const authenticated = localStorage.getItem("authenticated");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfrimPassword] = useState(false);
   const [email, setEmail] = useState("");
@@ -326,6 +323,7 @@ const mapStateToProps = (state) => ({
   errorEmail: state.auth.errorEmail,
   errorFirstName: state.auth.errorFirstName,
   errorLastName: state.auth.errorLastName,
+  authenticated: state.auth.authenticated
 });
 
 const mapDispatchToProps = (dispatch) => ({

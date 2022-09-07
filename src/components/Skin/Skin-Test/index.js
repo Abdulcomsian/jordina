@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import "./style.css";
-import Images from "../../../constant/images/index";
 import SkinTestForm from "../../Forms/skin-test-form";
 
 const SkinTest = (onGetPayment) => {

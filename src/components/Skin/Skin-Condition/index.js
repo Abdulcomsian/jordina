@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "./style.css";
 
-const SkinConditionScreen = ({ onSkinTest }) => {
-  const [skinDeasesName, setSkinDeasesName] = useState("");
+const SkinConditionScreen = ({
+  onSkinTest,
+  handleSkinCondition,
+  skinDeasesName,
+  skinConditionChange,
+}) => {
   const [checked, setChecked] = useState(false);
-  const [indexCheck, setIndexChecked] = useState(null);
-  const getSkinCondition = (index) => {
-    setChecked(true);
-    setIndexChecked(index);
-    setSkinDeasesName(skin_condition_array[index].deasesName);
-  };
+  // const [indexCheck, setIndexChecked] = useState(null);
+  // const getSkinCondition = (index) => {
+  //   setChecked(true);
+  //   setIndexChecked(index);
+  //   setSkinDeasesName(skin_condition_array[index].deasesName);
+  // };
   const skin_condition_array = [
     {
       deasesName: "Acne",
@@ -83,41 +87,25 @@ const SkinConditionScreen = ({ onSkinTest }) => {
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
     },
   ];
-  const handleSelectChange = (e) => {
-    setChecked(true);
-    setSkinDeasesName(e.target.value);
-  };
+  // const handleSelectChange = (e) => {
+  //   setChecked(true);
+  //   setSkinDeasesName(e.target.value);
+  // };
   return (
     <>
       <div className="main_skin-condition">
         <div className="form_box">
           <Container fluid>
-          <h2 className="text-left title">
-                  Please Select your Skin Condition
-                </h2>
+            <h2 className="text-left title">
+              Please Select your Skin Condition
+            </h2>
             <Row>
-              {/* {skin_condition_array.map((val, key) => (
-                <Col lg={4}>
-                  <div
-                    className={
-                      indexCheck === key
-                        ? "condition_box checkedBox"
-                        : "condition_box"
-                    }
-                    index={key}
-                    onClick={() => getSkinCondition(key)}
-                  >
-                    <h2 className="title">{val.deasesName}</h2>
-                    <p>{val.description}</p>
-                  </div>
-                </Col>
-              ))} */}
               <Col>
                 <div className="form-group">
                   <select
                     value={skinDeasesName}
                     className="form-control"
-                    onChange={(e) => handleSelectChange(e)}
+                    onChange={(e) => handleSkinCondition(e)}
                   >
                     <option>Select Your Skin Condition</option>
                     {skin_condition_array.map((item, key) => (
@@ -127,7 +115,7 @@ const SkinConditionScreen = ({ onSkinTest }) => {
                     ))}
                   </select>
                 </div>
-                {checked && (
+                {skinConditionChange && (
                   <div className="form-group">
                     <Button className="common-btn" onClick={onSkinTest}>
                       Start Skin test

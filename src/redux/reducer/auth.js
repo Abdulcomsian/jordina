@@ -6,9 +6,8 @@ const initialState = {
   errorLastName: null,
   error: null,
   token: null,
-  authenticated: localStorage.getItem(
-    localStorage.getItem("authenticated") || false
-  ),
+  authenticated: false,
+  statusLogout: null,
 };
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -16,19 +15,22 @@ export default (state = initialState, action) => {
       return {
         ...state,
         token: action.payload.data.token,
-        authenticated: localStorage.setItem("authenticated", true),
+        authenticated: true,
+        error: null,
+        statusLogout: null,
       };
     case Actions.LOGIN_FAIL:
       return {
         ...state,
         error: action.payload.message,
-        authenticated: localStorage.setItem("authenticated", false),
+        authenticated: false,
       };
     case Actions.REGISTER_SUCCESS:
       return {
         ...state,
         token: action.payload.data.token,
-        authenticated: localStorage.setItem("authenticated", true),
+        authenticated: true,
+        error: null,
       };
     case Actions.REGISTER_FAIL:
       return {
@@ -36,7 +38,15 @@ export default (state = initialState, action) => {
         errorEmail: action.payload.message.email,
         errorFirstName: action.payload.message.first_name,
         errorLastName: action.payload.message.last_name,
-        authenticated: localStorage.setItem("authenticated", true),
+        authenticated: false,
+      };
+    case Actions.LOGOUT_SUCCESS:
+      return {
+        ...state,
+        authenticated: false,
+        token: null,
+        error: null,
+        statusLogout: action.payload.status,
       };
     default:
       return state;
