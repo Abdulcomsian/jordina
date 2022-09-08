@@ -151,6 +151,7 @@ class AuthController extends ApiController
 //                    $gender->weight = $request->weight;
 //                }
 //            }
+            $gender->user_id = $user_id;
             $gender->gender = $request->gender;
             $gender->height = $request->height;
             $gender->weight = $request->weight;
