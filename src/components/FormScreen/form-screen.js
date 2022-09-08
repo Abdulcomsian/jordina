@@ -9,23 +9,19 @@ import FormHeader from "../Header/Form-Header/from-header";
 import PaymentForm from "../Forms/payment-form";
 import GenderForm from "../Forms/gender-form";
 import { connect } from "react-redux";
-import { skinConditionTest } from "../../redux/action/skinConditionAction";
+import {
+  skinConditionTest,
+  maleAllergieExistHandler,
+} from "../../redux/action/skinConditionAction";
 import { register } from "../../redux/action/authAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { InlineWidget } from "react-calendly";
 import "./style.css";
+import axios from "axios";
 
 const FormScreen = (props) => {
-  const {
-    navigation,
-    token,
-    errorEmail,
-    errorFirstName,
-    errorLastName,
-    authenticated,
-    message,
-  } = props;
+  const { token, message } = props;
   const [skinLook, setSkinLook] = useState("");
   const [skinPores, setSkinPores] = useState("");
   const [skinFeel, setSkinFeel] = useState("");
@@ -43,6 +39,8 @@ const FormScreen = (props) => {
   const [showImgColumn, setShowImgColumn] = useState(true);
   const [progressBarWidth, setProgressBarWidth] = useState("10%");
   const [showCalender, setShowCalender] = useState(false);
+  const [diseasesArray, setDiseasesArray] = useState([]);
+  const [diseaseId, setDieasesId] = useState(null);
   let regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   const submitInfo = async (
     firstName,
@@ -144,14 +142,6 @@ const FormScreen = (props) => {
         theme: "colored",
       });
     }
-
-    // setModalShow(true);
-    // setTimeout(() => {
-    //   setModalShow(false);
-    //   setPersonalInfo(false);
-    //   setSkinCondition(true);
-    //   setProgressBarWidth("20%");
-    // }, 1000);
   };
   const skinTest = () => {
     console.log("skin Test");
@@ -168,16 +158,16 @@ const FormScreen = (props) => {
     setModalShow(true);
     try {
       if (
-        skinDeasesName != "" &&
-        skinLook != "" &&
-        skinPores != "" &&
-        skinFeel != "" &&
-        skinPimple != "" &&
-        skinFeelFacial != "" &&
-        skinExposed != ""
+        diseaseId !== "" &&
+        skinLook !== "" &&
+        skinPores !== "" &&
+        skinFeel !== "" &&
+        skinPimple !== "" &&
+        skinFeelFacial !== "" &&
+        skinExposed !== ""
       ) {
         var response = await props.skinTestHandler(
-          skinDeasesName,
+          diseaseId,
           skinLook,
           skinPores,
           skinFeel,
@@ -186,7 +176,7 @@ const FormScreen = (props) => {
           skinExposed,
           token
         );
-        if (response.status == 200) {
+        if (response.status === 200) {
           setTimeout(() => {
             setModalShow(false);
             setShowGetPayment(true);
@@ -236,14 +226,6 @@ const FormScreen = (props) => {
     } catch (err) {
       alert(err.message);
     }
-    // setTimeout(() => {
-    //   setModalShow(false);
-    //   // setShowSkinTest(false);
-    //   // setShowGetPayment(true);
-    //   // setShowImgColumn(false);
-
-    //   setProgressBarWidth("40%");
-    // }, 1000);
   };
   const givePayment = () => {
     setModalShow(true);
@@ -256,7 +238,10 @@ const FormScreen = (props) => {
     }, 1000);
   };
   const onHandleSkinCondition = (e) => {
+    var index = e.target.selectedIndex;
+    var id = diseasesArray[index].id;
     setSkinDeasesName(e.target.value);
+    setDieasesId(id);
     setSkinConditionChange(true);
   };
   const skinLookHandler = (e) => {
@@ -277,17 +262,106 @@ const FormScreen = (props) => {
   const skinExposedHandler = (e) => {
     setSkinExposed(e.target.value);
   };
-  const onSubmitGenderInfo = () => {
+  const onSubmitGenderInfo = async (
+    medication,
+    otherMedication,
+    file,
+    gender,
+    checkWeight,
+    checkHeight
+  ) => {
+    console.log(
+      "From Screen :",
+      medication,
+      otherMedication,
+      file,
+      gender,
+      checkWeight,
+      checkHeight
+    );
     setModalShow(true);
-    setTimeout(() => {
-      setModalShow(false);
-      setShowGetPayment(false);
-      setShowGenderForm(false);
-      setShowImgColumn(false);
-      setProgressBarWidth("50%");
-    }, 1000);
-    setShowCalender(true);
+    if (
+      gender !== "" &&
+      checkHeight !== "" &&
+      checkWeight !== "" &&
+      medication !== "" &&
+      otherMedication !== "" &&
+      file !== ""
+    ) {
+      try {
+        var response = await props.maleAllergieExistHandler(
+          gender,
+          checkHeight,
+          checkWeight,
+          medication,
+          otherMedication,
+          file,
+          token
+        );
+        if (response.status === 200) {
+          setTimeout(() => {
+            setModalShow(false);
+            setShowGetPayment(false);
+            setShowGenderForm(false);
+            setShowImgColumn(false);
+            setProgressBarWidth("50%");
+          }, 1000);
+          toast.success("successFully Submitted !", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+          setShowCalender(true);
+        }
+      } catch (err) {}
+    } else {
+      setTimeout(() => {
+        setModalShow(false);
+      }, 1000);
+      toast.error("Please fill all Details !", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      setShowCalender(false);
+    }
+    // setTimeout(() => {
+    //   setModalShow(false);
+    //   setShowGetPayment(false);
+    //   setShowGenderForm(false);
+    //   setShowImgColumn(false);
+    //   setProgressBarWidth("50%");
+    // }, 1000);
+    // setShowCalender(true);
   };
+  useEffect(() => {
+    // declare the data fetching function
+    const fetchData = async () => {
+      try {
+        const request = await axios(
+          "http://127.0.0.1:8000/api/getAllDiseases",
+          {
+            method: "GET",
+            headers: {
+              authorization: "Bearer " + token,
+            },
+          }
+        );
+        setDiseasesArray(request.data.data.diseases);
+      } catch (error) {}
+    };
+    fetchData().catch(console.error);
+  }, []);
   return (
     <>
       <ToastContainer
@@ -361,6 +435,7 @@ const FormScreen = (props) => {
                         handleSkinCondition={onHandleSkinCondition}
                         skinDeasesName={skinDeasesName}
                         skinConditionChange={skinConditionChange}
+                        diseasesArray={diseasesArray}
                       />
                     </Col>
                   )}
@@ -438,6 +513,26 @@ const mapDispatchToProps = (dispatch) => ({
         confrimPassword,
         address,
         stateUser
+      )
+    ),
+  maleAllergieExistHandler: (
+    medication,
+    otherMedication,
+    file,
+    gender,
+    checkWeight,
+    checkHeight,
+    token
+  ) =>
+    dispatch(
+      maleAllergieExistHandler(
+        medication,
+        otherMedication,
+        file,
+        gender,
+        checkWeight,
+        checkHeight,
+        token
       )
     ),
 });

@@ -1,96 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "./style.css";
 
-const SkinConditionScreen = ({
-  onSkinTest,
-  handleSkinCondition,
-  skinDeasesName,
-  skinConditionChange,
-}) => {
-  const [checked, setChecked] = useState(false);
-  // const [indexCheck, setIndexChecked] = useState(null);
-  // const getSkinCondition = (index) => {
-  //   setChecked(true);
-  //   setIndexChecked(index);
-  //   setSkinDeasesName(skin_condition_array[index].deasesName);
-  // };
-  const skin_condition_array = [
-    {
-      deasesName: "Acne",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    },
-    {
-      deasesName: "Rosacea",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    },
-    {
-      deasesName: "Wrinkles",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    },
-    {
-      deasesName: "Redness",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    },
-    {
-      deasesName: "Lentigines",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    },
-    {
-      deasesName: "Uneven skin texture",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    },
-    {
-      deasesName: "Enlarged pores",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    },
-    {
-      deasesName: "Hyperpigmentation",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    },
-    {
-      deasesName: "Melasma",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    },
-    {
-      deasesName: "Male Hair Loss",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    },
-    {
-      deasesName: "Dry skin",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    },
-    {
-      deasesName: "Dark spots",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    },
-    {
-      deasesName: "Blackheads",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    },
-    {
-      deasesName: "Not sure / I just want to talk to the dermatologist.",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-    },
-  ];
-  // const handleSelectChange = (e) => {
-  //   setChecked(true);
-  //   setSkinDeasesName(e.target.value);
-  // };
+import { connect } from "react-redux";
+
+const SkinConditionScreen = (props) => {
+  const {
+    onSkinTest,
+    handleSkinCondition,
+    skinDeasesName,
+    skinConditionChange,
+    diseasesArray,
+  } = props;
+
   return (
     <>
       <div className="main_skin-condition">
@@ -107,10 +29,9 @@ const SkinConditionScreen = ({
                     className="form-control"
                     onChange={(e) => handleSkinCondition(e)}
                   >
-                    <option>Select Your Skin Condition</option>
-                    {skin_condition_array.map((item, key) => (
-                      <option value={item.deasesName} index={key}>
-                        {item.deasesName}
+                    {diseasesArray.map((item, index) => (
+                      <option value={item.title} key={index}>
+                        {item.title}
                       </option>
                     ))}
                   </select>
@@ -130,4 +51,16 @@ const SkinConditionScreen = ({
     </>
   );
 };
-export default SkinConditionScreen;
+const mapStateToProps = (state) => ({
+  token: state.auth.token,
+  errorEmail: state.auth.errorEmail,
+  errorFirstName: state.auth.errorFirstName,
+  errorLastName: state.auth.errorLastName,
+  authenticated: state.auth.authenticated,
+});
+
+const mapDispatchToProps = (dispatch) => ({});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SkinConditionScreen);

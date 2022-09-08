@@ -155,6 +155,7 @@ form {
     background: #af6fac;
     position: fixed;
     top: 68px;
+    z-index: 99999;
 }
 
 .main_form-section .form_box {

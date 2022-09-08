@@ -10,7 +10,6 @@ const FormHeader = () => {
       <Navbar expand="lg">
         <Container fluid>
           <Navbar.Brand href="#">Jordina</Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbarScroll" />
         </Container>
       </Navbar>
     </div>

@@ -62,13 +62,11 @@ const PersonalInformationForm = ({ onSubmitInfo }) => {
             onChange={(e) => setState(e.target.value)}
           >
             <option>Select Your State</option>
-            <option>Acne</option>
-            <option>Alopecia areata</option>
-            <option>Atopic dermatitis (eczema)</option>
-            <option>Psoriasis</option>
-            <option>Raynaud’s phenomenon</option>
-            <option>Rosacea</option>
-            <option>Skin cancer</option>
+            <option>Pakistan</option>
+            <option>India</option>
+            <option>UK</option>
+            <option>Germany</option>
+            <option>Srilanka</option>
           </select>
         </div>
         <Button

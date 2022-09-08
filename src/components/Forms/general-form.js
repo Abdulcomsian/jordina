@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
 const GeneralForm = ({
-  getHeightWeight,
-  alergieNotExist,
-  alergieExist,
+  checkWeight,
   getHeight,
   getWeight,
   checkAlergie,
   handleAllergiesSelectChange,
   onSubmitInfo,
   showButton,
-
+  gender,
+  checkHeight
 }) => {
-  console.log("General Form :", getHeightWeight, "Alergi :", checkAlergie);
+  const [medication, setMedication] = useState(null);
+  const [otherMedication, setOtherMedication] = useState(null);
+  const [file, setFile] = useState(null);
+  const handlerFileUpload = (e) => {
+    setFile(e.target.files[0].name)
+  };
   return (
     <>
       <div className="height__weight--field">
@@ -33,7 +37,7 @@ const GeneralForm = ({
         </div>
       </div>
 
-      {getHeightWeight !== "" && (
+      {checkWeight !== "" && (
         <div className="form-group">
           <select
             value={checkAlergie}
@@ -46,7 +50,7 @@ const GeneralForm = ({
           </select>
         </div>
       )}
-      {checkAlergie == "Yes" && (
+      {checkAlergie === "Yes" && checkWeight !== "" && (
         <>
           <div className="form-group">
             <textarea
@@ -54,6 +58,7 @@ const GeneralForm = ({
               cols={5}
               className="form-textarea"
               placeholder="What medications have you taken in the past for [SKIN CONDITION]"
+              onChange={(e) => setMedication(e.target.value)}
             ></textarea>
           </div>
           <div className="form-group">
@@ -62,17 +67,22 @@ const GeneralForm = ({
               cols={5}
               className="form-textarea"
               placeholder="What other medications do you currently take."
+              onChange={(e) => setOtherMedication(e.target.value)}
             ></textarea>
           </div>
           <div className="form-group">
-            <input type="file" className="form-control" />
+            <input
+              type="file"
+              className="form-control"
+              onChange={(handlerFileUpload)}
+            />
           </div>
-          <Button className="common-btn" onClick={onSubmitInfo}>
+          <Button className="common-btn" onClick={(e)=>onSubmitInfo(medication,otherMedication,file,gender,checkWeight,checkHeight)}>
             Go to Scheduling
           </Button>
         </>
       )}
-      {checkAlergie == "No" && showButton && getHeightWeight !== "" && (
+      {checkAlergie === "No" && showButton && checkWeight !== "" && (
         <Button className="common-btn" onClick={onSubmitInfo}>
           Go to Scheduling
         </Button>

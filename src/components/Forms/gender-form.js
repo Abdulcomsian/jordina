@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Button, Container, Row, Col } from "react-bootstrap";
+import React, { useState } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import GeneralForm from "./general-form";
 import FemaleGeneralForm from "./female-general-form";
 import "./style.css";
@@ -29,14 +29,33 @@ const GenderForm = ({ onSubmitInfo }) => {
   const [moreInfo, setMoreInfo] = useState("");
 
   const handlePregency = (e) => {
-    console.log("Pregency");
+    heightWeightFlag && setHeightWeightFlag(false);
     setPregency(e.target.value);
+    setHeightWeightFlag(true);
   };
 
   const handleSelectChange = (e) => {
+    heightWeightFlag && setHeightWeightFlag(false);
+    checkWeight !== "" && setCheckWeight("");
+    checkAlergie !== "" && setCheckAlergie("");
+    pergency !== "" && setPregency("");
+    pregencyTime !== "" && setPregencyTime("");
+    checkBreastFedding !== "" && setCheckBreastFeeding("");
+    feedingTime !== "" && setFeedingTime("");
+    conceivePlanning !== "" && setConceivePlanning("");
+    setPregencyCondition(false);
+    setCheckBreastFeeding(false);
+    setCurrentlyConceive(false);
+    setNextYearConceive(false);
+    setOtherCondition(false);
+    setHeightWeightFlag(false);
     setGender(e.target.value);
-    setHeightWeightFlag(true);
-    console.log("Your Gender :", gender, heightWeightFlag);
+    if (
+      e.target.value === "Male" ||
+      e.target.value === "I need to provide more information"
+    ) {
+      setHeightWeightFlag(true);
+    }
   };
   const handleAllergiesSelectChange = (e) => {
     setCheckAlergie(e.target.value);
@@ -48,10 +67,19 @@ const GenderForm = ({ onSubmitInfo }) => {
     setCheckHeight(e.target.value);
   };
   const getWeight = async (e) => {
+    setCheckAlergie !== "" && setCheckAlergie("");
     setCheckWeight(e.target.value);
   };
   const handleWomenCondition = (e) => {
-    if (e.target.value == "I am pregnant") {
+    heightWeightFlag && setHeightWeightFlag(false);
+    setPregencyCondition(false);
+    setCheckBreastFeeding(false);
+    setFeedingTime !== "" && setFeedingTime("");
+    conceivePlanning !== "" && setConceivePlanning("");
+    setCurrentlyConceive(false);
+    setNextYearConceive(false);
+    setOtherCondition(false);
+    if (e.target.value === "I am pregnant") {
       setPregencyCondition(true);
       setCheckBreastFeeding(false);
       setCurrentlyConceive(false);
@@ -64,11 +92,18 @@ const GenderForm = ({ onSubmitInfo }) => {
       setNextYearConceive(false);
       setOtherCondition(false);
     } else if (e.target.value === "I am currently trying to conceive") {
+      checkAlergie !== "" && setCheckAlergie("");
+      checkWeight !== "" && setCheckWeight("");
+      pregencyTime !== "" && setPregencyTime("");
+      feedingTime !== "" && setFeedingTime("");
+      conceivePlanning !== "" && setConceivePlanning("");
+      heightWeightFlag && setHeightWeightFlag(false);
       setCurrentlyConceive(true);
       setCheckBreastFeeding(false);
       setPregencyCondition(false);
       setNextYearConceive(false);
       setOtherCondition(false);
+      setHeightWeightFlag(true);
     } else if (
       e.target.value === "I would like to try to conceive within the next year"
     ) {
@@ -78,25 +113,50 @@ const GenderForm = ({ onSubmitInfo }) => {
       setPregencyCondition(false);
       setOtherCondition(false);
     } else if (e.target.value === "None of the above") {
+      checkAlergie !== "" && setCheckAlergie("");
+      checkWeight !== "" && setCheckWeight("");
+      pregencyTime !== "" && setPregencyTime("");
+      feedingTime !== "" && setFeedingTime("");
+      conceivePlanning !== "" && setConceivePlanning("");
+      heightWeightFlag && setHeightWeightFlag(false);
       setOtherCondition(true);
       setNextYearConceive(false);
       setCurrentlyConceive(false);
       setCheckBreastFeeding(false);
       setPregencyCondition(false);
+      setHeightWeightFlag(true);
     }
     setWomenCondition(e.target.value);
   };
   const handlePregencyTime = (e) => {
+    checkAlergie !== "" && setCheckAlergie("");
+    checkWeight !== "" && setCheckWeight("");
+    pregencyTime !== "" && setPregencyTime("");
+    feedingTime !== "" && setFeedingTime("");
+    conceivePlanning !== "" && setConceivePlanning("");
+    heightWeightFlag && setHeightWeightFlag(false);
     setPregencyTime(e.target.value);
     setHeightWeightFlag(true);
   };
   const handleFeedingTime = (e) => {
+    checkAlergie !== "" && setCheckAlergie("");
+    checkWeight !== "" && setCheckWeight("");
+    pregencyTime !== "" && setPregencyTime("");
+    conceivePlanning !== "" && setConceivePlanning("");
+    feedingTime !== "" && setFeedingTime("");
+    heightWeightFlag && setHeightWeightFlag(false);
     setFeedingTime(e.target.value);
-
     setHeightWeightFlag(true);
   };
   const handleConceivePlanning = (e) => {
+    checkAlergie !== "" && setCheckAlergie("");
+    checkWeight !== "" && setCheckWeight("");
+    conceivePlanning !== "" && setConceivePlanning("");
+    pregencyTime !== "" && setPregencyTime("");
+    feedingTime !== "" && setFeedingTime("");
+    heightWeightFlag && setHeightWeightFlag(false);
     setConceivePlanning(e.target.value);
+    setHeightWeightFlag(true);
   };
   const moreInfoHandler = (e) => {
     setMoreInfo(e.target.value);
@@ -119,143 +179,50 @@ const GenderForm = ({ onSubmitInfo }) => {
                   <option>I need to provide more information</option>
                 </select>
               </div>
-              {gender == "I need to provide more information" && (
-                <div className="form-group">
-                  <input
-                    className="form-control"
-                    placeholder="Please provide more information"
-                    onChange={moreInfoHandler}
-                  />
-                </div>
-              )}
-              {gender == "I need to provide more information" && moreInfo !== "" && (
-                <FemaleGeneralForm
-                  pergency={pergency}
-                  handlePregency={handlePregency}
-                  handleWomenCondition={handleWomenCondition}
-                  pregencyCondition={pregencyCondition}
-                  handlePregencyTime={handlePregencyTime}
-                  checkBreastFedding={checkBreastFedding}
-                  handleFeedingTime={handleFeedingTime}
-                  nextYearConceive={nextYearConceive}
-                  handleConceivePlanning={handleConceivePlanning}
-                />
-              )}
-              {gender == "I need to provide more information" && moreInfo !== "" && pergency == "No" && (
-                <GeneralForm
-                  getHeightWeight={checkWeight}
-                  alergieNotExist={alergieNotExist}
-                  alergieExist={alergieExist}
-                  getHeight={getHeight}
-                  getWeight={getWeight}
-                  checkAlergie={checkAlergie}
-                  handleAllergiesSelectChange={handleAllergiesSelectChange}
-                  onSubmitInfo={onSubmitInfo}
-                  showButton={showShecduling}
-                />
-              )}
-              {gender === "Female" && (
-                <FemaleGeneralForm
-                  pergency={pergency}
-                  handlePregency={handlePregency}
-                  handleWomenCondition={handleWomenCondition}
-                  pregencyCondition={pregencyCondition}
-                  handlePregencyTime={handlePregencyTime}
-                  checkBreastFedding={checkBreastFedding}
-                  handleFeedingTime={handleFeedingTime}
-                  nextYearConceive={nextYearConceive}
-                  handleConceivePlanning={handleConceivePlanning}
-                />
-              )}
-              {gender == "Male" ? (
-                heightWeightFlag && (
-                  <GeneralForm
-                    getHeightWeight={checkWeight}
-                    alergieNotExist={alergieNotExist}
-                    alergieExist={alergieExist}
-                    getHeight={getHeight}
-                    getWeight={getWeight}
-                    checkAlergie={checkAlergie}
-                    handleAllergiesSelectChange={handleAllergiesSelectChange}
-                    onSubmitInfo={onSubmitInfo}
-                    showButton={showShecduling}
-                  />
-                )
-              ) : gender == "Female" && pergency == "No" ? (
-                <GeneralForm
-                  getHeightWeight={checkWeight}
-                  alergieNotExist={alergieNotExist}
-                  alergieExist={alergieExist}
-                  getHeight={getHeight}
-                  getWeight={getWeight}
-                  checkAlergie={checkAlergie}
-                  handleAllergiesSelectChange={handleAllergiesSelectChange}
-                  onSubmitInfo={onSubmitInfo}
-                  showButton={showShecduling}
-                />
-              ) : currentlyConceive ? (
-                <GeneralForm
-                  getHeightWeight={checkWeight}
-                  alergieNotExist={alergieNotExist}
-                  alergieExist={alergieExist}
-                  getHeight={getHeight}
-                  getWeight={getWeight}
-                  checkAlergie={checkAlergie}
-                  handleAllergiesSelectChange={handleAllergiesSelectChange}
-                  onSubmitInfo={onSubmitInfo}
-                  showButton={showShecduling}
-                />
-              ) : pregencyTime && pregencyCondition ? (
-                <GeneralForm
-                  getHeightWeight={checkWeight}
-                  alergieNotExist={alergieNotExist}
-                  alergieExist={alergieExist}
-                  getHeight={getHeight}
-                  getWeight={getWeight}
-                  checkAlergie={checkAlergie}
-                  handleAllergiesSelectChange={handleAllergiesSelectChange}
-                  onSubmitInfo={onSubmitInfo}
-                  showButton={showShecduling}
-                />
-              ) : feedingTime && checkBreastFedding ? (
-                <GeneralForm
-                  getHeightWeight={checkWeight}
-                  alergieNotExist={alergieNotExist}
-                  alergieExist={alergieExist}
-                  getHeight={getHeight}
-                  getWeight={getWeight}
-                  checkAlergie={checkAlergie}
-                  handleAllergiesSelectChange={handleAllergiesSelectChange}
-                  onSubmitInfo={onSubmitInfo}
-                  showButton={showShecduling}
-                />
-              ) : conceivePlanning ? (
-                <GeneralForm
-                  getHeightWeight={checkWeight}
-                  alergieNotExist={alergieNotExist}
-                  alergieExist={alergieExist}
-                  getHeight={getHeight}
-                  getWeight={getWeight}
-                  checkAlergie={checkAlergie}
-                  handleAllergiesSelectChange={handleAllergiesSelectChange}
-                  onSubmitInfo={onSubmitInfo}
-                  showButton={showShecduling}
-                />
-              ) : (
-                otherCondition && (
-                  <GeneralForm
-                    getHeightWeight={checkWeight}
-                    alergieNotExist={alergieNotExist}
-                    alergieExist={alergieExist}
-                    getHeight={getHeight}
-                    getWeight={getWeight}
-                    checkAlergie={checkAlergie}
-                    handleAllergiesSelectChange={handleAllergiesSelectChange}
-                    onSubmitInfo={onSubmitInfo}
-                    showButton={showShecduling}
-                  />
-                )
-              )}
+              {gender === "Male"
+                ? heightWeightFlag && (
+                    <GeneralForm
+                      checkWeight={checkWeight}
+                      alergieNotExist={alergieNotExist}
+                      alergieExist={alergieExist}
+                      getHeight={getHeight}
+                      getWeight={getWeight}
+                      checkAlergie={checkAlergie}
+                      handleAllergiesSelectChange={handleAllergiesSelectChange}
+                      onSubmitInfo={onSubmitInfo}
+                      showButton={showShecduling}
+                      gender={gender}
+                      checkHeight={checkHeight}
+                    />
+                  )
+                : gender === "Female" && (
+                    <FemaleGeneralForm
+                      pergency={pergency}
+                      handlePregency={handlePregency}
+                      handleWomenCondition={handleWomenCondition}
+                      pregencyCondition={pregencyCondition}
+                      handlePregencyTime={handlePregencyTime}
+                      checkBreastFedding={checkBreastFedding}
+                      handleFeedingTime={handleFeedingTime}
+                      nextYearConceive={nextYearConceive}
+                      handleConceivePlanning={handleConceivePlanning}
+                      currentlyConceive={currentlyConceive}
+                      heightWeightFlag={heightWeightFlag}
+                      checkWeight={checkWeight}
+                      alergieNotExist={alergieNotExist}
+                      alergieExist={alergieExist}
+                      getHeight={getHeight}
+                      getWeight={getWeight}
+                      checkAlergie={checkAlergie}
+                      handleAllergiesSelectChange={handleAllergiesSelectChange}
+                      onSubmitInfo={onSubmitInfo}
+                      showButton={showShecduling}
+                      pregencyTime={pregencyTime}
+                      feedingTime={feedingTime}
+                      conceivePlanning={conceivePlanning}
+                      otherCondition={otherCondition}
+                    />
+                  )}
             </form>
           </div>
         </Col>

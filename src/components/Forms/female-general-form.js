@@ -1,4 +1,5 @@
 import React from "react";
+import GeneralForm from "./general-form";
 
 const FemaleGeneralForm = ({
   pergency,
@@ -10,7 +11,23 @@ const FemaleGeneralForm = ({
   handleFeedingTime,
   nextYearConceive,
   handleConceivePlanning,
+  currentlyConceive,
+  heightWeightFlag,
+  checkWeight,
+  alergieNotExist,
+  alergieExist,
+  getHeight,
+  getWeight,
+  checkAlergie,
+  handleAllergiesSelectChange,
+  onSubmitInfo,
+  showButton,
+  pregencyTime,
+  feedingTime,
+  conceivePlanning,
+  otherCondition,
 }) => {
+  console.log("Curently :", currentlyConceive, "Check :", heightWeightFlag);
   return (
     <div className="female__general--form">
       <div className="form-group">
@@ -26,7 +43,7 @@ const FemaleGeneralForm = ({
           <option value="No">No</option>
         </select>
       </div>
-      {pergency == "Yes" && (
+      {pergency === "Yes" && (
         <div className="form-group">
           <select className="form-control" onChange={handleWomenCondition}>
             <option>
@@ -45,6 +62,19 @@ const FemaleGeneralForm = ({
           </select>
         </div>
       )}
+      {pergency === "No" && heightWeightFlag && (
+        <GeneralForm
+          checkWeight={checkWeight}
+          alergieNotExist={alergieNotExist}
+          alergieExist={alergieExist}
+          getHeight={getHeight}
+          getWeight={getWeight}
+          checkAlergie={checkAlergie}
+          handleAllergiesSelectChange={handleAllergiesSelectChange}
+          onSubmitInfo={onSubmitInfo}
+          showButton={showButton}
+        />
+      )}
       {pregencyCondition && (
         <div className="form-group">
           <select className="form-control" onChange={handlePregencyTime}>
@@ -54,6 +84,19 @@ const FemaleGeneralForm = ({
             <option value="3rd Trimester">3rd Trimester</option>
           </select>
         </div>
+      )}
+      {pregencyTime !== "" && heightWeightFlag && (
+        <GeneralForm
+          checkWeight={checkWeight}
+          alergieNotExist={alergieNotExist}
+          alergieExist={alergieExist}
+          getHeight={getHeight}
+          getWeight={getWeight}
+          checkAlergie={checkAlergie}
+          handleAllergiesSelectChange={handleAllergiesSelectChange}
+          onSubmitInfo={onSubmitInfo}
+          showButton={showButton}
+        />
       )}
       {checkBreastFedding && (
         <div className="form-group">
@@ -67,6 +110,19 @@ const FemaleGeneralForm = ({
           </select>
         </div>
       )}
+      {feedingTime !== "" && heightWeightFlag && (
+        <GeneralForm
+          checkWeight={checkWeight}
+          alergieNotExist={alergieNotExist}
+          alergieExist={alergieExist}
+          getHeight={getHeight}
+          getWeight={getWeight}
+          checkAlergie={checkAlergie}
+          handleAllergiesSelectChange={handleAllergiesSelectChange}
+          onSubmitInfo={onSubmitInfo}
+          showButton={showButton}
+        />
+      )}
       {nextYearConceive && (
         <div className="form-group">
           <textarea
@@ -77,6 +133,45 @@ const FemaleGeneralForm = ({
             onChange={handleConceivePlanning}
           ></textarea>
         </div>
+      )}
+      {currentlyConceive && heightWeightFlag && (
+        <GeneralForm
+          checkWeight={checkWeight}
+          alergieNotExist={alergieNotExist}
+          alergieExist={alergieExist}
+          getHeight={getHeight}
+          getWeight={getWeight}
+          checkAlergie={checkAlergie}
+          handleAllergiesSelectChange={handleAllergiesSelectChange}
+          onSubmitInfo={onSubmitInfo}
+          showButton={showButton}
+        />
+      )}
+      {conceivePlanning !== "" && heightWeightFlag && (
+        <GeneralForm
+          checkWeight={checkWeight}
+          alergieNotExist={alergieNotExist}
+          alergieExist={alergieExist}
+          getHeight={getHeight}
+          getWeight={getWeight}
+          checkAlergie={checkAlergie}
+          handleAllergiesSelectChange={handleAllergiesSelectChange}
+          onSubmitInfo={onSubmitInfo}
+          showButton={showButton}
+        />
+      )}
+      {otherCondition && heightWeightFlag && (
+        <GeneralForm
+          checkWeight={checkWeight}
+          alergieNotExist={alergieNotExist}
+          alergieExist={alergieExist}
+          getHeight={getHeight}
+          getWeight={getWeight}
+          checkAlergie={checkAlergie}
+          handleAllergiesSelectChange={handleAllergiesSelectChange}
+          onSubmitInfo={onSubmitInfo}
+          showButton={showButton}
+        />
       )}
     </div>
   );
