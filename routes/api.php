@@ -33,8 +33,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('/logout', [AuthController::class, 'logout']);
 
+    Route::get('getAllDiseases', [DiseaseController::class,'getAllDiseases']);
+
 });
-Route::get('getAllDiseases', [DiseaseController::class,'getAllDiseases']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
