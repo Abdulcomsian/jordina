@@ -126,11 +126,11 @@ class AuthController extends ApiController
                 return $this->errorResponse($validateUser->messages(), 401);
             }
 
-            $user_id = Auth::id();
+            $user_id = Auth::user();
             $chk_gender = Gender::where('user_id', $user_id)->first();
             if($chk_gender)
             {
-                $gender = Gender::find($user_id);
+                $gender = Gender::find($chk_gender->id);
             }
             else{
                 $gender = new Gender();
