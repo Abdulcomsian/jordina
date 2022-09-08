@@ -17,18 +17,16 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('gender');
-            $table->string('gender_info')->nullable();
-            $table->integer('height');
-            $table->integer('weight');
-            $table->integer('female_info')->nullable();
-            $table->text('female_specfic_info')->nullable();
-            $table->text('female_info_time')->nullable();
-            $table->longText('female_info_comment')->nullable();
-            $table->string('skin_allergy')->nullable();
-            $table->text('past_medicine')->nullable();
-            $table->text('current_medicine')->nullable();
-            $table->longText('face_image')->nullable();
+            $table->string('gender')->nullable();
+            $table->integer('height')->nullable();
+            $table->integer('weight')->nullable();
+            $table->string('past_medication')->nullable();
+            $table->text('current_medication')->nullable();
+            $table->text('pregnancy')->nullable();
+            $table->longText('pregnency_condition')->nullable();
+            $table->string('pregnency_time')->nullable();
+            $table->text('plan_breastfeeding')->nullable();
+            $table->longText('image')->nullable();
             $table->timestamps();
         });
     }

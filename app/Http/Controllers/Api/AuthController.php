@@ -116,10 +116,10 @@ class AuthController extends ApiController
             //Validated
             $validateUser = Validator::make($request->all(), 
             [
-                'gender' => 'required',
-                'height' => 'required',
-                'weight' => 'required',
-                'skin_allergy' => 'required'
+//                'gender' => 'required',
+//                'height' => 'required',
+//                'weight' => 'required',
+//                'skin_allergy' => 'required'
             ]);
 
             if($validateUser->fails()){
@@ -135,18 +135,31 @@ class AuthController extends ApiController
             else{
                 $gender = new Gender();
             }
-            $gender->user_id = $user_id;
+//            $gender->user_id = $user_id;
+//            $gender->gender = $request->gender;
+//            if($request->gender == 'male'){
+//                $gender->height = $request->height;
+//                $gender->weight = $request->weight;
+//                if($request->allergie == 'yes'){
+//
+//                }
+//            }
+//            if($request->gender == 'female'){
+//                $gender->pregnancy = $request->pregnancy;
+//                if($request->pregnancy == 'no'){
+//                    $gender->height = $request->height;
+//                    $gender->weight = $request->weight;
+//                }
+//            }
             $gender->gender = $request->gender;
-            $gender->gender_info = $request->gender_info;
             $gender->height = $request->height;
             $gender->weight = $request->weight;
-            $gender->female_info = $request->female_info;
-            $gender->female_specfic_info = $request->female_specfic_info;
-            $gender->female_info_time = $request->female_info_time;
-            $gender->female_info_comment = $request->female_info_comment;
-            $gender->skin_allergy = $request->skin_allergy;
-            $gender->past_medicine = $request->past_medicine;
-            $gender->current_medicine = $request->current_medicine;
+            $gender->past_medication = $request->past_medication;
+            $gender->current_medication = $request->current_medication;
+            $gender->pregnancy = $request->pregnancy;
+            $gender->pregnency_condition = $request->pregnency_condition;
+            $gender->pregnency_time = $request->pregnency_time;
+            $gender->plan_breastfeeding = $request->plan_breastfeeding;
             if($request->hasfile('image'))
             {
                 $image = $request->file('image');
@@ -154,7 +167,7 @@ class AuthController extends ApiController
 
                 $image_name =time().'.'. $extensions;
                 $image->move('blog/',$image_name);
-                $gender->face_image=$image_name;
+                $gender->image=$image_name;
             }
             $gender->save();
 
