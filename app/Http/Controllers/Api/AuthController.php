@@ -130,7 +130,7 @@ class AuthController extends ApiController
             $chk_gender = Gender::where('user_id', $user_id)->first();
             if($chk_gender)
             {
-                $gender = Gender::find($chk_gender);
+                $gender = Gender::find($user_id);
             }
             else{
                 $gender = new Gender();
