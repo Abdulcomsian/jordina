@@ -100,7 +100,10 @@ class AuthController extends ApiController
             $user->question = json_encode($collection);
             $user->save();
 
-            return $this->successResponse("", 'Second Step Completed, question Has been submitted', 200);
+            $success['skin_condition'] = $user->id;
+            return $this->successResponse($success, 'Second Step Completed, question Has been submitted', 200);
+
+            // return $this->successResponse("", 'Second Step Completed, question Has been submitted', 200);
 
         } catch (\Throwable $th) {
             return response()->json([
