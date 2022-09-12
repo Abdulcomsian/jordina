@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\DiseaseController;
+use App\Http\Controllers\Api\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,12 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::get('getAllDiseases', [DiseaseController::class,'getAllDiseases']);
 
+
 });
+Route::get('getAllProducts', [ProductController::class,'getAllProducts']);
+
+Route::post('userPayment', [DiseaseController::class,'userPayment']);
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

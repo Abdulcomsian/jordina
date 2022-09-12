@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\Disease;
+use App\Models\User;
 
 class User extends Authenticatable
 {
@@ -49,5 +51,11 @@ class User extends Authenticatable
     public function gender()
     {
         return $this->hasOne('App\Gender');
+    }
+
+    public function diseases()
+    {
+//        return $this->belongsToMany(Disease::class, 'user_payments')->withPivot('payment_status', 'payment_amount')->withTimestamps();
+        return $this->belongsToMany(Disease::class, 'user_payments');
     }
 }

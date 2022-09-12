@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\DiseasesController;
+use App\Http\Controllers\Admin\AppointmentsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,18 +26,23 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+//Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('home', [HomeController::class, 'dashboard'])->name('admin.dashboard');
 
 /*****************ADMIN ROUTES*******************/
 Route::prefix('admin')->middleware('can:admin')->group(function(){
     Route::resource('diseases', DiseasesController::class);
+//    Route::resource('diseases', DiseasesController::class);
 });
 /********************DASHBOARD ROUTES END******************************/
 
 /*****************Doctor ROUTES*******************/
 Route::prefix('doctor')->middleware('can:doctor')->group(function(){
-    Route::get('/disease',[DiseasesController::class, 'index'])->name('show-disease');
+    Route::get('/disease', [DiseasesController::class, 'index'])->name('show-disease');
 });
+Route::resource('appointments', AppointmentsController::class);
+
 /********************DASHBOARD ROUTES END******************************/
 
 /*****************User ROUTES*******************/
