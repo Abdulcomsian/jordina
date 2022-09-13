@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Disease;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Auth;
 
 class DiseasesController extends Controller
 {
@@ -174,6 +175,7 @@ class DiseasesController extends Controller
 
     public function editProfile()
     {
-        return view('admin.profile.edit');
+        $user = Auth::user();
+        return view('admin.profile.edit', ['user'=>$user]);
     }
 }
