@@ -29,7 +29,7 @@ class ProductController extends ApiController
     public function getAllProductCategories()
     {
         try {
-            $categories = ProductCategory::pluck('name','id');
+            $categories = ProductCategory::select('id','name')->get();
             $response = array(
                 'skin_type' => $categories
             );

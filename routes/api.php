@@ -42,9 +42,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::get('getAllProducts', [ProductController::class,'getAllProducts']);
 
-    Route::get('getAllProductCategories', [ProductController::class,'getAllProductCategories']);
 
 });
+Route::get('getAllProductCategories', [ProductController::class,'getAllProductCategories']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
