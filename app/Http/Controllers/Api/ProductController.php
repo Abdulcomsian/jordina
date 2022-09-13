@@ -13,8 +13,13 @@ class ProductController extends ApiController
     {
         try {
             $products = Product::with('product_categories:id,name as category_name','diseases:id,title as disease_title')->get();
+            $min_price = Product::min('amount');
+            $max_price = Product::max('amount');
+
             $response = array(
-                'products' => $products
+                'products' => $products,
+                'min_price' => $min_price,
+                'max_price' => $max_price,
             );
             return $this->successResponse($response, null, 200);
         } catch (\Throwable $th) {
@@ -42,4 +47,5 @@ class ProductController extends ApiController
 
         }
     }
+
 }

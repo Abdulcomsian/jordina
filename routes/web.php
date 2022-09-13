@@ -40,6 +40,7 @@ Route::prefix('admin')->middleware('can:admin')->group(function(){
 /*****************Doctor ROUTES*******************/
 Route::prefix('doctor')->middleware('can:doctor')->group(function(){
     Route::get('/disease', [DiseasesController::class, 'index'])->name('show-disease');
+    Route::get('/profile', [DiseasesController::class, 'editProfile'])->name('profile.edit');
 });
 Route::resource('appointments', AppointmentsController::class);
 
