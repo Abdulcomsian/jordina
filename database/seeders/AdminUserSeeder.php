@@ -65,6 +65,20 @@ class AdminUserSeeder extends Seeder
             'name' => 'User',
         ]);
 
+        $user = User::create([
+            'first_name' => 'Hamza',
+            'last_name' => 'Alam',
+            'email' => 'alamhamza18@gmail.com',
+            'password' => bcrypt('Ha5630972'),
+            'state' => 'Acne',
+            'skin_condition' => 'Redness',
+            'address' => 'Islamabad'
+        ]);
+
+        $role = Role::create([
+            'name' => 'User',
+        ]);
+
         $permissions = Permission::pluck('id','id')->all();
 
         $role->syncPermissions($permissions);
