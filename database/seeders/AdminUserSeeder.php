@@ -65,6 +65,12 @@ class AdminUserSeeder extends Seeder
             'name' => 'User',
         ]);
 
+        $permissions = Permission::pluck('id','id')->all();
+
+        $role->syncPermissions($permissions);
+
+        $user->assignRole([$role->id]);
+
         $user = User::create([
             'first_name' => 'Hamza',
             'last_name' => 'Alam',
@@ -73,10 +79,6 @@ class AdminUserSeeder extends Seeder
             'state' => 'Acne',
             'skin_condition' => 'Redness',
             'address' => 'Islamabad'
-        ]);
-
-        $role = Role::create([
-            'name' => 'User',
         ]);
 
         $permissions = Permission::pluck('id','id')->all();
