@@ -9,6 +9,8 @@ use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\DB;
+use Session;
+use Stripe;
 
 class ProductController extends ApiController
 {
@@ -90,5 +92,21 @@ class ProductController extends ApiController
 
         }
     }
+
+    public function payment(Request $request)
+    {
+        $secret = Stripe\Stripe::setApiKey('sk_test_51LhsdnGCTNDeFrTZbu5vvte3Di3FhoS7MBwh4wBmDuzsbSeyCGvu3iJwzrThxsZddHSYvLqtca3d8HTLP4ye6u9p00ehlb2iDb');
+        Stripe\Charge::create ([
+            "amount" => $request->amount,
+            "currency" => "usd",
+            "source" => $request->stripeToken,
+            "description" => "Test payment from itsolutionstuff.com."
+        ]);
+
+        Session::flash('success', 'Payment successful!');
+
+        return back();
+    }
+
 
 }
