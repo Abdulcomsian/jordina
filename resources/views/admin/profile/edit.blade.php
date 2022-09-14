@@ -234,7 +234,7 @@
                                     <!--end::Label-->
                                     <!--begin::Col-->
                                     <div class="col-lg-8 fv-row">
-                                        <select class="form-control form-control-lg form-control-solid">
+                                        <select class="form-control form-control-lg form-control-solid" name="state">
                                             <option value="AL">Alabama</option>
                                             <option value="AK">Alaska</option>
                                             <option value="AZ">Arizona</option>

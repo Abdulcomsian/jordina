@@ -116,6 +116,7 @@
                     </a>
                 </div>
                 @endif
+{{--				@dd(Auth::user()->roles)--}}
                 @if(Auth::user()->hasRole('doctor'))
                 <div class="menu-item">
                     <a class="menu-link" href="{{route('show-disease')}}">

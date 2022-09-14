@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('state')->nullable();
             $table->string('skin_condition')->nullable();
             $table->longText('question')->nullable();
+            $table->text('calendy')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

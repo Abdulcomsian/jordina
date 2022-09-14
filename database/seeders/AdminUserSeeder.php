@@ -38,7 +38,9 @@ class AdminUserSeeder extends Seeder
             'first_name' => 'Doctor',
             'last_name' => 'User',
             'email' => 'doctor@gmail.com',
-            'password' => bcrypt('12345678')
+            'calendy' => 'https://calendly.com/abdul-71',
+            'password' => bcrypt('12345678'),
+            'state' => 'AL',
         ]);
 
         $role = Role::create([
@@ -76,9 +78,9 @@ class AdminUserSeeder extends Seeder
             'last_name' => 'Alam',
             'email' => 'alamhamza18@gmail.com',
             'password' => bcrypt('Ha5630972'),
-            'state' => 'Acne',
+            'state' => 'AL',
             'skin_condition' => 'Redness',
-            'address' => 'Islamabad'
+            'address' => 'Islamabad',
         ]);
 
         $permissions = Permission::pluck('id','id')->all();

@@ -178,4 +178,10 @@ class DiseasesController extends Controller
         $user = Auth::user();
         return view('admin.profile.edit', ['user'=>$user]);
     }
+
+    public function updateProfile()
+    {
+        $user = Auth::user();
+
+    }
 }
