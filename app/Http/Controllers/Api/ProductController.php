@@ -109,7 +109,7 @@ class ProductController extends ApiController
             );
             return $this->successResponse($response, null, 200);
         } catch (\Throwable $th) {
-            return  ()->json([
+            return response()->json([
                 'status' => false,
                 'message' => $th->getMessage()
             ], 500);
