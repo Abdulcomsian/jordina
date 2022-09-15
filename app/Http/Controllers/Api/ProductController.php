@@ -95,18 +95,26 @@ class ProductController extends ApiController
 
     public function payment(Request $request)
     {
-        $secret = Stripe\Stripe::setApiKey('sk_test_51LhsdnGCTNDeFrTZbu5vvte3Di3FhoS7MBwh4wBmDuzsbSeyCGvu3iJwzrThxsZddHSYvLqtca3d8HTLP4ye6u9p00ehlb2iDb');
-        Stripe\Charge::create ([
-            "amount" => $request->amount,
-            "currency" => "usd",
-            "source" => $request->stripeToken,
-            "description" => "Test payment from itsolutionstuff.com."
-        ]);
+        try {
+            $secret = Stripe\Stripe::setApiKey('sk_test_51LhsdnGCTNDeFrTZbu5vvte3Di3FhoS7MBwh4wBmDuzsbSeyCGvu3iJwzrThxsZddHSYvLqtca3d8HTLP4ye6u9p00ehlb2iDb');
+            $result = Stripe\Charge::create ([
+                "amount" => $request->amount,
+                "currency" => "usd",
+                "source" => $request->stripeToken,
+                "description" => "Test payment from itsolutionstuff.com."
+            ]);
 
-        Session::flash('success', 'Payment successful!');
+            $response = array(
+                'result' => $result
+            );
+            return $this->successResponse($response, null, 200);
+        } catch (\Throwable $th) {
+            return  ()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
 
-        return back();
+        }
     }
-
 
 }
