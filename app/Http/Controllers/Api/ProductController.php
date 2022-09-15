@@ -76,7 +76,7 @@ class ProductController extends ApiController
             $user = User::findorfail($request->user_id);
             $doctor = DB::table('users')
                 ->join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
-                ->where([['model_has_roles.role_id', '=', 2],['users.state', '=', $user->state]])
+                ->where([['model_has_roles.role_id', '=', 2], ['users.state', '=', $user->state]])
                 ->select('users.*')
                 ->get();
 
@@ -97,10 +97,10 @@ class ProductController extends ApiController
     {
         try {
             $secret = Stripe\Stripe::setApiKey('sk_test_51LhsdnGCTNDeFrTZbu5vvte3Di3FhoS7MBwh4wBmDuzsbSeyCGvu3iJwzrThxsZddHSYvLqtca3d8HTLP4ye6u9p00ehlb2iDb');
-            $result = Stripe\Charge::create ([
+            $result = Stripe\Charge::create([
                 "amount" => $request->amount,
                 "currency" => "usd",
-                "source" => $request->stripeToken,
+                "source" => $request->cardID,
                 "description" => "Test payment from itsolutionstuff.com."
             ]);
 
@@ -108,6 +108,14 @@ class ProductController extends ApiController
                 'result' => $result
             );
             return $this->successResponse($response, null, 200);
+//        } catch (\Throwable $th) {
+        } catch (Stripe\Exception\CardException $th) {
+            if ($th->getError()->code == 'authentication_required') {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'authentication_required'
+                ], 500);
+            }
         } catch (\Throwable $th) {
             return response()->json([
                 'status' => false,

@@ -230,7 +230,7 @@
                             @foreach($users as $user)
                                 <tr>
                                     <!--begin::User=-->
-                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->first_name.' '.$user->last_name}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->phone}}</td>
                                     <td>{{date('d M Y h:i a', strtotime($user->created_at))}}</td>
