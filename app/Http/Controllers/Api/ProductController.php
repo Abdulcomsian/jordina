@@ -98,7 +98,7 @@ class ProductController extends ApiController
         try {
             $secret = Stripe\Stripe::setApiKey('sk_test_51LhsdnGCTNDeFrTZbu5vvte3Di3FhoS7MBwh4wBmDuzsbSeyCGvu3iJwzrThxsZddHSYvLqtca3d8HTLP4ye6u9p00ehlb2iDb');
             $result = Stripe\Charge::create([
-                "amount" => $request->amount*100,
+                "amount" => $request->amount * 100,
                 "currency" => "usd",
                 "source" => $request->cardID,
                 "description" => "Test payment from itsolutionstuff.com."
@@ -114,8 +114,9 @@ class ProductController extends ApiController
             if ($th->getError()->code == 'authentication_required') {
                 return response()->json([
                     'status' => false,
-                    'message' => 'authentication_required'
-                ], 500);
+                    'message' => 'authentication_required',
+                    'secret_key' => 'sk_test_51LhsdnGCTNDeFrTZbu5vvte3Di3FhoS7MBwh4wBmDuzsbSeyCGvu3iJwzrThxsZddHSYvLqtca3d8HTLP4ye6u9p00ehlb2iDb'
+                ], 401);
             }
         } catch (\Throwable $th) {
             return response()->json([
