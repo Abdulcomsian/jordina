@@ -255,7 +255,7 @@
                                                             </span>
                                             <!--end::Svg Icon-->
                                         </a>
-                                        <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                                        <a onclick="event.preventDefault(); document.getElementById('delete-form-{{$user->id}}').submit();" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
                                             <!--begin::Svg Icon | path: icons/duotone/General/Trash.svg-->
                                             <span class="svg-icon svg-icon-3">
                                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -279,6 +279,10 @@
                                     </td>
                                     <!--end::Action=-->
                                 </tr>
+                                <form id="delete-form-{{$user->id}}" action="{{route('users.destroy', $user->id)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
                             @endforeach
                             </tbody>
                             <!--end::Table body-->

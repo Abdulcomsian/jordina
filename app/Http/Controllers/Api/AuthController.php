@@ -126,7 +126,7 @@ class AuthController extends ApiController
                 return $this->errorResponse($validateUser->messages(), 401);
             }
 
-            $user_id = Auth::user();
+            $user_id = Auth::user()->id;
             $chk_gender = Gender::where('user_id', $user_id)->first();
             if($chk_gender)
             {

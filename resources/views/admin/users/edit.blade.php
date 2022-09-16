@@ -37,20 +37,20 @@
                                         <div class="row gx-10 mb-5">
                                             <!--begin::Col-->
                                             <div class="col-lg-6">
-                                                <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Company Name</label>
+                                                <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">First Name</label>
                                                 <!--begin::Input group-->
                                                 <div class="mb-5">
-                                                    <input type="text" class="form-control form-control-solid" placeholder="Company Name" />
+                                                    <input type="text" name="first_name" class="form-control form-control-solid" placeholder="Company Name" />
                                                 </div>
                                                 <!--end::Input group-->
                                             </div>
                                             <!--end::Col-->
                                             <!--begin::Col-->
                                             <div class="col-lg-6">
-                                                <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Full Name</label>
+                                                <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Last Name</label>
                                                 <!--begin::Input group-->
                                                 <div class="mb-5">
-                                                    <input type="text" class="form-control form-control-solid" placeholder="Full Name" />
+                                                    <input type="text" name="last_name" class="form-control form-control-solid" placeholder="Full Name" />
                                                 </div>
                                                 <!--end::Input group-->
                                             </div>
@@ -60,7 +60,7 @@
                                                 <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Email</label>
                                                 <!--begin::Input group-->
                                                 <div class="mb-5">
-                                                    <input type="text" class="form-control form-control-solid" placeholder="Email" />
+                                                    <input type="text" name="email" class="form-control form-control-solid" placeholder="Email" />
                                                 </div>
                                                 <!--end::Input group-->
                                             </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 
 
 class UsersController extends Controller
@@ -31,7 +32,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::get();
-        return view('admin.users.index',['users'=>$users]);
+        return view('admin.users.index', ['users' => $users]);
     }
 
     /**
@@ -47,15 +48,15 @@ class UsersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name'=>'required|max:100',
-            'email'=>'required|max:100|unique:users',
-            'password'=>'required|max:100|confirmed',
+            'name' => 'required|max:100',
+            'email' => 'required|max:100|unique:users',
+            'password' => 'required|max:100|confirmed',
 //            'status' => $request->get('status'),
         ]);
         if ($validator->fails()) {
@@ -81,7 +82,7 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -92,20 +93,20 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $user = User::findorfail($id);
-        return view('admin.users.edit',['user' => $user]);
+        return view('admin.users.edit', ['user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -116,11 +117,14 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        Session::flash('success', 'User deleted successfully');
+        return redirect()->back();
     }
 }
