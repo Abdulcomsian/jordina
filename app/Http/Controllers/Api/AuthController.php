@@ -161,6 +161,7 @@ class AuthController extends ApiController
             $gender->pregnency_condition = $request->pregnency_condition;
             $gender->pregnency_time = $request->pregnency_time;
             $gender->plan_breastfeeding = $request->plan_breastfeeding;
+            $gender->is_allergy = $request->is_allergy;
             if($request->hasfile('image'))
             {
                 $image = $request->file('image');

@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('pregnency_time')->nullable();
             $table->text('plan_breastfeeding')->nullable();
             $table->longText('image')->nullable();
+            $table->tinyinteger('is_allergy')->nullable();
             $table->timestamps();
         });
     }
