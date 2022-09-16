@@ -210,6 +210,7 @@ class AuthController extends ApiController
 
             $success['token'] =  $user->createToken('API TOKEN')->plainTextToken;
             $success['name'] =  $user->first_name.' '.$user->last_name;
+            $success['user_id'] =  $user->id;
 
             return $this->successResponse($success, 'User Logged In Successfully.');
 
