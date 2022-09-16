@@ -22,7 +22,7 @@
                                     <div class="d-flex flex-column align-items-start flex-xxl-row">
 
                                         <!--begin::Input group-->
-                                        <div class="d-flex flex-center flex-equal fw-row text-nowrap order-1 order-xxl-2 me-4" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Enter invoice number">
+                                        <div class="d-flex flex-center flex-equal fw-row text-nowrap order-1 order-xxl-2 me-4">
                                             <span class="fs-2x fw-bolder text-gray-800">Edit User</span>
                                         </div>
                                         <!--end::Input group-->
@@ -40,7 +40,7 @@
                                                 <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">First Name</label>
                                                 <!--begin::Input group-->
                                                 <div class="mb-5">
-                                                    <input type="text" name="first_name" class="form-control form-control-solid" placeholder="Company Name" />
+                                                    <input type="text" name="first_name" value="{{$user->first_name}}" class="form-control form-control-solid" placeholder="Company Name" />
                                                 </div>
                                                 <!--end::Input group-->
                                             </div>
@@ -50,7 +50,7 @@
                                                 <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Last Name</label>
                                                 <!--begin::Input group-->
                                                 <div class="mb-5">
-                                                    <input type="text" name="last_name" class="form-control form-control-solid" placeholder="Full Name" />
+                                                    <input type="text" name="last_name" value="{{$user->last_name}}" class="form-control form-control-solid" placeholder="Full Name" />
                                                 </div>
                                                 <!--end::Input group-->
                                             </div>
@@ -60,47 +60,7 @@
                                                 <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Email</label>
                                                 <!--begin::Input group-->
                                                 <div class="mb-5">
-                                                    <input type="text" name="email" class="form-control form-control-solid" placeholder="Email" />
-                                                </div>
-                                                <!--end::Input group-->
-                                            </div>
-                                            <!--end::Col-->
-                                            <!--begin::Col-->
-                                            <div class="col-lg-6">
-                                                <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Address</label>
-                                                <!--begin::Input group-->
-                                                <div class="mb-5">
-                                                    <input type="text" class="form-control form-control-solid" placeholder="Address" />
-                                                </div>
-                                                <!--end::Input group-->
-                                            </div>
-                                            <!--end::Col-->
-                                            <!--begin::Col-->
-                                            <div class="col-lg-6">
-                                                <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Country</label>
-                                                <!--begin::Input group-->
-                                                <div class="mb-5">
-                                                    <input type="text" class="form-control form-control-solid" placeholder="Country" />
-                                                </div>
-                                                <!--end::Input group-->
-                                            </div>
-                                            <!--end::Col-->
-                                            <!--begin::Col-->
-                                            <div class="col-lg-6">
-                                                <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Mobile Number</label>
-                                                <!--begin::Input group-->
-                                                <div class="mb-5">
-                                                    <input type="text" class="form-control form-control-solid" placeholder="Mobile Number" />
-                                                </div>
-                                                <!--end::Input group-->
-                                            </div>
-                                            <!--end::Col-->
-                                            <!--begin::Col-->
-                                            <div class="col-lg-6">
-                                                <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Office Number</label>
-                                                <!--begin::Input group-->
-                                                <div class="mb-5">
-                                                    <input type="text" class="form-control form-control-solid" placeholder="Office Number" />
+                                                    <input type="text" name="email" value="{{$user->email}}" class="form-control form-control-solid" placeholder="Email" />
                                                 </div>
                                                 <!--end::Input group-->
                                             </div>
@@ -121,7 +81,7 @@
                                     <div class="d-flex flex-column align-items-start flex-xxl-row">
 
                                         <!--begin::Input group-->
-                                        <div class="d-flex flex-center flex-equal fw-row text-nowrap order-1 order-xxl-2 me-4" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Enter invoice number">
+                                        <div class="d-flex flex-center flex-equal fw-row text-nowrap order-1 order-xxl-2 me-4">
                                             <span class="fs-2x fw-bolder text-gray-800">Password</span>
                                         </div>
                                         <!--end::Input group-->
@@ -139,7 +99,7 @@
                                                 <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Password</label>
                                                 <!--begin::Input group-->
                                                 <div class="mb-5">
-                                                    <input type="text" class="form-control form-control-solid" placeholder="Password" />
+                                                    <input type="password" name="password" class="form-control form-control-solid" placeholder="Password" />
                                                 </div>
                                                 <!--end::Input group-->
                                             </div>
@@ -149,7 +109,7 @@
                                                 <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Confrim Password</label>
                                                 <!--begin::Input group-->
                                                 <div class="mb-5">
-                                                    <input type="text" class="form-control form-control-solid" placeholder="Confrim Password" />
+                                                    <input type="password" name="confirm-password"  class="form-control form-control-solid" placeholder="Confrim Password" />
                                                 </div>
                                                 <!--end::Input group-->
                                             </div>

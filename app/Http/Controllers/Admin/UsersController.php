@@ -127,4 +127,29 @@ class UsersController extends Controller
         Session::flash('success', 'User deleted successfully');
         return redirect()->back();
     }
+
+    public function editProfile()
+    {
+        $user = Auth::user();
+        return view('admin.profile.edit', ['user' => $user]);
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|unique:users,email',
+            'password' => 'required|min:6',
+        ]);
+        $ambassador = new User([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'status' => $request->status,
+        ]);
+
+        $ambassador->save();
+
+        return route('users.index')->with('success', __('users.messages.added_success'));
+    }
 }
