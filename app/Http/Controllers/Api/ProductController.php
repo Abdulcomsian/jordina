@@ -97,7 +97,7 @@ class ProductController extends ApiController
     {
         try {
             $secret = Stripe\Stripe::setApiKey('sk_test_51LhsdnGCTNDeFrTZbu5vvte3Di3FhoS7MBwh4wBmDuzsbSeyCGvu3iJwzrThxsZddHSYvLqtca3d8HTLP4ye6u9p00ehlb2iDb');
-            $result = Stripe\Charge::create([
+            $result = Stripe\PaymentIntent::create([
                 "amount" => $request->amount * 100,
                 "currency" => "usd",
                 "source" => $request->cardID,
