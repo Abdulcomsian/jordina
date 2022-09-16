@@ -73,3 +73,70 @@
 .height__weight--field .form-group{
     width: 49%;
 }
+/************* Check out - Form *************/
+.checkout__form__section .form__div{
+    width: 100%;
+    max-width: 70%;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0px 2px 25px 0px rgb(0 0 0 / 5%) !important;
+    border-radius: 16px;
+}
+.checkout__form__section .form__div .StripeElement{
+    box-shadow: none !important;
+    padding: 17px 20px !important;
+    border-radius: 0.267rem;
+    border-color: #af6fac;
+}
+.pay-button{
+    border-radius: 0.267rem;
+    background-color: #af6fac;
+    border: none;
+    width: 100%;
+    padding: 15px;
+    color: #fff;
+    font-weight: 700;
+}
+.pay-button.disable{
+    opacity: 0.5;
+}
+.summary__div{
+    height: 100%;
+}
+.summary__div h4{
+    font-weight: 700;
+    margin-bottom: 15px !important;
+}
+.summary__div .items__list{
+    height: 91%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.summary__div .items__list ul{
+    padding: 0px;
+    list-style: none;
+}
+.summary__div .items__list ul li{
+    border-bottom: 1px solid #eee;
+}
+.summary__div .items__list ul li h4{
+    font-weight: 700;
+}
+.summary__div .items__list ul .img__div img{
+    width: 50px;
+}
+.form__input__div{
+    border-left: 1px solid #eee;
+}
+.successFull__Payment h4{
+    font-weight: 700;
+    font-size: 34px;
+}
+button{
+    background: #AF6FAC;
+    padding: 15px 20px;
+    border-radius: 32px;
+    border: none;
+    color: #fff;
+}

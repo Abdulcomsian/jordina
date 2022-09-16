@@ -1,14 +1,16 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import Home from "../components/Home/Home";
-import FormScreen from "../components/FormScreen/form-screen";
-import AllProduct from "../components/Product/AllProduct";
-import ProductDetail from "../components/Product/ProductDetail";
-import About from "../components/About/index";
-import ClientDashboard from "../components/Client-Dashboard";
-import ClientProfile from "../components/ClientProfile";
-import Login from "../components/Auth/Login";
-import Register from "../components/Auth/Register";
+import Home from "../screens/Home/Home";
+import FormScreen from "../screens/FormScreen/form-screen";
+import AllProduct from "../screens/Product/AllProduct";
+import ProductDetail from "../screens/Product/ProductDetail";
+import About from "../screens/About/index";
+import ClientDashboard from "../dashboard/Client-Dashboard";
+import ClientProfile from "../dashboard/ClientProfile";
+import Login from "../screens/Auth/Login";
+import Register from "../screens/Auth/Register";
+import Cart from "../screens/Cart/index";
+import Checkout from "../components/StripePayment/index";
 
 function AppRoute() {
   return (
@@ -22,6 +24,8 @@ function AppRoute() {
       <Route exact path="/profile" element={<ClientProfile />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/register" element={<Register />} />
+      <Route exact path="/cart" element={<Cart />} />
+      <Route exact path="/checkOut" element={<Checkout />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

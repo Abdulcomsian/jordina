@@ -9,16 +9,12 @@ import { connect } from "react-redux";
 import "./style.css";
 
 const Header = (props) => {
-  const { authenticated, token, statusLogout } = props;
-  console.log(
-    "Authenticated Header :",
-    authenticated,
-    "Success :",
-    statusLogout
-  );
+  const { authenticated, token, statusLogout, className, addedItems } = props;
   const navigate = useNavigate();
   const [openHeader, setOpenHeader] = useState(false);
   const [loader, showLoader] = useState(false);
+  const [totalCartItem, setTotalCartItem] = useState(null);
+  var totalCartItems = 0;
   const mobileHeaderOpen = () => {
     if (window.innerWidth < 992) {
       if (openHeader) {
@@ -39,17 +35,19 @@ const Header = (props) => {
   useEffect(() => {
     (async () => {
       if (statusLogout === "Success") {
-        console.log("Sucessfully Logout here !");
         setTimeout(() => {
           showLoader(false);
         }, 3000);
       }
+      if (addedItems.length > 0) {
+        setTotalCartItem(addedItems.length);
+      }
     })();
-  }, [statusLogout]);
+  }, [statusLogout, addedItems]);
   return (
     <>
       {loader && <Loader showLoader={loader} loaderColor={"#AF6FAC"} />}
-      <header>
+      <header className={className && className}>
         {authenticated && (
           <div className="top__header">
             <ul className="d-flex justify-content-end align-items-center">
@@ -102,8 +100,13 @@ const Header = (props) => {
                 </ul>
                 <ul className="social__icon--list">
                   <li>
-                    <Nav.Link href="#action1">
-                      <img src={Images.shoppingCart} className="img-fluid" />
+                    <Nav.Link href={totalCartItem !== null && "/Jordina/cart"}>
+                      <div className="cart__item">
+                        <img src={Images.shoppingCart} className="img-fluid" />
+                        {totalCartItem !== null && token && (
+                          <span>{totalCartItem}</span>
+                        )}
+                      </div>
                     </Nav.Link>
                   </li>
                   <span className="line"></span>
@@ -145,6 +148,7 @@ const mapStateToProps = (state) => ({
   token: state.auth.token,
   authenticated: state.auth.authenticated,
   statusLogout: state.auth.statusLogout,
+  addedItems: state.cartReducer.addedItems,
 });
 
 const mapDispatchToProps = (dispatch) => ({

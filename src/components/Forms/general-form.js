@@ -77,13 +77,13 @@ const GeneralForm = ({
               onChange={(handlerFileUpload)}
             />
           </div>
-          <Button className="common-btn" onClick={(e)=>onSubmitInfo(medication,otherMedication,file,gender,checkWeight,checkHeight)}>
+          <Button className="common-btn" onClick={(e)=>onSubmitInfo(gender,checkWeight,checkHeight,checkAlergie,medication,otherMedication,file)}>
             Go to Scheduling
           </Button>
         </>
       )}
       {checkAlergie === "No" && showButton && checkWeight !== "" && (
-        <Button className="common-btn" onClick={onSubmitInfo}>
+        <Button className="common-btn" onClick={(e)=>onSubmitInfo(gender,checkWeight,checkHeight,checkAlergie)}>
           Go to Scheduling
         </Button>
       )}

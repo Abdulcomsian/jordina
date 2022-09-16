@@ -1,0 +1,816 @@
+.main__banner--section {
+    background-image: url(../../assets/images/banner-bg.png);
+    background-position: center;
+    background-repeat: inherit;
+    background-size: cover;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: initial !important;
+}
+
+.main__banner--section .overlay {
+    background-image: url(../../assets/images/banner-shahdow.png);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.main__banner--section .banner__content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* z-index: 99999; */
+    position: relative;
+    flex-direction: column;
+    padding: 217px 0px 96px;
+}
+
+.main__banner--section .banner__content h1 {
+    text-align: center;
+    font-size: 65px;
+    font-weight: 600;
+    color: #fff;
+    width: 650px;
+    font-family: Poppins;
+    line-height: 85.15px;
+}
+
+.main__banner--section .banner__content p {
+    width: 621px;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 37.5px;
+    margin: 32px 0px !important;
+    color: #fff;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+/*********** Hero -- Banner -- CSS ***********/
+.hero__banner {
+    padding: 32px 80px;
+    background-color: #000;
+}
+
+.hero__banner .banner__content p {
+    font-size: 17px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #fff;
+    font-family: Roboto;
+    margin-left: 16px !important;
+}
+
+/*********** Service -- Section -- CSS ***********/
+.service__section {
+    padding: 50px 60px 0px;
+}
+
+.service__section .tired__of__div {
+    background-image: url("../../assets/images/tired__off.png");
+    background-repeat: no-repeat;
+    margin: auto;
+    text-align: center;
+    background-position: top center;
+    height: 566px;
+    padding-bottom: 81px;
+    background-size: contain;
+    padding-top: 50px;
+    width: 100%;
+}
+
+.service__section .dermatologist_div {
+    background-image: url("../../assets/images/imposible_get.png");
+    background-repeat: no-repeat;
+    margin: auto;
+    text-align: center;
+    background-position: top center;
+    height: 566px;
+    padding-bottom: 81px;
+    background-size: contain;
+    padding-top: 50px;
+    width: 100%;
+}
+
+.service__section .online__provider {
+    background-image: url("../../assets/images/online-provider.png");
+    background-repeat: no-repeat;
+    margin: auto;
+    text-align: center;
+    background-position: top center;
+    height: 566px;
+    padding-bottom: 81px;
+    background-size: contain;
+    padding-top: 50px;
+    width: 100%;
+}
+
+.service__section .tired__of__div img {
+    width: 52px;
+}
+
+.service__card .service__title {
+    font-family: Poppins;
+    font-weight: 700;
+    font-size: 21.6px;
+    line-height: 27.65px;
+    text-align: center;
+    color: #000000;
+    width: 354px;
+    margin: 26px 0px !important;
+}
+
+.service__section .service__card p,
+.service__section .service__card li {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20.48px;
+    color: #000000;
+    text-align: left;
+}
+
+.service__section .service__card p {
+    text-decoration: underline;
+}
+
+.service__section .service__card li {
+    padding-bottom: 10px;
+}
+
+.dermatologist_div .service__card p {
+    padding-left: 5px;
+}
+
+.dermatologist_div .service__card img {
+    width: 112px;
+}
+
+.service__section .service__card .para__list__items {
+    width: 354px;
+}
+
+/********** Skin - Dermatology - Service - CSS ********/
+.skin__dermatology_service {
+    padding: 130px 80px 20px;
+    background-image: url("../../assets/images/offer-professional-bg.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.skin__dermatology_service .product__img__content {
+    width: 680px;
+    padding: 20px 30px;
+}
+
+.skin__dermatology_service .service__box {
+    padding-bottom: 90px;
+}
+
+.skin__dermatology_service .product__img__content h1 {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 61.44px;
+    color: #000;
+    font-family: Poppins;
+}
+
+.skin__dermatology_service .product__img__content h1 span {
+    position: relative;
+    display: inline-block;
+}
+
+.skin__dermatology_service .product__img__content p {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 25.6px;
+    font-family: Poppins;
+    margin: 25px 0px !important;
+}
+
+.skin__dermatology_service .product__img__content.width__800 {
+    width: 800px;
+}
+
+.prescription__text:after {
+    content: "";
+    position: absolute;
+    right: 0px;
+    bottom: 5px;
+    height: 6px;
+    width: 110px;
+    background-color: #AF6FAC;
+    border-radius: 5px;
+}
+
+.prescription__text::before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    bottom: 5px;
+    height: 6px;
+    width: 165px;
+    background-color: #AF6FAC;
+    border-radius: 5px;
+}
+
+.dermatology__text::before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    bottom: 5px;
+    height: 6px;
+    width: 80%;
+    background-color: #AF6FAC;
+    border-radius: 5px;
+}
+
+.fast__text::before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    bottom: 5px;
+    height: 6px;
+    width: 100%;
+    background-color: #AF6FAC;
+    border-radius: 5px;
+}
+
+/********* Why - Compounded - CSS ********/
+.why__work_compounded_medication {
+    position: relative;
+    top: -40px;
+    padding: 0px 50px;
+}
+
+.why__work_compounded_medication .why__work__content {
+    padding: 50px 0px;
+}
+
+.why__work_compounded_medication .why__work__content h1 {
+    margin-bottom: 58px !important;
+    color: #333333;
+    font-size: 41.3px;
+    font-weight: 700;
+    font-family: Poppins;
+}
+
+.why__work_compounded_medication .why__work__content h1 span {
+    font-weight: 400;
+}
+
+.why__work_compounded_medication .why__work__content p {
+    font-size: 22px;
+    line-height: 35.89px;
+    font-family: Poppins;
+    color: #000;
+
+}
+
+.why__work_compounded_medication .why__work__content p:last-child {
+    font-family: NotoSerifRegular;
+    text-transform: uppercase;
+    line-height: 29.96px;
+}
+
+.why__work_compounded_medication .compounded__medication {
+    padding: 40px 0px;
+}
+
+.why__work_compounded_medication .compounded__medication p,
+.why__work_compounded_medication .compounded__medication ul li {
+    font-size: 24px;
+    line-height: 39.16px;
+    font-family: Poppins;
+    font-weight: 400;
+}
+
+.why__work_compounded_medication .compounded__medication .img__box {
+    position: relative;
+    bottom: 300px;
+}
+
+.why__work_compounded_medication .compounded__medication .height__changed {
+    height: 200px;
+}
+
+.why__work_compounded_medication .compounded__medication .instruction__content .list__div {
+    margin: 30px 0px !important;
+}
+
+/********* How - Work - CSS ******/
+.how__jordina__work {
+    background: rgba(253, 203, 168, 0.5);
+    padding: 110px 50px;
+}
+
+.how__jordina__work .work__step .step__box {
+    border: 2px solid #512500;
+    border-radius: 50px;
+}
+.how__jordina__work .work__step .step__box .step__one__img{
+    border-radius: 0px 50px 50px 0px;
+}
+.how__jordina__work .work__step .step__box h1 {
+    font-size: 50px;
+    line-height: 68.1px;
+    font-family: NotoSerifRegular;
+}
+
+.how__jordina__work .work__step .step__box p {
+    font-size: 18px;
+    line-height: 29.37px;
+    font-family: Poppins;
+}
+
+.step__box {
+    padding: 40px 80px 0px;
+}
+
+.how__jordina__work .work__step .step__box.step__box__one .img__box {
+    width: 432px;
+    height: 459px;
+}
+
+.how__jordina__work .work__step .step__box.step__box__one .img__box img {
+    height: 100%;
+}
+
+.how__jordina__work .work__step .multiple__step .step__box {
+    padding: 0px;
+    height: 342px;
+}
+
+.how__jordina__work .work__step .multiple__step .step__content {
+    padding: 25px 30px 40px 70px;
+    width: 333px;
+}
+
+.how__jordina__work .work__step .multiple__step .step__content p {
+    margin: 20px 0px 0px !important;
+}
+
+.how__jordina__work .work__step .multiple__step .step__box img {
+    height: 100%;
+}
+
+.how__jordina__work .work__step .multiple__step .step__box .calender__box img {
+    height: auto;
+}
+
+.how__jordina__work .work__step .multiple__step .step__box .calender__box {
+    padding: 40px 40px 20px 70px;
+}
+
+.how__jordina__work .work__step .multiple__step .step__box .calender__box .step__content {
+    padding: 0px !important;
+}
+
+.how__jordina__work .work__step .multiple__step .step__box .amount__para {
+    padding: 0px 57px 0px 74px !important;
+}
+
+/******** Apostrophe - Section - CSS **********/
+.apostrophe__section {
+    position: relative;
+    padding: 56px 100px;
+    background: linear-gradient(180deg, #FDCBA8 0%, #FFFFFF 64.05%, rgba(139, 138, 135, 0) 64.06%, #0C90B7 100%);
+}
+
+.apostrophe__main__img {
+    position: relative;
+}
+
+.apostrophe__main__img .tooltip__common {
+    background-image: url("../../assets/images/tooltip-img.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    width: 303px;
+    height: 110px;
+    padding: 4px 5px;
+}
+
+.apostrophe__main__img .tooltip__one {
+    position: absolute;
+    top: 20%;
+    left: 0%;
+}
+
+.apostrophe__main__img .tooltip__two {
+    position: absolute;
+    top: 5%;
+    left: 20%;
+}
+
+.apostrophe__main__img .tooltip__three {
+    position: absolute;
+    top: 3%;
+    left: 46%;
+}
+
+.apostrophe__main__img .tooltip__four {
+    position: absolute;
+    bottom: 45%;
+    right: 13%;
+}
+
+.apostrophe__main__img .tooltip__common p {
+    font-size: 14px;
+    font-family: Poppins;
+    line-height: 17.92px;
+    height: 73px;
+}
+
+.apostrophe__main__img .tooltip__common span {
+    width: 55px;
+    height: 55px;
+    display: inline-flex;
+    border-radius: 100%;
+    background: #0C90B7;
+    box-shadow: 0px 3.14286px 3.14286px rgb(0 0 0 / 50%), inset 0px 3.14286px 3.14286px rgb(255 255 255 / 50%);
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+    font-size: 47px;
+    color: #fff;
+    font-family: Poppins;
+    position: relative;
+    top: 35px;
+    left: 14px;
+}
+.apostrophe__content p{
+    font-size: 20px;
+    color: #fff;
+    font-weight: 400;
+    font-family: Poppins;
+    width: 587px;
+    line-height: 25.6px;
+}
+/********** Want - to - Learn - CSS *********/
+.want__to__learn__more{
+    background: linear-gradient(180deg, #FDCBA8 0%, #FFFFFF 100%);
+    padding: 110px 0px;
+}
+.want__to__learn__more h1{
+    font-size: 31px;
+    line-height: 30px;
+    font-family: Poppins;
+    color: #333333;
+    font-weight: 400;
+}
+.want__to__learn__more .content__div{
+    width: 100%;
+    max-width: 54%;
+    margin: auto;
+    text-align: center;
+}
+.want__to__learn__more .content__div p{
+    font-size: 17px;
+    font-family: Poppins;
+    font-weight: 400;
+    letter-spacing: 0.83px;
+    color: #333333;
+    line-height: 30px;
+}
+.want__to__learn__more .content__div .form__div{
+    width: 100%;
+    max-width: 90%;
+    position: relative;
+}
+.want__to__learn__more .content__div .form__div input{
+    font-size: 15px;
+    font-family: Poppins;
+    letter-spacing: 0.5px;
+    color: #333333;
+    border: 1px solid #000 !important;
+    border-radius: 0px;
+}
+.want__to__learn__more .content__div .form__div input::placeholder{
+    opacity: 0.6;
+}
+.want__to__learn__more .content__div .form__div button{
+    position: absolute;
+    right: 15px;
+    top: 20px;
+    background: transparent;
+    border: none;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    line-height: 18.5px;
+    color: #333333;
+    cursor: pointer;
+}
+/********* Media - Query ************/
+@media screen and (max-width: 1350px) {
+    .skin__dermatology_service .product__img__content.width__800,
+    .skin__dermatology_service .product__img__content{
+        width: auto;
+    }
+}
+@media screen and (max-width: 1200px) {
+    .apostrophe__main__img .tooltip__common span{
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    .apostrophe__main__img .tooltip__one {
+        top: 17%;
+        left: -3%;
+    }
+    .apostrophe__main__img .tooltip__two {
+        top: 3%;
+        left: 15%;
+    }
+    .apostrophe__main__img .tooltip__three {
+        top: 14%;
+        left: 42%;
+    }
+    .apostrophe__main__img .tooltip__four {
+        bottom: 40%;
+        right: 5%;
+    }
+    .how__jordina__work .work__step .step__box p,
+    .apostrophe__content p{
+        font-size: 16px;
+    }
+    .how__jordina__work .work__step .step__box h1{
+        font-size: 40px;
+    }
+    .how__jordina__work .work__step .multiple__step .step__content,
+    .how__jordina__work .work__step .multiple__step .step__box .calender__box{
+        padding: 25px;
+    }
+    .how__jordina__work .work__step .multiple__step .step__box .amount__para{
+        padding: 0px 25px !important;
+    }
+    .step__box{
+        padding: 40px 40px 0px;
+    }
+    .skin__dermatology_service{
+        padding: 130px 40px 20px;
+    }
+    .skin__dermatology_service .product__img__content{
+        width: 100%;
+    }
+    .hero__banner{
+        padding: 30px 50px;
+    }
+    .skin__dermatology_service .product__img__content h1,
+    .why__work_compounded_medication .why__work__content h1,
+    .common__title{
+        font-size: 35px;
+        line-height: 50px;
+    }
+    .why__work_compounded_medication .why__work__content h1{
+        margin-bottom: 20px !important;
+    }
+    .why__work_compounded_medication .why__work__content p,
+    .why__work_compounded_medication .compounded__medication p, .why__work_compounded_medication .compounded__medication ul li{
+        font-size: 18px;
+        line-height: 28px;
+    }
+    .why__work_compounded_medication .compounded__medication .img__box{
+        bottom: 150px;
+    }
+    .skin__dermatology_service .product__img__content p{
+        font-size: 16px;
+        margin: 16px 0px;
+    }
+    .common__btn{
+        padding: 15px 30px;
+    }
+    .prescription__text::before{
+        width: 120px;
+    }
+    .prescription__text:after{
+        width: 80px;
+    }
+}
+@media screen and (max-width: 1100px) {
+    .apostrophe__main__img .tooltip__one {
+        left: -7%;
+    }
+    .apostrophe__main__img .tooltip__two {
+        top: 0%;
+        left: 13%;
+    }
+    .apostrophe__main__img .tooltip__three {
+        top: 14%;
+        left: 37%;
+    }
+}
+@media screen and (max-width:992px) {
+    footer .multiple__list ul{
+        margin-left: 50px;
+    }
+    .want__to__learn__more .content__div{
+        max-width: 100%;
+    }
+    .apostrophe__main__img .tooltip__common p{
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+    }
+    .apostrophe__main__img .tooltip__two {
+        top: -6%;
+        left: 12%;
+    }
+    .apostrophe__main__img .tooltip__common span {
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
+    }
+    .apostrophe__main__img .tooltip__one {
+        top: 20%;
+    }
+    
+    .apostrophe__section{
+        padding: 50px;
+    }
+    .how__jordina__work .work__step .step__box.step__box__one .img__box{
+        margin: auto;
+        
+    }
+    .how__jordina__work .work__step .step__box{
+        margin-bottom: 30px;
+    }
+    .skin__dermatology_service .service__box .flex-row-reverse{
+        flex-direction: column-reverse !important;
+    }
+    .hero__banner{
+        padding: 30px;
+    }
+    .skin__dermatology_service .service__box .row{
+        flex-direction: column-reverse;
+    }
+    .skin__dermatology_service {
+        padding: 80px 40px 150px;
+    }
+    .skin__dermatology_service .service__box{
+        padding-bottom: 30px;
+    }
+    .why__work_compounded_medication .row:first-child{
+        flex-direction: column-reverse;
+    }
+    .why__work_compounded_medication .compounded__medication .row{
+        flex-direction: column !important;
+    }
+    .why__work_compounded_medication .compounded__medication .img__box{
+        bottom: 0px;
+    }
+    .why__work_compounded_medication .compounded__medication .height__changed{
+        height: auto;
+        margin: 10px 0px;
+    }
+    
+}
+@media screen and (max-width: 768px) {
+    .want__to__learn__more{
+        padding: 50px 0px;
+    }
+    .apostrophe__main__img .tooltip__common{
+        width: 200px;
+        height: auto;
+    }
+    .apostrophe__main__img .tooltip__common p{
+        height: auto;
+        line-height: initial;
+        font-size: 8px;
+    }
+    .how__jordina__work{
+        padding: 80px 0px;
+    }
+    .why__work_compounded_medication{
+        padding: 0px;
+    }
+    .skin__dermatology_service {
+        padding: 80px 0px 130px;
+    }
+    .hero__banner .banner__content p{
+        font-size: 12px;
+    }
+    .hero__banner{
+        padding: 20px 10px;
+    }
+    .main__banner--section .banner__content h1{
+        width: auto !important;
+    }
+    .main__banner--section .banner__content p{
+        width: 70%;
+        font-size: 30px;
+    }
+    .main__banner--section .banner__content h1{
+        font-size: 55px;
+    }
+    .skin__dermatology_service .product__img__content{
+        padding: 20px 0px;
+    }
+    .skin__dermatology_service .product__img__content h1 {
+        font-size: 25px;
+        line-height: 35px;
+    }
+    .prescription__text:after,
+    .prescription__text::before,
+    .dermatology__text::before,
+    .fast__text::before{
+        bottom: 0px;
+    }
+    .prescription__text:after {
+        width: 60px;
+    }
+    .prescription__text::before {
+        width: 85px;
+    }
+    .apostrophe__content{
+        display: block !important;
+    }
+    .apostrophe__content p{
+        color: #333;
+        width: 100%;
+    }
+}
+@media screen and (max-width: 580px) {
+    .service__section .online__provider{
+        padding-bottom: 0px !important;
+        height: 440px;
+    }
+    .service__section .service__card img{
+        width: 50px;
+    }
+    .service__section .service__card .para__list__items{
+        width: 280px;
+    }
+    .service__section .tired__of__div{
+        height: auto;
+    }
+    .service__section .service__card{
+        margin-bottom: 30px;
+    }
+    .service__card .service__title{
+        font-size: 16px;
+        margin-bottom: 0px !important;
+    }
+    .service__section .service__card p, .service__section .service__card li{
+        font-size: 12px;
+    }
+    .service__section{
+        padding: 50px 0px 0px;
+    }
+    .apostrophe__main__img .tooltip__common{
+        width: 150px;
+    }
+    .apostrophe__main__img .tooltip__common span {
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+    }
+    .apostrophe__main__img .tooltip__common span{
+        top: 20px;
+        left: 7px;
+    }
+    .apostrophe__section {
+        padding: 50px 10px;
+    }
+    .apostrophe__main__img .tooltip__one {
+        top: 32%;
+    }
+    .apostrophe__main__img .tooltip__two {
+        left: 5%;
+    }
+    
+    .apostrophe__main__img .tooltip__common p{
+        font-size: 6px;
+    }
+    .how__jordina__work .work__step .multiple__step .step__content, .how__jordina__work .work__step .multiple__step .step__box .calender__box{
+        padding: 15px 10px;
+    }
+    .how__jordina__work .work__step .multiple__step .step__box .amount__para{
+        padding: 0px 10px !important;
+    }
+    .how__jordina__work .work__step .multiple__step .step__content p {
+        margin: 5px 0px 0px !important;
+    }
+    .how__jordina__work .work__step .step__box.step__box__one .img__box{
+        width: auto;
+        height: auto;
+    }
+    .main__banner--section .banner__content h1 {
+        font-size: 45px !important;
+        line-height: 55px !important;
+    }
+    .main__banner--section .banner__content p {
+        width: 90% !important;
+        font-size: 22px !important;
+        line-height: 30px !important;
+    }
+    .main__banner--section .banner__content{
+        padding: 180px 0px 96px !important;
+    }
+}

@@ -5,7 +5,7 @@ header{
     padding: 0px;
     width: 100%;
     position: absolute;
-    z-index: 100009;
+    z-index: 109;
 }
 header .top__header ul{
     padding: 0px;
@@ -94,6 +94,23 @@ header .navbar-brand{
     height: 50px;
     background-color: #fff;
 }
+.cart__item{
+    position: relative;
+}
+.cart__item span{
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #af6fac;
+    border-radius: 100%;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    font-weight: 700;
+    font-size: 12px;
+}
 /********* Media - Query - CSS **********/
 @media screen and (max-width: 1300px) {
     .navbar-nav a {
@@ -126,6 +143,12 @@ header .navbar-brand{
     }
 }
 @media screen and (max-width: 992px) {
+    header .top__header ul{
+        margin: 0px;
+    }
+    header {
+        padding: 0px;
+    }
     header .navbar-nav a{
         width: auto;
         text-align: left;

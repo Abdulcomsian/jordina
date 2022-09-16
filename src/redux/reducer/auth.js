@@ -1,4 +1,5 @@
 import * as Actions from "../actionTypes";
+import { loadStripe } from "@stripe/stripe-js";
 
 const initialState = {
   errorEmail: null,
@@ -8,6 +9,9 @@ const initialState = {
   token: null,
   authenticated: false,
   statusLogout: null,
+  key:"Hamza",
+  stripeKey: "pk_test_51LhsdnGCTNDeFrTZI9H9kLQWpzYfNXNFww1rUvYc4Yzh9cZaO44KQqterVrEuI0ne1w9dnGDTqsEO11yi7GCHvhn00rGEnAYLF",
+  user_id: null,
 };
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -18,6 +22,7 @@ export default (state = initialState, action) => {
         authenticated: true,
         error: null,
         statusLogout: null,
+        user_id: action.payload.data.user_id
       };
     case Actions.LOGIN_FAIL:
       return {

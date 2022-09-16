@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import "./style.css";
 
-const MultiRangeSlider = ({ min, max, onChange }) => {
+const MultiRangeSlider = ({ min, max, onChange, updateMinVal }) => {
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef(min);
@@ -19,7 +19,6 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
   useEffect(() => {
     const minPercent = getPercent(minVal);
     const maxPercent = getPercent(maxValRef.current);
-
     if (range.current) {
       range.current.style.left = `${minPercent}%`;
       range.current.style.width = `${maxPercent - minPercent}%`;
@@ -45,7 +44,7 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
     <div className="slider__range">
       <input
         type="range"
-        min={min}
+        min={updateMinVal>0?updateMinVal:min}
         max={max}
         value={minVal}
         onChange={(event) => {
@@ -58,7 +57,7 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
       />
       <input
         type="range"
-        min={min}
+        min={updateMinVal>0?updateMinVal:min}
         max={max}
         value={maxVal}
         onChange={(event) => {

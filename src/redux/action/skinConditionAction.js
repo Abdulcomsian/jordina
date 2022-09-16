@@ -12,7 +12,7 @@ export const skinConditionTest = (
   question_6,
   token
 ) => {
-  console.log("Token", token)
+  console.log("Token", token);
   return async (dispatch, getState) => {
     try {
       const body = {
@@ -24,7 +24,7 @@ export const skinConditionTest = (
         question_5,
         question_6,
       };
-      console.log("Response Body :", body)
+      console.log("Response Body :", body);
       const request = await axios(base_url + "registerStepTwo", {
         method: "POST",
         data: body,
@@ -54,18 +54,20 @@ export const maleAllergieExistHandler = (
   gender,
   height,
   weight,
+  is_allergy,
   past_medication,
   current_medication,
   image,
   token
 ) => {
-  console.log("Token", token)
+  console.log("Token", token,is_allergy);
   return async (dispatch, getState) => {
     try {
       const body = {
         gender,
         height,
         weight,
+        is_allergy,
         past_medication,
         current_medication,
         image,
@@ -80,5 +82,57 @@ export const maleAllergieExistHandler = (
       return response;
       console.log("Response Male Allergie:", response);
     } catch (error) {}
+  };
+};
+export const getAllSkinDiseases = (token) => {
+  return async (dispatch, getState) => {
+    try {
+      const request = await axios(base_url + "getAllDiseases", {
+        method: "GET",
+        headers: {
+          authorization: "Bearer " + token,
+        },
+      });
+      const response = request;
+      console.log("Diseases Reposnse :", response.data.data);
+      if (response.status === 200) {
+        dispatch({
+          type: Actions.SKIN_DIEASES_SUCCESS,
+          payload: response.data.data.diseases,
+        });
+      } else {
+        dispatch({
+          type: Actions.SKIN_DIEASES_FAIL,
+          payload: response.data.data.diseases,
+        });
+      }
+    } catch (err) {
+      throw new Error(err.response.data.message);
+    }
+  };
+};
+export const getCalendly = (user_id, token) => {
+  return async (dispatch, getState) => {
+    try {
+      const body = {
+        user_id,
+      };
+      const request = await axios(base_url + "getCalendy", {
+        method: "POST",
+        headers: {
+          authorization: "Bearer " + token,
+        },
+        data: body
+      });
+      const response = request;
+      console.log("Calendly Reposnse :", response.data.data.doctor[0].calendy);
+      if (response.status === 200) {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (err) {
+      throw new Error(err.response.data.message);
+    }
   };
 };

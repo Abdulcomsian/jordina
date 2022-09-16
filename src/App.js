@@ -10,10 +10,10 @@ import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
 import { BrowserRouter } from "react-router-dom";
 import { Route, Routes, Navigate } from "react-router-dom";
-import Home from "./components/Home/Home";
-import Login from "./components/Auth/Login";
-import Register from "./components/Auth/Register";
-import FormScreen from "./components/FormScreen/form-screen";
+import Home from "./screens/Home/Home";
+import Login from "./screens/Auth/Login";
+import Register from "./screens/Auth/Register";
+import FormScreen from "./screens/FormScreen/form-screen";
 import AppRoute from "./routes/index";
 
 const persistConfig = {

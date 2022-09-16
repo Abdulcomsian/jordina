@@ -1,11 +1,11 @@
 import { Route, Routes, Navigate } from "react-router-dom";
-import Home from "../components/Home/Home";
-import Login from "../components/Auth/Login";
-import Register from "../components/Auth/Register";
+import Home from "../screens/Home/Home";
+import Login from "../screens/Auth/Login";
+import Register from "../screens/Auth/Register";
 import { connect } from "react-redux";
 import AppRoute from "./index";
 import { BrowserRouter } from "react-router-dom";
-import FormScreen from "../components/FormScreen/form-screen";
+import FormScreen from "../screens/FormScreen/form-screen";
 
 function MainRoute(props) {
   const { authenticated } = props;

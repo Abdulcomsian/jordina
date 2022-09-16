@@ -1,0 +1,368 @@
+.product__detail__section {
+    padding: 45px 34px;
+}
+
+.product__detail__section .product__main__img {
+    position: relative;
+}
+
+.product__detail__section .product__main__img .main__product__img {
+    position: absolute;
+    right: 10px;
+    top: 80px;
+}
+
+.product__detail__section .product__detail__content {
+    padding: 96px 44px;
+}
+
+.product__detail__section .product__detail__content h2 {
+    font-size: 48px;
+    font-family: Poppins;
+    line-height: 61.44px;
+    font-weight: 700;
+    width: 660px;
+}
+
+.product__detail__section .product__detail__content p,
+.product__detail__section .product__detail__content ul li {
+    font-size: 20px;
+    font-weight: 400;
+    color: #000;
+    font-family: Poppins;
+}
+
+.product__detail__section .product__detail__content .common__btn {
+    font-size: 20px !important;
+}
+
+/*********** Use - Research - CSS **************/
+.use__research {
+    padding: 95px 73px 128px;
+}
+
+.use__research .common__content h2 {
+    font-size: 41.33px;
+    line-height: 52.86px;
+    font-family: Poppins;
+    font-weight: 700;
+}
+
+.use__research .common__content p {
+    font-size: 20px;
+    line-height: 32px;
+    font-weight: 400;
+    font-family: Poppins;
+}
+
+/************ Key - Ingredient ***************/
+.key__ingredient {
+    padding: 55px;
+    background-color: #FDE4D3;
+    margin: 0px 73px;
+}
+
+.key__heading .common__title {
+    position: relative;
+    display: inline-block;
+    margin: auto !important;
+}
+
+.key__heading .common__title span {
+    font-weight: 700;
+}
+
+.key__heading .common__title span::before {
+    content: "";
+    width: 53px;
+    height: 6px;
+    background-color: #af6fac;
+    position: absolute;
+    left: 75px;
+    bottom: -2px;
+    border-radius: 8px;
+}
+
+.key__heading .common__title::before {
+    content: "";
+    width: 34px;
+    height: 6px;
+    background-color: #af6fac;
+    position: absolute;
+    left: 20px;
+    bottom: -2px;
+    border-radius: 8px;
+}
+
+.key__heading .common__title::after {
+    content: "";
+    width: 175px;
+    height: 6px;
+    background-color: #af6fac;
+    position: absolute;
+    right: 0px;
+    bottom: -2px;
+    border-radius: 8px;
+}
+
+/************* Multiple - Ingredient - CSS ***********/
+.multiple__ingredients {
+    margin-top: 55px;
+}
+
+.multiple__ingredients .ingredient__div h4 {
+    font-size: 20px;
+    font-weight: 700;
+    font-family: Poppins;
+    line-height: 32.63px;
+}
+
+.multiple__ingredients .ingredient__div ul {
+    padding: 0px;
+    list-style: none;
+}
+
+.multiple__ingredients .ingredient__div ul li {
+    font-size: 20px;
+    font-weight: 400;
+    font-family: Poppins;
+    line-height: 32.63px;
+}
+
+/*************** Rating - Reviews - CSS **********/
+.rating__reviews {
+    padding: 119px 0px 119px 73px;
+}
+
+.slick-slide {
+    padding-right: 20px;
+}
+
+.slider__div {
+    margin: 62px 0px 85px;
+}
+
+.rating__slider .swiper-wrapper {
+    margin-left: -37%;
+}
+.review__list ul{
+    padding: 0px !important;
+    list-style: none;
+}
+.review__list li{
+    margin-bottom: 30px;
+}
+.review__list  li .rating_common_bpx{
+    padding-top: 46px;
+}
+.review__list .comment__box {
+    margin-left: 70px;
+}
+.review__list .rating__box p{
+    font-size: 16px;
+    line-height: 26.1px;
+    font-family: Poppins;
+}
+
+.review__list .comment__box .comment__top h5 {
+    font-size: 21px;
+    font-weight: 700;
+    font-family: Poppins;
+    line-height: 27.65px;
+    margin-bottom: 9px !important;
+}
+
+.review__list .comment__box .comment__bottom img {
+    width: 20px;
+}
+
+.review__list .comment__box {
+    height: 180px;
+}
+
+.comment__bottom p {
+    font-size: 16px;
+    line-height: 26.1px;
+    font-family: Poppins;
+    font-weight: 400;
+}
+.like_dislike span{
+    margin-left: 17px !important;
+}
+.like_dislike span span{
+    margin-left: 0px !important;
+    position: relative;
+    top: 4px;
+    left: -2px;
+}
+.rating__slider .swiper-slide img{
+    width: 100%;
+}
+.rating__slider .swiper-backface-hidden .swiper-slide{
+    min-width: 360px;
+}
+/********* People - Viewed - Slider **************/
+.people__viewed{
+    background-image: url("../../../assets/images/people-viewes.png");
+    background-repeat: no-repeat;
+    padding: 64px 38px 100px;
+}
+.people__viewed .slider__div .viewed__box{
+    text-align: center;
+    width: 225px;
+    margin: auto;
+}
+.people__viewed .slider__div .viewed__box img{
+    min-height: 330px;
+}
+.people__viewed .slider__div .viewed__box h3{
+    font-size: 21px;
+    line-height: 27.65px;
+    font-weight: 700;
+    font-family: Poppins;
+}
+.people__viewed .slider__div .viewed__box p{
+    font-size: 16;
+    line-height: 20px;
+    font-weight: 400;
+    font-family: Poppins;
+}
+header.product_detail_header .navbar{
+  padding: 0px 30px 0px;
+}
+/********* Media - Query ************/
+@media screen and (max-width: 1200px) {
+    .product__detail__section .product__main__img .main__product__img{
+        width: 200px;
+    }
+    .product__detail__section .product__detail__content h2{
+        width: 100%;
+    }
+    .key__heading .common__title::before{
+        left: 12px;
+        bottom: 0px;
+    }
+    .key__heading .common__title span::before{
+        left: 59px;
+        bottom: 0px;
+    }
+    .key__heading .common__title::after{
+        width: 150px;
+        bottom: 0px;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .swiper-backface-hidden .swiper-slide {
+        min-width: 290px;
+    }
+    .swiper-wrapper {
+        margin-left: -33%;
+    }
+}
+@media screen and (max-width: 992px) {
+    .product__detail__section .product__detail__content h2{
+        font-size: 38px;
+        line-height: 45.44px;
+    }
+    .product__detail__section .product__detail__content {
+        padding: 20px 44px;
+    }
+    .product__detail__section .product__detail__content p, .product__detail__section .product__detail__content ul li,
+    .use__research .common__content p,
+    .multiple__ingredients .ingredient__div ul li{
+        font-size: 16px;
+    }
+    .use__research .common__content h2{
+        font-size: 31px;
+    }
+    .use__research .common__content p,
+    .multiple__ingredients .ingredient__div ul li{
+        line-height: 26px;
+    }
+    .use__research {
+        padding: 50px 34px 50px;
+    }
+    .key__ingredient {
+        margin: 0px 45px;
+    }
+    
+    
+}
+@media screen and (max-width: 768px) {
+    .slider__div {
+        margin: 62px 0px 50px;
+    }
+    .common__text{
+        font-size: 16px;
+        line-height: 22px;
+    }
+    .rating__reviews {
+        padding: 80px 0px;
+    }
+    .use__research{
+        padding: 50px 0px;
+    }
+    .key__ingredient {
+        margin: 0px 10px;
+        padding: 55px 15px;
+    }
+    .product__detail__section .product__main__img .main__product__img{
+        width: 300px;
+        right: 120px;
+    }
+    .product__detail__section .product__main__img{
+        text-align: center;
+        margin-bottom: 20%;
+    }
+    .product__detail__section{
+        padding: 45px 0px;
+    }
+    .product__detail__section .product__detail__content{
+        padding: 20px 0px;
+    }
+}
+@media screen and (max-width: 580px) {
+    .review__list li .rating_common_bpx {
+        padding-top: 0px;
+    }
+    .review__list li .rating_common_bpx{
+       flex-direction: column !important;
+    }
+    .review__list .comment__box{
+        margin: 0px !important;
+        order: 1;
+        justify-content: normal !important;
+        height: auto;
+        margin-bottom: 30px !important;
+    }
+    .rating_common_bpx .rating__box{
+        order: 2;
+    }
+    .swiper-backface-hidden .swiper-slide {
+        min-width: 250px;
+    }
+    .swiper-wrapper {
+        margin-left: -24%;
+    }
+    .product__detail__section .product__main__img .main__product__img {
+        width: 300px;
+        right: 30px;
+        top: 120px;
+    }
+    .product__detail__section .product__main__img {
+        margin-bottom: 200px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .product__detail__section .product__main__img .main__product__img {
+        width: 200px;
+    }
+    .product__detail__section .product__main__img {
+        margin-bottom: 100px;
+    }
+}
+@media screen and (max-width: 380px) {
+    .product__detail__section .product__main__img {
+        margin-bottom: 150px;
+    }
+}
