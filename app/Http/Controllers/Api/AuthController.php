@@ -229,7 +229,7 @@ class AuthController extends ApiController
                 'first_name' => 'required|max:255',
                 'last_name' => 'required|max:255',
                 'phone_number' => 'required|max:255',
-                'email' => 'required|unique:users,email,'.$user->id,
+                'email' => 'required|unique:users,email,' . $user->id,
                 'password' => 'required|min:6|confirmed',
                 'address' => 'required|max:500',
 
@@ -275,6 +275,17 @@ class AuthController extends ApiController
                 'status' => false,
                 'message' => $th->getMessage()
             ], 500);
+        }
+    }
+
+    public function getLoggedInUser(Request $request)
+    {
+        try {
+            $user = Auth::user();
+            return $this->successResponse($user, "", 200);
+        } catch (\Throwable $th) {
+            return $this->errorResponse($th->getMessage(), 401);
+
         }
     }
 }
