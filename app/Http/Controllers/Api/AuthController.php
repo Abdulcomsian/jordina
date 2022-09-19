@@ -230,7 +230,7 @@ class AuthController extends ApiController
                 'last_name' => 'required|max:255',
                 'phone_number' => 'required|max:255',
                 'email' => 'required|unique:users,email,' . $user->id,
-                'password' => 'required|min:6|confirmed',
+//                'password' => 'required|min:6|confirmed',
                 'address' => 'required|max:500',
 
             ]);
@@ -243,7 +243,7 @@ class AuthController extends ApiController
             $user->last_name = $request->last_name;
             $user->email = $request->email;
             $user->phone_number = $request->phone_number;
-            $user->password = $request->password;
+//            $user->password = $request->password;
             $user->address = $request->address;
             $user->save();
 
