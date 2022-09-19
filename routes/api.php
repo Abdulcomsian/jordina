@@ -42,6 +42,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('getCalendy', [ProductController::class,'getCalendy']);
     Route::post('payment', [ProductController::class,'payment']);
 
+    Route::post('updateClientProfile', [AuthController::class,'updateClientProfile']);
+
 });
 
 

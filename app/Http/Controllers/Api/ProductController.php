@@ -100,9 +100,10 @@ class ProductController extends ApiController
             $result = Stripe\PaymentIntent::create([
                 "amount" => $request->amount * 100,
                 "currency" => "usd",
-                "source" => $request->cardID,
                 "description" => "Test payment from itsolutionstuff.com."
             ]);
+
+            dd($result);
 
             $response = array(
                 'result' => $result,

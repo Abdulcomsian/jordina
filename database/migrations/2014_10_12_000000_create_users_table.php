@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('skin_condition')->nullable();
             $table->longText('question')->nullable();
             $table->text('calendy')->nullable();
+            $table->string('phone_number')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
