@@ -225,15 +225,12 @@ class AuthController extends ApiController
         try {
             $user = Auth::user();
 
-            $this->validate($request, [
-                'first_name' => 'required|max:255',
-                'last_name' => 'required|max:255',
-                'phone_number' => 'required|max:255',
-                'email' => 'required|unique:users,email,' . $user->id,
-//                'password' => 'required|min:6|confirmed',
-                'address' => 'required|max:500',
+            if($request->email){
+                $this->validate($request, [
+                    'email' => 'required|unique:users,email,' . $user->id,
+                ]);
+            }
 
-            ]);
 
 //            if ($validateUser->fails()) {
 //                return $this->errorResponse($validateUser->messages(), 401);
