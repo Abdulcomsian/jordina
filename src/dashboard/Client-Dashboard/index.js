@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DashBoardHeader from "../../components/Header/DashboardHeader";
 import ClientApointment from "../ClientAppointment/index";
 import ClientProfile from "../ClientProfile";
 import ClientMedication from "../ClientMedication";
 import BounceLoader from "react-spinners/BounceLoader";
-import AppoinemntView from "../../components/Modal/ClientAppoinemntView/index";
+import { connect } from "react-redux";
 import SideBar from "./SideBar";
+import { getUserDetail } from "../../redux/action/dashboardAction";
 import "./style.css";
-const ClientDashboard = () => {
+const ClientDashboard = (props) => {
+  const { token,loginUser } = props;
+  console.log("Token Dahbaord :", token,loginUser)
   const [appointment, setAppoinment] = useState(true);
   const [profile, setProfile] = useState(false);
   const [medication, setMedication] = useState(false);
@@ -31,7 +34,7 @@ const ClientDashboard = () => {
       setMedication(false);
     }, 3000);
   };
-  const medicationClick =()=>{
+  const medicationClick = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -39,7 +42,18 @@ const ClientDashboard = () => {
       setProfile(false);
       setMedication(true);
     }, 3000);
-  }
+  };
+
+  useEffect(() => {
+    const fetchLoginUserDetail = async () => {
+      try {
+        await props.userDetail(token);
+      } catch (err) {
+        // alert(err.message);
+      }
+    };
+    fetchLoginUserDetail().catch(console.error);
+  }, [token]);
   return (
     <div className="client__dashboard">
       <main>
@@ -62,7 +76,7 @@ const ClientDashboard = () => {
               {appointment ? (
                 <ClientApointment blurContent={loading} />
               ) : profile ? (
-                <ClientProfile blurContent={loading} />
+                <ClientProfile blurContent={loading} userData={loginUser} />
               ) : (
                 medication && <ClientMedication blurContent={loading} />
               )}
@@ -73,4 +87,12 @@ const ClientDashboard = () => {
     </div>
   );
 };
-export default ClientDashboard;
+const mapStateToProps = (state) => ({
+  token: state.auth.token,
+  loginUser: state.dashBoardReducer.userData
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  userDetail: (token) => dispatch(getUserDetail(token)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(ClientDashboard);

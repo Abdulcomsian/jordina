@@ -1,5 +1,4 @@
 import * as Actions from "../actionTypes";
-import { loadStripe } from "@stripe/stripe-js";
 
 const initialState = {
   errorEmail: null,

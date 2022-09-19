@@ -1,4 +1,4 @@
-import React from "react";
+import React,{Fragment} from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Home from "../screens/Home/Home";
 import FormScreen from "../screens/FormScreen/form-screen";
@@ -7,10 +7,10 @@ import ProductDetail from "../screens/Product/ProductDetail";
 import About from "../screens/About/index";
 import ClientDashboard from "../dashboard/Client-Dashboard";
 import ClientProfile from "../dashboard/ClientProfile";
-import Login from "../screens/Auth/Login";
-import Register from "../screens/Auth/Register";
 import Cart from "../screens/Cart/index";
 import Checkout from "../components/StripePayment/index";
+import Login from "../screens/Auth/Login";
+import Register from "../screens/Auth/Register";
 
 function AppRoute() {
   return (
@@ -20,11 +20,11 @@ function AppRoute() {
       <Route exact path="/products-detail" element={<ProductDetail />} />
       <Route exact path="/about" element={<About />} />
       <Route exact path="/appointment" element={<FormScreen />} />
-      <Route exact path="/client-dashboard" element={<ClientDashboard />} />
-      <Route exact path="/profile" element={<ClientProfile />} />
+      <Route exact path="/dashboard" element={<ClientDashboard />} />
+      <Route exact path="/dashboard/profile" element={<ClientProfile />} />
+      <Route exact path="/cart" element={<Cart />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/register" element={<Register />} />
-      <Route exact path="/cart" element={<Cart />} />
       <Route exact path="/checkOut" element={<Checkout />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>

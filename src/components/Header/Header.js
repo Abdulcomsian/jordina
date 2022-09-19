@@ -52,7 +52,7 @@ const Header = (props) => {
           <div className="top__header">
             <ul className="d-flex justify-content-end align-items-center">
               <li className="me-4">
-                <a>Jessica</a>
+                <a href="/Jordina/">Jessica</a>
               </li>
               <li>
                 <a onClick={logOutUser}>
@@ -65,7 +65,7 @@ const Header = (props) => {
 
         <Navbar expand="lg">
           <Container fluid>
-            <Navbar.Brand href="#" className="site__name">
+            <Navbar.Brand href="/Jordina/" className="site__name">
               Jordina
             </Navbar.Brand>
             <Navbar.Toggle
@@ -81,13 +81,21 @@ const Header = (props) => {
                 <Nav.Link href="#banner">Home</Nav.Link>
                 <Nav.Link href="#our_process">Our Process</Nav.Link>
                 <Nav.Link href="#skin_discover">Skin Disorders</Nav.Link>
-                <Nav.Link href="#our_product">Our Products</Nav.Link>
+                <Nav.Link href="/Jordina/products">Our Products</Nav.Link>
               </Nav>
               <div className="header__right--div">
                 <ul>
-                  <li>
-                    <Nav.Link href="#action1">My account</Nav.Link>
-                  </li>
+                  {token ? (
+                    <li>
+                      <Nav.Link href="/Jordina/dashboard">
+                        My Dashboard
+                      </Nav.Link>
+                    </li>
+                  ):(<li>
+                      <Nav.Link href="/Jordina/login">
+                       Login
+                      </Nav.Link>
+                    </li>)}
 
                   <li>
                     <Nav.Link

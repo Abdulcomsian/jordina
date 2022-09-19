@@ -147,7 +147,7 @@ const ClientAppointment = ({ blurContent }) => {
                 {ClientAppointment.map(
                   (items, index) =>
                     items.status == "Completed" && (
-                      <tr>
+                      <tr key={index}>
                         <td>
                           <div className="date__time">
                             <span className="approved"></span>

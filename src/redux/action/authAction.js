@@ -12,14 +12,14 @@ export const login = (email, password) => {
       });
       const response = request;
       if (response.status === 200) {
-        localStorage.setItem("authenticatedUser", true);
+        localStorage.setItem("authenticatedUser",true);
         dispatch({
           type: Actions.LOGIN_SUCCESS,
           payload: response.data,
         });
       }
     } catch (err) {
-      localStorage.setItem("authenticatedUser", false);
+      localStorage.setItem("authenticatedUser",false);
       dispatch({
         type: Actions.LOGIN_FAIL,
         payload: err.response.data,

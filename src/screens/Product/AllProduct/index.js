@@ -133,9 +133,6 @@ const OurProduct = (props) => {
       data_type,
       data_concern,
       noOfProduct = productArray.length;
-    // minPrice = getMinPrice(productArray, noOfProduct);
-    // console.log("min Price :", minPrice)
-    // // setMinProductPrice(minPrice);
     if (selectedType.length > 0) {
       data_type = productArray.filter((data) =>
         selectedType.includes(data.product_categories.category_name)

@@ -6,7 +6,6 @@ import LearnMore from "../../components/Forms/learn-more";
 import images from "../../constant/images";
 import { connect } from "react-redux";
 import "./style.css";
-import axios from "axios";
 import {
   getAllProduct,
   getAllProductSkinType,
@@ -16,8 +15,6 @@ import { getAllSkinDiseases } from "../../redux/action/skinConditionAction";
 
 const HomeScreen = (props) => {
   const { token,addedItems } = props;
-  console.log("Token :", token,addedItems);
-  const authToken = localStorage.getItem("token");
   useEffect(() => {
     const fetchAllProduct = async () => {
       try {

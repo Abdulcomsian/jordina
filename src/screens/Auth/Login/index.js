@@ -9,16 +9,6 @@ import { ToastContainer, toast } from "react-toastify";
 
 const Login = (props) => {
   const { token, error, authenticated, statusLogout } = props;
-  console.log(
-    "Token :",
-    token,
-    "Error :",
-    error,
-    "Authenticated :",
-    authenticated,
-    "Logout Status",
-    statusLogout
-  );
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -66,10 +56,9 @@ const Login = (props) => {
       if (token) {
         if (authenticated) {
           localStorage.setItem("token", token);
-          console.log("Use Effect Token");
           setTimeout(() => {
             showLoader(false);
-            navigate("/");
+            navigate("/Jordina");
           }, 1000);
           toast.success("User SuccessFully Login !".toString(), {
             position: "top-right",
@@ -85,9 +74,9 @@ const Login = (props) => {
         }
       } else if (error !== null) {
         console.log("here !", errorMessage, error);
+        showErrorMessage(true);
         setTimeout(() => {
           showLoader(false);
-          showErrorMessage(true);
         }, 3000);
       }
     })();
