@@ -22,10 +22,11 @@ return new class extends Migration
             $table->integer('weight')->nullable();
             $table->string('past_medication')->nullable();
             $table->text('current_medication')->nullable();
-            $table->text('pregnancy')->nullable();
-            $table->longText('pregnency_condition')->nullable();
+            $table->text('about_condition')->nullable();
+            $table->string('female_condition')->nullable();
             $table->string('pregnency_time')->nullable();
             $table->text('plan_breastfeeding')->nullable();
+            $table->text('plan_conceive')->nullable();
             $table->longText('image')->nullable();
             $table->tinyinteger('is_allergy')->nullable();
             $table->timestamps();
