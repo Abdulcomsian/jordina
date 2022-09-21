@@ -103,10 +103,7 @@ class AuthController extends ApiController
             return $this->successResponse("", 'Second Step Completed, question Has been submitted', 200);
 
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'message' => $th->getMessage()
-            ], 500);
+            return $this->errorResponse($validateUser->messages(), 401);
         }
     }
 

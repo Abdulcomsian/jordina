@@ -168,11 +168,28 @@ class ProductController extends ApiController
         }
     }
 
-    public function getOrders()
+    public function getCompletedOrders()
     {
         try{
             $auth = Auth::user();
-            $orders = Order::with('order_items')->where('user_id', $auth->id)->get()->toArray();
+            $orders = Order::with('order_items')->where([['user_id', $auth->id],['payment_status', 'paid']])->get()->toArray();
+//            $orders = json_encode($orders);
+//            $orders = Order::find(19);
+//            dd($json);
+            $response = array(
+                'orders' => $orders
+            );
+            return $this->successResponse($response, null, 200);
+        } catch (\Throwable $th) {
+            return $this->errorResponse($th->getMessage(), 401);
+        }
+    }
+
+    public function getCartItems()
+    {
+        try{
+            $auth = Auth::user();
+            $orders = Order::with('order_items')->where([['user_id', $auth->id],['payment_status', 'unpaid']])->get()->toArray();
 //            $orders = json_encode($orders);
 //            $orders = Order::find(19);
 //            dd($json);

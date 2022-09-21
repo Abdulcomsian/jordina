@@ -45,7 +45,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('updateClientProfile', [AuthController::class,'updateClientProfile']);
     Route::post('getLoggedInUser', [AuthController::class,'getLoggedInUser']);
     Route::post('order', [ProductController::class,'placeOrder']);
-    Route::post('getOrders', [ProductController::class,'getOrders']);
+    Route::post('getCompletedOrders', [ProductController::class,'getCompletedOrders']);
+    Route::post('getCartItems', [ProductController::class,'getCartItems']);
+    Route::post('getMedication', [ProductController::class,'getMedication']);
 
 });
 
