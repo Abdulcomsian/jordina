@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Auth;
@@ -138,20 +139,45 @@ class ProductController extends ApiController
 //                'quantity' => 'required|max:100',
 //            ]);
             $amount = 0;
-//            dd($request->items);
-            foreach($request->items as $key=>$value)
-            {
+            foreach ($request->items as $key => $value) {
                 $product_id = $value['product_id'];
                 $quantity = $value['quantity'];
                 $product = Product::find($product_id);
-                $amount = $amount + $product->amount*$quantity;
+                $amount = $amount + $product->amount * $quantity;
             }
             $order = new Order();
             $order->user_id = $auth->id;
             $order->amount = $amount;
             $order->save();
+
+            foreach ($request->items as $key => $value) {
+                $product_id = $value['product_id'];
+                $quantity = $value['quantity'];
+                $order_items = new OrderItem;
+                $order_items->order_id = $order->id;
+                $order_items->product_id = $product_id;
+                $order_items->quantity = $quantity;
+                $order_items->save();
+            }
             $response = array(
                 'order' => $order
+            );
+            return $this->successResponse($response, null, 200);
+        } catch (\Throwable $th) {
+            return $this->errorResponse($th->getMessage(), 401);
+        }
+    }
+
+    public function getOrders()
+    {
+        try{
+            $auth = Auth::user();
+            $orders = Order::with('order_items')->where('user_id', $auth->id)->get()->toArray();
+//            $orders = json_encode($orders);
+//            $orders = Order::find(19);
+//            dd($json);
+            $response = array(
+                'orders' => $orders
             );
             return $this->successResponse($response, null, 200);
         } catch (\Throwable $th) {
