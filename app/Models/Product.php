@@ -6,6 +6,7 @@ use App\Models\Disease;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\ProductCategory;
+use App\Models\OrderItem;
 
 class Product extends Model
 {
@@ -19,5 +20,10 @@ class Product extends Model
     public function diseases()
     {
         return $this->belongsTo(Disease::class, 'disease_id');
+    }
+
+    public function order_items()
+    {
+        return $this->hasMany(OrderItem::class);
     }
 }

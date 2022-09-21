@@ -172,10 +172,7 @@ class ProductController extends ApiController
     {
         try{
             $auth = Auth::user();
-            $orders = Order::with('order_items')->where([['user_id', $auth->id],['payment_status', 'paid']])->get()->toArray();
-//            $orders = json_encode($orders);
-//            $orders = Order::find(19);
-//            dd($json);
+            $orders = Order::with('order_items', 'order_items.product')->where([['user_id', $auth->id],['payment_status', 'paid']])->get()->toArray();
             $response = array(
                 'orders' => $orders
             );
@@ -189,7 +186,7 @@ class ProductController extends ApiController
     {
         try{
             $auth = Auth::user();
-            $orders = Order::with('order_items')->where([['user_id', $auth->id],['payment_status', 'unpaid']])->get()->toArray();
+            $orders = Order::with('order_items', 'order_items.product')->where([['user_id', $auth->id],['payment_status', 'unpaid']])->get()->toArray();
 //            $orders = json_encode($orders);
 //            $orders = Order::find(19);
 //            dd($json);
