@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Auth;
@@ -125,6 +126,35 @@ class ProductController extends ApiController
                 'message' => $th->getMessage()
             ], 500);
 
+        }
+    }
+
+    public function placeOrder(Request $request)
+    {
+//        dd($request);
+        try {
+            $auth = Auth::user();
+//            $this->validate($request, [
+//                'product_id' => 'required|max:100',
+//                'quantity' => 'required|max:100',
+//            ]);
+            $amount = 0;
+//            dd($request->items);
+            foreach($request->items as $key=>$value)
+            {
+                $product_id = $value['product_id'];
+                $quantity = $value['quantity'];
+                $product = Product::find($product_id);
+                $amount = $amount + $product->amount*$quantity;
+            }
+            $order = new Order();
+            $order->user_id = $auth->id;
+            $order->amount = $amount;
+            $order->save();
+
+            return $this->successResponse($response, null, 200);
+        } catch (\Throwable $th) {
+            return $this->errorResponse($th->getMessage(), 401);
         }
     }
 
