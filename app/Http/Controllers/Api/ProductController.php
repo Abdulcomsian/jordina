@@ -131,7 +131,6 @@ class ProductController extends ApiController
 
     public function placeOrder(Request $request)
     {
-        dd($request);
         try {
             $auth = Auth::user();
 //            $this->validate($request, [
