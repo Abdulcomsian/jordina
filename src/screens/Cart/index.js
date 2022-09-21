@@ -70,7 +70,6 @@ const CartScreen = (props) => {
           });
         }
       } else{
-        setShowEmpty(true);
       }
     })();
   });

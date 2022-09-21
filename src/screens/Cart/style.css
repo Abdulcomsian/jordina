@@ -76,3 +76,15 @@
     font-size: 24px;
     font-weight: 700;
 }
+@media screen and (max-width:768px) {
+    .cart__section,
+    .checkout__form__section .form__div{
+        max-width: 100%;
+    }
+    .cart__card .product__price{
+        width: 37%;
+    }
+    .cart__card{
+        align-items: flex-start !important;
+    }
+}

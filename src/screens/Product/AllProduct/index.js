@@ -8,7 +8,7 @@ import MultiRangeSlider from "../../../components/RangeSlider/index";
 import BounceLoader from "react-spinners/BounceLoader";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
-import Pagination from "https://cdn.skypack.dev/rc-pagination@3.1.15";
+import Pagination from 'rc-pagination';
 import { refreshProdcutFlag } from "../../../redux/action/cartAction";
 
 const OurProduct = (props) => {

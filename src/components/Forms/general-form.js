@@ -10,13 +10,14 @@ const GeneralForm = ({
   onSubmitInfo,
   showButton,
   gender,
-  checkHeight
+  checkHeight,
+  pergency,
 }) => {
   const [medication, setMedication] = useState(null);
   const [otherMedication, setOtherMedication] = useState(null);
   const [file, setFile] = useState(null);
   const handlerFileUpload = (e) => {
-    setFile(e.target.files[0].name)
+    setFile(e.target.files[0].name);
   };
   return (
     <>
@@ -74,16 +75,40 @@ const GeneralForm = ({
             <input
               type="file"
               className="form-control"
-              onChange={(handlerFileUpload)}
+              onChange={handlerFileUpload}
             />
           </div>
-          <Button className="common-btn" onClick={(e)=>onSubmitInfo(gender,checkWeight,checkHeight,checkAlergie,medication,otherMedication,file)}>
+          <Button
+            className="common-btn"
+            onClick={(e) =>
+              onSubmitInfo(
+                gender,
+                checkWeight,
+                checkHeight,
+                checkAlergie,
+                medication,
+                otherMedication,
+                file,
+                pergency
+              )
+            }
+          >
             Go to Scheduling
           </Button>
         </>
       )}
       {checkAlergie === "No" && showButton && checkWeight !== "" && (
-        <Button className="common-btn" onClick={(e)=>onSubmitInfo(gender,checkWeight,checkHeight,checkAlergie)}>
+        <Button
+          className="common-btn"
+          onClick={(e) =>
+            onSubmitInfo(
+              gender,
+              checkWeight,
+              checkHeight,
+              checkAlergie,
+            )
+          }
+        >
           Go to Scheduling
         </Button>
       )}

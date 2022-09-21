@@ -27,7 +27,6 @@ const FemaleGeneralForm = ({
   conceivePlanning,
   otherCondition,
 }) => {
-  console.log("Curently :", currentlyConceive, "Check :", heightWeightFlag);
   return (
     <div className="female__general--form">
       <div className="form-group">
@@ -73,6 +72,7 @@ const FemaleGeneralForm = ({
           handleAllergiesSelectChange={handleAllergiesSelectChange}
           onSubmitInfo={onSubmitInfo}
           showButton={showButton}
+          pergency={pergency}
         />
       )}
       {pregencyCondition && (
@@ -96,6 +96,7 @@ const FemaleGeneralForm = ({
           handleAllergiesSelectChange={handleAllergiesSelectChange}
           onSubmitInfo={onSubmitInfo}
           showButton={showButton}
+          pergency={pergency}
         />
       )}
       {checkBreastFedding && (
@@ -121,6 +122,7 @@ const FemaleGeneralForm = ({
           handleAllergiesSelectChange={handleAllergiesSelectChange}
           onSubmitInfo={onSubmitInfo}
           showButton={showButton}
+          pergency={pergency}
         />
       )}
       {nextYearConceive && (
@@ -171,6 +173,7 @@ const FemaleGeneralForm = ({
           handleAllergiesSelectChange={handleAllergiesSelectChange}
           onSubmitInfo={onSubmitInfo}
           showButton={showButton}
+          
         />
       )}
     </div>

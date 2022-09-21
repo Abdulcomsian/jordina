@@ -16,11 +16,11 @@ function MainRoute(props) {
         <AppRoute />
       ) : (
         <Routes>
-          <Route exact path="/" element={<Home />} />
-          {/* <Route exact path="Jordina/appointment" element={<FormScreen />} /> */}
+          <Route exact path="/Jordina" element={<Home />} />
+          <Route exact path="Jordina/appointment" element={<FormScreen />} />
           <Route exact path="Jordina/login" element={<Login />} />
           <Route exact path="Jordina/register" element={<Register />} />
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="*" element={<Navigate to="/Jordina" />} />
         </Routes>
       )}
     </BrowserRouter>
