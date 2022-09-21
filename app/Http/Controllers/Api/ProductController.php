@@ -131,7 +131,7 @@ class ProductController extends ApiController
 
     public function placeOrder(Request $request)
     {
-//        dd($request);
+        dd($request);
         try {
             $auth = Auth::user();
 //            $this->validate($request, [
@@ -151,7 +151,9 @@ class ProductController extends ApiController
             $order->user_id = $auth->id;
             $order->amount = $amount;
             $order->save();
-
+            $response = array(
+                'order' => $order
+            );
             return $this->successResponse($response, null, 200);
         } catch (\Throwable $th) {
             return $this->errorResponse($th->getMessage(), 401);
