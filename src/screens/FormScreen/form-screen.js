@@ -21,9 +21,10 @@ import { InlineWidget } from "react-calendly";
 import "./style.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import url from "../../constant/url/api_url";
 
 const FormScreen = (props) => {
-  const { token, message, user_id } = props;
+  const { token, message, user_id, appointmentId } = props;
   const [skinLook, setSkinLook] = useState("");
   const [skinPores, setSkinPores] = useState("");
   const [skinFeel, setSkinFeel] = useState("");
@@ -45,7 +46,8 @@ const FormScreen = (props) => {
   const [diseaseId, setDieasesId] = useState(null);
   const [doctorURL, setDoctorURL] = useState(null);
   const navigate = useNavigate();
-  var alergi_exist=0;
+  console.log("Appointment Id :", appointmentId);
+  var alergi_exist = 0;
   let regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   const submitInfo = async (
     firstName,
@@ -262,7 +264,9 @@ const FormScreen = (props) => {
     is_allergy,
     medication,
     otherMedication,
-    file
+    file,
+    pergency,
+    womenCondition
   ) => {
     console.log(
       "From Screen :",
@@ -272,7 +276,9 @@ const FormScreen = (props) => {
       is_allergy,
       medication,
       otherMedication,
-      file
+      file,
+      pergency,
+      womenCondition
     );
     setModalShow(true);
     if (
@@ -283,8 +289,8 @@ const FormScreen = (props) => {
       otherMedication !== "" &&
       file !== ""
     ) {
-      if(is_allergy==='Yes'){
-        alergi_exist=1;
+      if (is_allergy === "Yes") {
+        alergi_exist = 1;
       }
       try {
         var response = await props.maleAllergieExistHandler(
@@ -295,6 +301,9 @@ const FormScreen = (props) => {
           medication,
           otherMedication,
           file,
+          pergency,
+          womenCondition,
+          appointmentId,
           token
         );
         console.log("URL :", response);
@@ -372,15 +381,12 @@ const FormScreen = (props) => {
     // declare the data fetching function
     const fetchData = async () => {
       try {
-        const request = await axios(
-          "http://127.0.0.1:8000/api/getAllDiseases",
-          {
-            method: "GET",
-            headers: {
-              authorization: "Bearer " + token,
-            },
-          }
-        );
+        const request = await axios(url.base_url + "getAllDiseases", {
+          method: "GET",
+          headers: {
+            authorization: "Bearer " + token,
+          },
+        });
         setDiseasesArray(request.data.data.diseases);
       } catch (error) {}
     };
@@ -494,6 +500,7 @@ const mapStateToProps = (state) => ({
   errorLastName: state.auth.errorLastName,
   authenticated: state.auth.authenticated,
   message: state.skinCondition.message,
+  appointmentId: state.skinCondition.appointmentId,
   user_id: state.auth.user_id,
 });
 
@@ -541,24 +548,31 @@ const mapDispatchToProps = (dispatch) => ({
       )
     ),
   maleAllergieExistHandler: (
+    gender,
+    checkWeight,
+    checkHeight,
+    is_allergy,
     medication,
     otherMedication,
     file,
-    gender,
-    is_allergy,
-    checkWeight,
-    checkHeight,
+    pergency,
+    womenCondition,
+    appointmentId,
+
     token
   ) =>
     dispatch(
       maleAllergieExistHandler(
-        medication,
-        otherMedication,
-        file,
         gender,
         checkWeight,
         checkHeight,
         is_allergy,
+        medication,
+        otherMedication,
+        file,
+        pergency,
+        womenCondition,
+        appointmentId,
         token
       )
     ),

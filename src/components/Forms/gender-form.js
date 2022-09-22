@@ -85,6 +85,7 @@ const GenderForm = ({ onSubmitInfo }) => {
       setCurrentlyConceive(false);
       setNextYearConceive(false);
       setOtherCondition(false);
+      
     } else if (e.target.value === "I am breastfeeding") {
       setCheckBreastFeeding(true);
       setPregencyCondition(false);
@@ -200,6 +201,7 @@ const GenderForm = ({ onSubmitInfo }) => {
                       pergency={pergency}
                       handlePregency={handlePregency}
                       handleWomenCondition={handleWomenCondition}
+                      womenCondition={womenCondition}
                       pregencyCondition={pregencyCondition}
                       handlePregencyTime={handlePregencyTime}
                       checkBreastFedding={checkBreastFedding}

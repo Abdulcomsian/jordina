@@ -48,7 +48,7 @@ header .navbar-brand{
     color: #fff;
 }
 .navbar-nav a:hover,
-.header__right--div:hover,
+.header__right--div li a:hover,
 .navbar-nav a.active{
     color:#fff !important;
     font-weight: 700;
@@ -131,6 +131,9 @@ header .navbar-brand{
     }
 }
 @media screen and (max-width: 992px) {
+    header.product_detail_header .navbar{
+        padding: 20px 30px 0px !important;
+    }
     header .top__header ul{
         margin: 0px;
     }

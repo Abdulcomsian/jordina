@@ -12,6 +12,7 @@ const GeneralForm = ({
   gender,
   checkHeight,
   pergency,
+  womenCondition
 }) => {
   const [medication, setMedication] = useState(null);
   const [otherMedication, setOtherMedication] = useState(null);
@@ -89,7 +90,8 @@ const GeneralForm = ({
                 medication,
                 otherMedication,
                 file,
-                pergency
+                pergency,
+                womenCondition
               )
             }
           >

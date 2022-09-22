@@ -10,16 +10,18 @@ import {
   getAllProduct,
   getAllProductSkinType,
 } from "../../redux/action/productAction";
-import { getAllCartProduct } from "../../redux/action/cartAction";
+import {
+  getAllCartProduct
+} from "../../redux/action/cartAction";
 import { getAllSkinDiseases } from "../../redux/action/skinConditionAction";
 
 const HomeScreen = (props) => {
-  const { token,addedItems } = props;
+  const { token, addedItems, cartItem } = props;
+  console.log("Cart Item :",addedItems);
   useEffect(() => {
     const fetchAllProduct = async () => {
       try {
         await props.allProductHandler(token);
-       
       } catch (err) {
         // alert(err.message);
       }
@@ -45,6 +47,7 @@ const HomeScreen = (props) => {
         // alert(err.message);
       }
     };
+    
     fetchAllProduct().catch(console.error);
     fetchAllProductType().catch(console.error);
     fetchAllSkinDieases().catch(console.error);
@@ -476,7 +479,8 @@ const HomeScreen = (props) => {
 };
 const mapStateToProps = (state) => ({
   token: state.auth.token,
-  addedItems: state.cartReducer.addedItems
+  addedItems: state.cartReducer.addedItems,
+  cartItem: state.cartReducer.cartItem,
 });
 
 const mapDispatchToProps = (dispatch) => ({

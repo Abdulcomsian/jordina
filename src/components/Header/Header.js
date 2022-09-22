@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import "./style.css";
 
 const Header = (props) => {
-  const { authenticated, token, statusLogout, className, addedItems } = props;
+  const { authenticated, token, statusLogout, className, addedItems, cartItem } = props;
   const navigate = useNavigate();
   const [openHeader, setOpenHeader] = useState(false);
   const [loader, showLoader] = useState(false);
@@ -40,7 +40,7 @@ const Header = (props) => {
         }, 3000);
       }
       if (addedItems.length > 0) {
-        setTotalCartItem(addedItems.length);
+        setTotalCartItem(addedItems.length)
       }
     })();
   }, [statusLogout, addedItems]);
@@ -91,11 +91,11 @@ const Header = (props) => {
                         My Dashboard
                       </Nav.Link>
                     </li>
-                  ):(<li>
-                      <Nav.Link href="/Jordina/login">
-                       Login
-                      </Nav.Link>
-                    </li>)}
+                  ) : (
+                    <li>
+                      <Nav.Link href="/Jordina/login">Login</Nav.Link>
+                    </li>
+                  )}
 
                   <li>
                     <Nav.Link
@@ -157,6 +157,7 @@ const mapStateToProps = (state) => ({
   authenticated: state.auth.authenticated,
   statusLogout: state.auth.statusLogout,
   addedItems: state.cartReducer.addedItems,
+  cartItem: state.cartReducer.cartItem,
 });
 
 const mapDispatchToProps = (dispatch) => ({

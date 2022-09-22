@@ -6,6 +6,9 @@ const initialState = {
   total: 0,
   addProduct: false,
   removeProduct: false,
+  orderPlace: false,
+  orderReciept: [],
+  order_id: null,
 };
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -41,6 +44,7 @@ export default (state = initialState, action) => {
           return {
             ...state,
             addedItems: [...state.addedItems, addedItem],
+            orderReciept: [...state.addedItems, addedItem],
             total: newTotal,
             addProduct: true,
           };
@@ -63,12 +67,12 @@ export default (state = initialState, action) => {
           return {
             ...initialState,
             addedItems: [...initialState.addedItems, addedItem],
+            orderReciept: [...initialState.addedItems, addedItem],
             total: newTotal,
             addProduct: true,
           };
         }
       }
-
     case Actions.REMOVE_TO_CART:
       let itemToRemove = state.addedItems.find((item) => action.id === item.id);
       console.log("itemToRemove :", itemToRemove);
@@ -85,6 +89,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         addedItems: new_items,
+        orderReciept: new_items,
         total: newTotal,
         removeProduct: true,
       };
@@ -106,6 +111,7 @@ export default (state = initialState, action) => {
         return {
           ...state,
           addedItems: new_items,
+          orderReciept: new_items,
           total: newTotal,
         };
       } else {
@@ -128,6 +134,23 @@ export default (state = initialState, action) => {
         ...state,
         addProduct: initialState.addProduct,
         removeProduct: initialState.removeProduct,
+      };
+    case Actions.ORDER_PLACE_SUCCESS:
+      return {
+        ...state,
+        addedItems: initialState.addedItems,
+        order_id: action.payload,
+        orderPlace: true,
+      };
+    case Actions.REFRESH_ORDER_FLAG:
+      return {
+        ...state,
+        orderPlace: false,
+      };
+    case Actions.REFRESH_ORDER_RECIEPT:
+      return {
+        ...state,
+        orderReciept: initialState.orderReciept
       };
     default:
       return state;

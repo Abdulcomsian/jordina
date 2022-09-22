@@ -1,0 +1,41 @@
+.ReactModal__Overlay{
+    background-color: rgb(57 56 56 / 75%) !important;
+}
+.ReactModal__Content{
+    max-width: 40%;
+    margin: auto;
+    border-radius: 1rem !important;
+    box-shadow: 0 1.6rem 3rem rgb(0 0 0 / 10%);
+    border: none !important;
+}
+.modal__header h4.modal__title{
+    font-size: 18px;
+    font-weight: 700;
+    font-family: Poppins;
+    color: #323232;
+}
+.modal__header span{
+    cursor: pointer;
+}
+.detail__div ul{
+    padding: 0px;
+    margin: 50px 0px;
+}
+.detail__div ul li{
+    margin-bottom: 15px;
+}
+.detail__div ul li h5{
+    font-weight: 600;
+    font-size: 16px;
+}
+.detail__div .user__detail img{
+    background: #1696b97d!important;
+    border-radius: 100%;
+    width: 150px;
+}
+.detail__div .user__detail h3{
+    font-weight: 700;
+    color: #808191;
+    font-family: Poppins;
+    font-size: 16px;
+}

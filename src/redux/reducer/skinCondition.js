@@ -3,6 +3,7 @@ import * as Actions from "../actionTypes";
 const initialState = {
   message: null,
   diseasesArray: [],
+  appointmentId: null,
 };
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -10,6 +11,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         diseasesArray: action.payload.message,
+        appointmentId: action.payload.data.appointment.id,
       };
     case Actions.SKIN_TEST_FAIL:
       return {

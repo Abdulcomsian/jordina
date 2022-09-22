@@ -116,6 +116,8 @@
 .summary__div .items__list ul{
     padding: 0px;
     list-style: none;
+    height: 450px;
+    overflow: scroll;
 }
 .summary__div .items__list ul li{
     border-bottom: 1px solid #eee;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import images from "../../../constant/images";
 import "./style.css";
 
-const SideBar = ({ profileClick, appoinmentClick, medicationClick }) => {
+const SideBar = ({ profileClick, appoinmentClick, medicationClick,orderClick }) => {
   const [sideBarToggle, setSideBarToggle] = useState(true);
   const sideBarHandler = () => {
     setSideBarToggle(prevCheck => !prevCheck);
@@ -50,6 +50,11 @@ const SideBar = ({ profileClick, appoinmentClick, medicationClick }) => {
             <li>
               <a onClick={medicationClick}>
                 <i className="fa-solid fa-capsules"></i> <span>Medication</span>
+              </a>
+            </li>
+            <li>
+              <a onClick={orderClick}>
+                <i className="fa-solid fa-capsules"></i> <span>Orders</span>
               </a>
             </li>
             <li>

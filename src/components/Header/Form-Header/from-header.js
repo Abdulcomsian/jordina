@@ -9,7 +9,7 @@ const FormHeader = () => {
     <div className="form_header">
       <Navbar expand="lg">
         <Container fluid>
-          <Navbar.Brand href="#">Jordina</Navbar.Brand>
+          <Navbar.Brand href="/Jordina">Jordina</Navbar.Brand>
         </Container>
       </Navbar>
     </div>

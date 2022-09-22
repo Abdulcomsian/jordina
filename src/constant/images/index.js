@@ -44,6 +44,7 @@ const aboutMain = require("../../assets/images/about-main.png");
 const valueImg = require("../../assets/images/value-image.png");
 const peopleViewed = require("../../assets/images/people-viewes.png");
 const profileImg = require("../../assets/images/profile-image.webp");
+const receiptImg = require("../../assets/images/receipt.png");
 
 export default {
   mobile_bg,
@@ -91,5 +92,6 @@ export default {
   aboutMain,
   valueImg,
   peopleViewed,
-  profileImg
+  profileImg,
+  receiptImg
 };

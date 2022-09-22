@@ -92,13 +92,13 @@ const ProductDetail = (props) => {
                       <h2>{state.name}</h2>
                       <div className="price__rating__div d-flex align-items-center justify-content-between mt-4 mb-4">
                         <p>${state.price}</p>
-                        <p>
+                        {/* <p>
                           <i className="fa-solid fa-star"></i>{" "}
                           <i className="fa-solid fa-star"></i>{" "}
                           <i className="fa-solid fa-star"></i>{" "}
                           <i className="fa-solid fa-star"></i>{" "}
                           <i className="fa-solid fa-star"></i> (129 reviews)
-                        </p>
+                        </p> */}
                       </div>
                       <p>
                         This hydrating eye cream visibly smooths under eye

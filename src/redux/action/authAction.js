@@ -11,12 +11,14 @@ export const login = (email, password) => {
         data: body,
       });
       const response = request;
+      console.log("Action Response :", response)
       if (response.status === 200) {
         localStorage.setItem("authenticatedUser",true);
         dispatch({
           type: Actions.LOGIN_SUCCESS,
           payload: response.data,
         });
+        return response;
       }
     } catch (err) {
       localStorage.setItem("authenticatedUser",false);

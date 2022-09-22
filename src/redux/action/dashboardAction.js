@@ -65,3 +65,79 @@ export const updateClientProfile = (
     }
   };
 };
+export const getClientOrder = (token) => {
+  return async (dispatch, getState) => {
+    try {
+      const request = await axios(base_url + "getCompletedOrders", {
+        method: "POST",
+        headers: {
+          authorization: "Bearer " + token,
+        },
+      });
+      const response = request;
+      console.log("Response :", response);
+      if (response.status === 200) {
+        dispatch({
+          type: Actions.GET_CLIENT_ORDER_SUCCESS,
+          payload: response.data.data.orders,
+        });
+        return response.status;
+      } else {
+        return response.message;
+      }
+    } catch (error) {
+      return error.response;
+    }
+  };
+};
+export const getUnPaidOrder = (token) => {
+  return async (dispatch, getState) => {
+    try {
+      const request = await axios(base_url + "getCartItems", {
+        method: "POST",
+        headers: {
+          authorization: "Bearer " + token,
+        },
+      });
+      const response = request;
+      console.log("Response UN_PAID :", response);
+      if (response.status === 200) {
+        dispatch({
+          type: Actions.GET_CLIENT_UN_PAID_ORDER_SUCCESS,
+          payload: response.data.data.orders,
+        });
+        return response.status;
+      } else {
+        return response.message;
+      }
+    } catch (error) {
+      return error.response;
+    }
+  };
+};
+export const removeUnPaidData = (order_id, token) => {
+  return async (dispatch, getState) => {
+    try {
+      const body = { order_id };
+      const request = await axios(base_url + "deleteOrder", {
+        method: "POST",
+        headers: {
+          authorization: "Bearer " + token,
+        },
+        data: body,
+      });
+      const response = request;
+      console.log("Delete UnPaid Data :", response);
+      if (response.status === 200) {
+        dispatch({
+          type: Actions.REMOVE_UNPIAD_DATA_SUCCESS,
+        });
+        return response.status;
+      } else {
+        return response.message;
+      }
+    } catch (error) {
+      return error.response;
+    }
+  };
+};

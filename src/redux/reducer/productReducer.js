@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
         ...state,
         productArray: action.payload.products,
         minProductPrice: action.payload.min_price,
-        maxProductPrice: action.payload.max_price
+        maxProductPrice: action.payload.max_price,
       };
     case Actions.PRODUCT_FETCH_ALL_FAIL:
       return {

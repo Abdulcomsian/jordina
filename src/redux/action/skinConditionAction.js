@@ -28,10 +28,12 @@ export const skinConditionTest = (
       const request = await axios(base_url + "registerStepTwo", {
         method: "POST",
         data: body,
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          authorization: "Bearer " + token,
+        },
       });
       const response = request;
-      console.log("Response Question:", response.status);
+      console.log("Response Question:", response);
       if (response.status === 200) {
         dispatch({
           type: Actions.SKIN_TEST_SUCCESS,
@@ -58,9 +60,12 @@ export const maleAllergieExistHandler = (
   past_medication,
   current_medication,
   image,
+  about_condition,
+  women_conditon,
+  appointment_id,
   token
 ) => {
-  console.log("Token", token,is_allergy);
+  console.log("Token", token, is_allergy, image);
   return async (dispatch, getState) => {
     try {
       const body = {
@@ -71,12 +76,17 @@ export const maleAllergieExistHandler = (
         past_medication,
         current_medication,
         image,
+        about_condition,
+        women_conditon,
+        appointment_id,
       };
       console.log("Action :", body);
       const request = await axios(base_url + "registerStepthree", {
         method: "POST",
         data: body,
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          authorization: "Bearer " + token,
+        },
       });
       const response = request;
       return response;
@@ -122,7 +132,7 @@ export const getCalendly = (user_id, token) => {
         headers: {
           authorization: "Bearer " + token,
         },
-        data: body
+        data: body,
       });
       const response = request;
       console.log("Calendly Reposnse :", response.data.data.doctor[0].calendy);

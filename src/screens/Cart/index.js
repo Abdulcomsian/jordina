@@ -3,12 +3,14 @@ import { Container, Row, Col } from "react-bootstrap";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/index";
 import images from "../../constant/images";
+import axios from "axios";
 import { connect } from "react-redux";
 import {
   removeCartItems,
   addQuantity,
   subtractQuantity,
-} from "../../redux/action/cartAction";
+  orderPlace
+} from "../../redux/action/cartAction.js";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 import Lottie from "react-lottie";
@@ -17,13 +19,37 @@ import { ToastContainer, toast } from "react-toastify";
 import Loader from "../../components/Loader/index";
 
 const CartScreen = (props) => {
-  const { token, addedItems, totalAmount, allProduct, removeProductFlag } =
-    props;
-  console.log("Added Items :", addedItems);
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+  const {
+    addedItems,
+    totalAmount,
+    removeProductFlag,
+    token,
+    cartItem,
+    orderId,
+    orderPlace,
+  } = props;
+
+  console.log(
+    "removeProductFlag :",
+    removeProductFlag,
+    cartItem,
+    orderId,
+    orderPlace
+  );
   const navigate = useNavigate();
   const [showLoader, setShowLoader] = useState(false);
   const [showEmpty, setShowEmpty] = useState(false);
   const [showContent, setShowContent] = useState(true);
+  const [newItem, setNewItem] = useState([]);
+
   const handlerRemoveItem = (id) => {
     setShowLoader(true);
     props.removeItems(id);
@@ -34,45 +60,65 @@ const CartScreen = (props) => {
   const handleSubQuantity = (id) => {
     props.subtractItemQuantity(id, addedItems);
   };
-  const handleCheckOut = () => {
-    navigate("/checkOut");
-  };
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
   useEffect(() => {
-    (async () => {
-      if (removeProductFlag) {
-        if (addedItems.length > 0) {
-          setTimeout(() => {
-            setShowLoader(false);
-          }, 3000);
-        } else {
-          setTimeout(() => {
-            setShowLoader(false);
-            setShowContent(false);
-          }, 3000);
-          setShowEmpty(true);
-          toast.success("Product Remove SuccessFully !".toString(), {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          });
-        }
-      } else{
+    var obj = addedItems.map((item) => {
+      return {
+        product_id: item.id,
+        quantity: item.quantity,
+      };
+    });
+    setNewItem({ items: obj });
+    if (removeProductFlag) {
+      if (addedItems.length > 0) {
+        setTimeout(() => {
+          setShowLoader(false);
+          setShowEmpty(false)
+        }, 3000);
+      } else {
+        setTimeout(() => {
+          setShowLoader(false);
+          setShowContent(false);
+        }, 3000);
+        setShowEmpty(true);
+        toast.success("Product Remove SuccessFully !".toString(), {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       }
-    })();
-  });
+    } else if (orderPlace) {
+      setTimeout(() => {
+        setShowLoader(false);
+        navigate("/checkout",{state: { data: [], totalPayAmount: null }});
+      }, 2000);
+      toast.success("Order Place SuccessFully !".toString(), {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } else if(addedItems.length===0){
+      setShowEmpty(true);
+    }
+  }, [removeProductFlag, orderPlace]);
+
+  const handleCheckOut = async () => {
+    try {
+      setShowLoader(true);
+      const result = await props.orderProductHandler(newItem, token);
+      console.log(result);
+    } catch (error) {}
+  };
+
   return (
     <>
       <ToastContainer
@@ -155,6 +201,7 @@ const CartScreen = (props) => {
                   </Row>
                 </Container>
               )}
+
               {showEmpty && (
                 <div className="text-center">
                   <p className="cart__empty__text text-center mb-4">
@@ -163,7 +210,7 @@ const CartScreen = (props) => {
                   <Lottie options={defaultOptions} height={200} width={200} />
                   <button
                     className="mt-4"
-                    onClick={(e) => navigate("/products")}
+                    onClick={(e)=>navigate('/product')}
                   >
                     Go to Product Page
                   </button>
@@ -183,6 +230,9 @@ const mapStateToProps = (state) => ({
   totalAmount: state.cartReducer.total,
   allProduct: state.productReducer.productArray,
   removeProductFlag: state.cartReducer.removeProduct,
+  cartItem: state.cartReducer.cartItem,
+  orderId: state.cartReducer.orderID,
+  orderPlace: state.cartReducer.orderPlace,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -194,6 +244,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   subtractItemQuantity: (id, addedItems) => {
     dispatch(subtractQuantity(id, addedItems));
+  },
+  orderProductHandler: (orderItem, token) => {
+    dispatch(orderPlace(orderItem, token));
   },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(CartScreen);

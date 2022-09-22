@@ -22,6 +22,7 @@ const OurProduct = (props) => {
     productFlag,
     addedItems,
   } = props;
+  console.log("Product :",addedItems)
   const navigate = useNavigate();
   let i = 0;
   const skinType = allProductType;

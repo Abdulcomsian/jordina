@@ -107,6 +107,12 @@
 }
 
 @media screen and (max-width: 992px) {
+    .side__bar.opened {
+        width: 6%;
+    }
+    .side__bar .side__bar__top{
+        justify-content: flex-start !important;
+    }
     .side__bar {
         margin: 0px;
         height: 100%;
@@ -121,5 +127,18 @@
     .side__bar .side__bar__top h4,
     .side__bar ul li a {
         font-size: 0px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .side__bar.opened {
+        width: 8%;
+    }
+    .dashboard__content{
+        padding-right: 20px;
+    }
+}
+@media screen and (max-width: 580px) {
+    .side__bar.opened {
+        width: 12%;
     }
 }

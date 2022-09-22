@@ -28,7 +28,8 @@ const Login = (props) => {
         } else {
           setEmail(email);
           try {
-            await props.loginHandler(email, password);
+           var response=await props.loginHandler(email, password);
+           console.log("Login :",response)
           } catch (err) {
             setTimeout(() => {
               showLoader(false);
