@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Gender;
+use App\Models\Appointment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -52,10 +53,7 @@ class AuthController extends ApiController
             return $this->successResponse($success, 'User register successfully.', 200);
 
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'message' => $th->getMessage()
-            ], 500);
+            return $this->errorResponse($validateUser->messages(), 401);
         }
     }
 
@@ -83,10 +81,9 @@ class AuthController extends ApiController
                 return $this->errorResponse($validateUser->messages(), 401);
             }
 
-            $user_id = Auth::id();
-
-            $user = User::find($user_id);
-            $user->skin_condition = $request->skin_condition;
+            $user = Auth::user();
+            $appointment = new Appointment();
+            $appointment->skin_condition = $request->skin_condition;
 
             $collection = collect([
                 "question 1" => $request->question_1,
@@ -97,10 +94,13 @@ class AuthController extends ApiController
                 "question 6" => $request->question_6,
             ]);
 
-            $user->question = json_encode($collection);
-            $user->save();
-
-            return $this->successResponse("", 'Second Step Completed, question Has been submitted', 200);
+            $appointment->question = json_encode($collection);
+            $appointment->save();
+            $response = array(
+                'appointment' => $appointment
+            );
+            return $this->successResponse($response, Second Step Completed, question Has been submitted, 200);
+//            return $this->successResponse("", 'Second Step Completed, question Has been submitted', 200);
 
         } catch (\Throwable $th) {
             return $this->errorResponse($validateUser->messages(), 401);
@@ -124,11 +124,11 @@ class AuthController extends ApiController
             }
 
             $user_id = Auth::user()->id;
-            $chk_gender = Gender::where('user_id', $user_id)->first();
-            if ($chk_gender) {
-                $gender = Gender::find($chk_gender->id);
+            $chk_appointment = Appointment::where([['user_id', $user_id],['id',$request->apppointment_id]])->first();
+            if ($chk_appointment) {
+                $appointment = Appointment::find($chk_appointment->id);
             } else {
-                $gender = new Gender();
+                $appointment = new Appointment();
             }
 //            $gender->user_id = $user_id;
 //            $gender->gender = $request->gender;
@@ -146,34 +146,33 @@ class AuthController extends ApiController
 //                    $gender->weight = $request->weight;
 //                }
 //            }
-            $gender->user_id = $user_id;
-            $gender->gender = $request->gender;
-            $gender->height = $request->height;
-            $gender->weight = $request->weight;
-            $gender->past_medication = $request->past_medication;
-            $gender->current_medication = $request->current_medication;
-            $gender->pregnancy = $request->pregnancy;
-            $gender->pregnency_condition = $request->pregnency_condition;
-            $gender->pregnency_time = $request->pregnency_time;
-            $gender->plan_breastfeeding = $request->plan_breastfeeding;
-            $gender->is_allergy = $request->is_allergy;
+            $appointment->user_id = $user_id;
+            $appointment->gender = $request->gender;
+            $appointment->height = $request->height;
+            $appointment->weight = $request->weight;
+            $appointment->past_medication = $request->past_medication;
+            $appointment->current_medication = $request->current_medication;
+            $appointment->pregnancy = $request->pregnancy;
+            $appointment->pregnency_condition = $request->pregnency_condition;
+            $appointment->pregnency_time = $request->pregnency_time;
+            $appointment->plan_breastfeeding = $request->plan_breastfeeding;
+            $appointment->is_allergy = $request->is_allergy;
             if ($request->hasfile('image')) {
                 $image = $request->file('image');
                 $extensions = $image->extension();
 
                 $image_name = time() . '.' . $extensions;
                 $image->move('blog/', $image_name);
-                $gender->image = $image_name;
+                $appointment->image = $image_name;
             }
-            $gender->save();
-
-            return $this->successResponse("", 'Second Step Completed, question Has been submitted', 200);
+            $appointment->save();
+            $response = array(
+                'appointment' => $appointment
+            );
+            return $this->successResponse($appointment, 'Second Step Completed, question Has been submitted', 200);
 
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'message' => $th->getMessage()
-            ], 500);
+            return $this->errorResponse($validateUser->messages(), 401);
         }
     }
 
