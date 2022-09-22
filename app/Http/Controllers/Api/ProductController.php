@@ -105,6 +105,12 @@ class ProductController extends ApiController
                 "description" => "Test payment from itsolutionstuff.com."
             ]);
 
+            if($request->order_id){
+                $order = Order::find($request->order_id)
+                $order->status = 'paid';
+                $order->save();
+            }
+
             $response = array(
                 'result' => $result,
                 'secret_key' => 'sk_test_51LhsdnGCTNDeFrTZbu5vvte3Di3FhoS7MBwh4wBmDuzsbSeyCGvu3iJwzrThxsZddHSYvLqtca3d8HTLP4ye6u9p00ehlb2iDb'
