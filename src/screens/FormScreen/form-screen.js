@@ -266,7 +266,10 @@ const FormScreen = (props) => {
     otherMedication,
     file,
     pergency,
-    womenCondition
+    womenCondition,
+    feedingTime,
+    conceivePlanning,
+    pregencyTime
   ) => {
     console.log(
       "From Screen :",
@@ -278,7 +281,10 @@ const FormScreen = (props) => {
       otherMedication,
       file,
       pergency,
-      womenCondition
+      womenCondition,
+      feedingTime,
+      conceivePlanning,
+      pregencyTime
     );
     setModalShow(true);
     if (
@@ -303,6 +309,9 @@ const FormScreen = (props) => {
           file,
           pergency,
           womenCondition,
+          feedingTime,
+          conceivePlanning,
+          pregencyTime,
           appointmentId,
           token
         );
@@ -557,8 +566,10 @@ const mapDispatchToProps = (dispatch) => ({
     file,
     pergency,
     womenCondition,
+    feedingTime,
+    conceivePlanning,
+    pregencyTime,
     appointmentId,
-
     token
   ) =>
     dispatch(
@@ -572,6 +583,9 @@ const mapDispatchToProps = (dispatch) => ({
         file,
         pergency,
         womenCondition,
+        feedingTime,
+        conceivePlanning,
+        pregencyTime,
         appointmentId,
         token
       )

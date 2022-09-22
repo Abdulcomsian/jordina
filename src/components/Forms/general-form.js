@@ -12,8 +12,23 @@ const GeneralForm = ({
   gender,
   checkHeight,
   pergency,
-  womenCondition
+  womenCondition,
+  feedingTime,
+  conceivePlanning,
+  pregencyTime,
 }) => {
+  console.log(
+    "Genral Form :",
+    gender,
+    pergency,
+    womenCondition,
+    pregencyTime,
+    feedingTime,
+    checkHeight,
+    checkWeight,
+    checkAlergie,
+    conceivePlanning
+  );
   const [medication, setMedication] = useState(null);
   const [otherMedication, setOtherMedication] = useState(null);
   const [file, setFile] = useState(null);
@@ -91,7 +106,10 @@ const GeneralForm = ({
                 otherMedication,
                 file,
                 pergency,
-                womenCondition
+                womenCondition,
+                feedingTime,
+                conceivePlanning,
+                pregencyTime
               )
             }
           >
@@ -108,6 +126,14 @@ const GeneralForm = ({
               checkWeight,
               checkHeight,
               checkAlergie,
+              medication,
+              otherMedication,
+              file,
+              pergency,
+              womenCondition,
+              feedingTime,
+              conceivePlanning,
+              pregencyTime
             )
           }
         >

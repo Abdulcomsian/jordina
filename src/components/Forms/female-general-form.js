@@ -26,7 +26,22 @@ const FemaleGeneralForm = ({
   feedingTime,
   conceivePlanning,
   otherCondition,
+  womenCondition,
+  checkHeight,
+  gender,
 }) => {
+  console.log(
+    "Femal Fomr",
+    pergency,
+    womenCondition,
+    pregencyTime,
+    checkWeight,
+    checkHeight,
+    checkAlergie,
+    gender,
+    feedingTime,
+    conceivePlanning
+  );
   return (
     <div className="female__general--form">
       <div className="form-group">
@@ -63,6 +78,7 @@ const FemaleGeneralForm = ({
       )}
       {pergency === "No" && heightWeightFlag && (
         <GeneralForm
+          checkHeight={checkHeight}
           checkWeight={checkWeight}
           alergieNotExist={alergieNotExist}
           alergieExist={alergieExist}
@@ -73,6 +89,10 @@ const FemaleGeneralForm = ({
           onSubmitInfo={onSubmitInfo}
           showButton={showButton}
           pergency={pergency}
+          gender={gender}
+          womenCondition={womenCondition}
+          pregencyTime={pregencyTime}
+          feedingTime={feedingTime}
         />
       )}
       {pregencyCondition && (
@@ -88,6 +108,7 @@ const FemaleGeneralForm = ({
       {pregencyTime !== "" && heightWeightFlag && (
         <GeneralForm
           checkWeight={checkWeight}
+          checkHeight={checkHeight}
           alergieNotExist={alergieNotExist}
           alergieExist={alergieExist}
           getHeight={getHeight}
@@ -97,6 +118,10 @@ const FemaleGeneralForm = ({
           onSubmitInfo={onSubmitInfo}
           showButton={showButton}
           pergency={pergency}
+          gender={gender}
+          womenCondition={womenCondition}
+          pregencyTime={pregencyTime}
+          feedingTime={feedingTime}
         />
       )}
       {checkBreastFedding && (
@@ -114,6 +139,7 @@ const FemaleGeneralForm = ({
       {feedingTime !== "" && heightWeightFlag && (
         <GeneralForm
           checkWeight={checkWeight}
+          checkHeight={checkHeight}
           alergieNotExist={alergieNotExist}
           alergieExist={alergieExist}
           getHeight={getHeight}
@@ -123,6 +149,10 @@ const FemaleGeneralForm = ({
           onSubmitInfo={onSubmitInfo}
           showButton={showButton}
           pergency={pergency}
+          gender={gender}
+          womenCondition={womenCondition}
+          pregencyTime={pregencyTime}
+          feedingTime={feedingTime}
         />
       )}
       {nextYearConceive && (
@@ -138,6 +168,7 @@ const FemaleGeneralForm = ({
       )}
       {currentlyConceive && heightWeightFlag && (
         <GeneralForm
+          checkHeight={checkHeight}
           checkWeight={checkWeight}
           alergieNotExist={alergieNotExist}
           alergieExist={alergieExist}
@@ -147,10 +178,15 @@ const FemaleGeneralForm = ({
           handleAllergiesSelectChange={handleAllergiesSelectChange}
           onSubmitInfo={onSubmitInfo}
           showButton={showButton}
+          gender={gender}
+          pergency={pergency}
+          womenCondition={womenCondition}
+          conceivePlanning={conceivePlanning}
         />
       )}
       {conceivePlanning !== "" && heightWeightFlag && (
         <GeneralForm
+          checkHeight={checkHeight}
           checkWeight={checkWeight}
           alergieNotExist={alergieNotExist}
           alergieExist={alergieExist}
@@ -160,10 +196,15 @@ const FemaleGeneralForm = ({
           handleAllergiesSelectChange={handleAllergiesSelectChange}
           onSubmitInfo={onSubmitInfo}
           showButton={showButton}
+          gender={gender}
+          pergency={pergency}
+          womenCondition={womenCondition}
+          conceivePlanning={conceivePlanning}
         />
       )}
       {otherCondition && heightWeightFlag && (
         <GeneralForm
+          checkHeight={checkHeight}
           checkWeight={checkWeight}
           alergieNotExist={alergieNotExist}
           alergieExist={alergieExist}
@@ -173,7 +214,9 @@ const FemaleGeneralForm = ({
           handleAllergiesSelectChange={handleAllergiesSelectChange}
           onSubmitInfo={onSubmitInfo}
           showButton={showButton}
-          
+          gender={gender}
+          pergency={pergency}
+          womenCondition={womenCondition}
         />
       )}
     </div>

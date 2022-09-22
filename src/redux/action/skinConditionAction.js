@@ -62,6 +62,9 @@ export const maleAllergieExistHandler = (
   image,
   about_condition,
   women_conditon,
+  feedingTime,
+  conceivePlanning,
+  pregencyTime,
   appointment_id,
   token
 ) => {
@@ -78,6 +81,9 @@ export const maleAllergieExistHandler = (
         image,
         about_condition,
         women_conditon,
+        feedingTime,
+        conceivePlanning,
+        pregencyTime,
         appointment_id,
       };
       console.log("Action :", body);
