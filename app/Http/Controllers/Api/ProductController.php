@@ -218,4 +218,18 @@ class ProductController extends ApiController
         }
     }
 
+    public function deleteOrder(Request $request)
+    {
+        try{
+            $auth = Auth::user();
+            $orders = Order::findorfail($request->order_id)->delete();
+            $response = array(
+                'orders' => $orders
+            );
+            return $this->successResponse($response, 'Order Deleted Successfully!', 200);
+        } catch (\Throwable $th) {
+            return $this->errorResponse($th->getMessage(), 401);
+        }
+    }
+
 }

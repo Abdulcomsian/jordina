@@ -99,7 +99,7 @@ class AuthController extends ApiController
             $response = array(
                 'appointment' => $appointment
             );
-            return $this->successResponse($response, Second Step Completed, question Has been submitted, 200);
+            return $this->successResponse($response, 'Second Step Completed, question Has been submitted', 200);
 //            return $this->successResponse("", 'Second Step Completed, question Has been submitted', 200);
 
         } catch (\Throwable $th) {
