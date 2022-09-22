@@ -238,4 +238,9 @@ class ProductController extends ApiController
         }
     }
 
+    public function updatePaymentStatus()
+    {
+
+    }
+
 }

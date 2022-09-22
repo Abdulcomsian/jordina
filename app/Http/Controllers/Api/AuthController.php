@@ -83,6 +83,7 @@ class AuthController extends ApiController
 
             $user = Auth::user();
             $appointment = new Appointment();
+            $appointment->user_id = $user->id;
             $appointment->skin_condition = $request->skin_condition;
 
             $collection = collect([
@@ -95,15 +96,17 @@ class AuthController extends ApiController
             ]);
 
             $appointment->question = json_encode($collection);
+
             $appointment->save();
             $response = array(
                 'appointment' => $appointment
             );
+
             return $this->successResponse($response, 'Second Step Completed, question Has been submitted', 200);
 //            return $this->successResponse("", 'Second Step Completed, question Has been submitted', 200);
 
         } catch (\Throwable $th) {
-            return $this->errorResponse($validateUser->messages(), 401);
+            return $this->errorResponse($th->getMessage(), 401);
         }
     }
 
@@ -172,7 +175,7 @@ class AuthController extends ApiController
             return $this->successResponse($appointment, 'Second Step Completed, question Has been submitted', 200);
 
         } catch (\Throwable $th) {
-            return $this->errorResponse($validateUser->messages(), 401);
+            return $this->errorResponse($th->getMessage(), 401);
         }
     }
 
@@ -209,10 +212,7 @@ class AuthController extends ApiController
             return $this->successResponse($success, 'User Logged In Successfully.');
 
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'message' => $th->getMessage()
-            ], 500);
+            return $this->errorResponse($th->getMessage(), 401);
         }
     }
 

@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('getAllProducts', [ProductController::class,'getAllProducts']);
     Route::post('getCalendy', [ProductController::class,'getCalendy']);
     Route::post('payment', [ProductController::class,'payment']);
+    Route::post('updatePaymentStatus', [ProductController::class,'updatePaymentStatus']);
 
     Route::post('updateClientProfile', [AuthController::class,'updateClientProfile']);
     Route::post('getLoggedInUser', [AuthController::class,'getLoggedInUser']);
