@@ -145,20 +145,42 @@ class ProductController extends ApiController
                 $product = Product::find($product_id);
                 $amount = $amount + $product->amount * $quantity;
             }
-            $order = new Order();
-            $order->user_id = $auth->id;
-            $order->amount = $amount;
-            $order->save();
+            if($request->order_id)
+            {
+                $order = Order::findorfail($request->order_id);
+                $order->user_id = $auth->id;
+                $order->amount = $amount;
+                $order->save();
 
-            foreach ($request->items as $key => $value) {
-                $product_id = $value['product_id'];
-                $quantity = $value['quantity'];
-                $order_items = new OrderItem;
-                $order_items->order_id = $order->id;
-                $order_items->product_id = $product_id;
-                $order_items->quantity = $quantity;
-                $order_items->save();
+                $order_items = OrderItem::where('order_id',$request->order_id)->delete();
+
+                foreach ($request->items as $key => $value) {
+                    $product_id = $value['product_id'];
+                    $quantity = $value['quantity'];
+                    $order_items = new OrderItem;
+                    $order_items->order_id = $order->id;
+                    $order_items->product_id = $product_id;
+                    $order_items->quantity = $quantity;
+                    $order_items->save();
+                }
+            } else
+            {
+                $order = new Order();
+                $order->user_id = $auth->id;
+                $order->amount = $amount;
+                $order->save();
+
+                foreach ($request->items as $key => $value) {
+                    $product_id = $value['product_id'];
+                    $quantity = $value['quantity'];
+                    $order_items = new OrderItem;
+                    $order_items->order_id = $order->id;
+                    $order_items->product_id = $product_id;
+                    $order_items->quantity = $quantity;
+                    $order_items->save();
+                }
             }
+
             $response = array(
                 'order' => $order
             );
@@ -187,9 +209,6 @@ class ProductController extends ApiController
         try{
             $auth = Auth::user();
             $orders = Order::with('order_items', 'order_items.product')->where([['user_id', $auth->id],['payment_status', 'unpaid']])->get()->toArray();
-//            $orders = json_encode($orders);
-//            $orders = Order::find(19);
-//            dd($json);
             $response = array(
                 'orders' => $orders
             );
