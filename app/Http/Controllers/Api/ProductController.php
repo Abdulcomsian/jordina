@@ -106,7 +106,7 @@ class ProductController extends ApiController
             ]);
 
             if($request->order_id){
-                $order = Order::find($request->order_id)
+                $order = Order::find($request->order_id);
                 $order->status = 'paid';
                 $order->save();
             }
