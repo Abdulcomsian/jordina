@@ -155,8 +155,10 @@ class AuthController extends ApiController
             $appointment->weight = $request->weight;
             $appointment->past_medication = $request->past_medication;
             $appointment->current_medication = $request->current_medication;
-            $appointment->pregnancy = $request->pregnancy;
-            $appointment->pregnency_condition = $request->pregnency_condition;
+//            $appointment->pregnancy = $request->pregnancy;
+//            $appointment->pregnency_condition = $request->pregnency_condition;
+            $appointment->about_condition = $request->about_condition;
+            $appointment->female_condition = $request->female_condition;
             $appointment->pregnency_time = $request->pregnency_time;
             $appointment->plan_breastfeeding = $request->plan_breastfeeding;
             $appointment->is_allergy = $request->is_allergy;
