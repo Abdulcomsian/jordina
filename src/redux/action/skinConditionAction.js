@@ -1,6 +1,7 @@
 import * as Actions from "../actionTypes";
 import axios from "axios";
-var base_url = "http://127.0.0.1:8000/api/";
+// var base_url = "http://127.0.0.1:8000/api/";
+var base_url = "https://portfolio.accrualhub.com/jordina-api/public/api/";
 
 export const skinConditionTest = (
   skin_condition,
@@ -61,10 +62,10 @@ export const maleAllergieExistHandler = (
   current_medication,
   image,
   about_condition,
-  women_conditon,
-  feedingTime,
-  conceivePlanning,
-  pregencyTime,
+  female_condition,
+  plan_breastfeeding,
+  plan_conceive,
+  pregnency_time,
   appointment_id,
   token
 ) => {
@@ -80,10 +81,10 @@ export const maleAllergieExistHandler = (
         current_medication,
         image,
         about_condition,
-        women_conditon,
-        feedingTime,
-        conceivePlanning,
-        pregencyTime,
+        female_condition,
+        plan_breastfeeding,
+        plan_conceive,
+        pregnency_time,
         appointment_id,
       };
       console.log("Action :", body);

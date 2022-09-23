@@ -8,7 +8,7 @@ import MultiRangeSlider from "../../../components/RangeSlider/index";
 import BounceLoader from "react-spinners/BounceLoader";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
-import Pagination from 'rc-pagination';
+import Pagination from "rc-pagination";
 import { refreshProdcutFlag } from "../../../redux/action/cartAction";
 
 const OurProduct = (props) => {
@@ -22,7 +22,7 @@ const OurProduct = (props) => {
     productFlag,
     addedItems,
   } = props;
-  console.log("Product :",addedItems)
+  console.log("Product :", addedItems);
   const navigate = useNavigate();
   let i = 0;
   const skinType = allProductType;
@@ -286,6 +286,7 @@ const OurProduct = (props) => {
         id: preData[index].id,
         name: preData[index].name,
         price: preData[index].amount,
+        description: preData[index].description
       },
     });
   };
@@ -418,18 +419,6 @@ const OurProduct = (props) => {
                                       <div className="product__information text-center">
                                         <h3>{items.name}</h3>
                                         <p className="mt-1">${items.amount}</p>
-                                        {/* <Link
-                                        to={{
-                                          pathname: "/products-detail",
-                                          state: {
-                                            id: 1,
-                                            name: "sabaoon",
-                                            shirt: "green",
-                                          },
-                                        }}
-                                      >
-                                        Learn More
-                                      </Link> */}
                                         <a
                                           className="common__btn mt-4"
                                           onClick={(e) =>

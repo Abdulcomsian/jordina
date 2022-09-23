@@ -101,12 +101,9 @@ const ProductDetail = (props) => {
                         </p> */}
                       </div>
                       <p>
-                        This hydrating eye cream visibly smooths under eye
-                        wrinkles with a concentrated blend of five replenishing
-                        ceramides, four forms of brightening vitamin C, two
-                        peptides and clinically proven retinol.
+                        {state.description}
                       </p>
-                      <ul>
+                      {/* <ul>
                         <li>Vitamin C visibly firms & brightens eye area.</li>
                         <li>
                           Retinol quickly reduces the look of deep wrinkles.
@@ -114,7 +111,7 @@ const ProductDetail = (props) => {
                         <li>Rich, creamy lotion intensely hydrates.</li>
                         <li>Use twice daily as needed.</li>
                         <li>Low-strength 0.01% retinol concentration.</li>
-                      </ul>
+                      </ul> */}
                       <a
                         className="common__btn mt-4"
                         onClick={addToCartHandler}

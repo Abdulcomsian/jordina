@@ -40,9 +40,10 @@ const CartScreen = (props) => {
   console.log(
     "removeProductFlag :",
     removeProductFlag,
+    addedItems.length,
     cartItem,
     orderId,
-    orderPlace
+    orderPlace,
   );
   const navigate = useNavigate();
   const [showLoader, setShowLoader] = useState(false);
@@ -75,6 +76,7 @@ const CartScreen = (props) => {
           setShowEmpty(false)
         }, 3000);
       } else {
+        console.log("Here Body")
         setTimeout(() => {
           setShowLoader(false);
           setShowContent(false);
@@ -109,7 +111,7 @@ const CartScreen = (props) => {
     } else if(addedItems.length===0){
       setShowEmpty(true);
     }
-  }, [removeProductFlag, orderPlace]);
+  }, [removeProductFlag, orderPlace,addedItems]);
 
   const handleCheckOut = async () => {
     try {
@@ -210,7 +212,7 @@ const CartScreen = (props) => {
                   <Lottie options={defaultOptions} height={200} width={200} />
                   <button
                     className="mt-4"
-                    onClick={(e)=>navigate('/product')}
+                    onClick={(e)=>navigate('/products')}
                   >
                     Go to Product Page
                   </button>

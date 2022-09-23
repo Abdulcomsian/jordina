@@ -50,7 +50,8 @@
     padding: 0px 15px;
 }
 
-.side__bar .side__bar__top h4 {
+.side__bar .side__bar__top h4 a,
+.side__bar .side__bar__top h4 a:hover {
     font-family: 'Kaisei Opti', serif;
     color: #fff;
 }

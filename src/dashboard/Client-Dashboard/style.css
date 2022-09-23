@@ -63,7 +63,13 @@
 }
 @media screen and (max-width: 580px) {
     .dashboard__content {
-        padding-left: 69px !important;
-        padding-right: 17px;
+        padding-left: 70px !important;
+        padding-right: 25px;
+    }
+}
+@media screen and (max-width: 450px) {
+    .dashboard__content {
+        padding-left: 50px !important;
+        padding-right: 25px;
     }
 }

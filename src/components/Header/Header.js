@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import "./style.css";
 
 const Header = (props) => {
-  const { authenticated, token, statusLogout, className, addedItems, cartItem } = props;
+  const { authenticated, token, statusLogout, className, addedItems, removeProductFlag } = props;
   const navigate = useNavigate();
   const [openHeader, setOpenHeader] = useState(false);
   const [loader, showLoader] = useState(false);
@@ -41,9 +41,11 @@ const Header = (props) => {
       }
       if (addedItems.length > 0) {
         setTotalCartItem(addedItems.length)
+      } else{
+        setTotalCartItem(null)
       }
     })();
-  }, [statusLogout, addedItems]);
+  }, [statusLogout, addedItems,removeProductFlag]);
   return (
     <>
       {loader && <Loader showLoader={loader} loaderColor={"#AF6FAC"} />}
@@ -158,6 +160,7 @@ const mapStateToProps = (state) => ({
   statusLogout: state.auth.statusLogout,
   addedItems: state.cartReducer.addedItems,
   cartItem: state.cartReducer.cartItem,
+  removeProductFlag: state.cartReducer.removeProduct,
 });
 
 const mapDispatchToProps = (dispatch) => ({

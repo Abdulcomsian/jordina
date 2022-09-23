@@ -400,7 +400,7 @@ const FormScreen = (props) => {
       } catch (error) {}
     };
     fetchData().catch(console.error);
-  }, []);
+  }, [token]);
   return (
     <>
       <ToastContainer

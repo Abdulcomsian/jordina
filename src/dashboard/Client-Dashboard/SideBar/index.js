@@ -10,7 +10,7 @@ const SideBar = ({ profileClick, appoinmentClick, medicationClick,orderClick }) 
   return (
     <div className={sideBarToggle ? "side__bar opened" : "side__bar closed"}>
       <div className="side__bar__top d-flex align-items-center justify-content-between">
-        <h4 className="text-center">Jordina</h4>
+        <h4 className="text-center"><a href="/Jordina">Jordina</a></h4>
         {sideBarToggle ? (
           <i className="fa-solid fa-angles-left" onClick={sideBarHandler}></i>
         ) : (

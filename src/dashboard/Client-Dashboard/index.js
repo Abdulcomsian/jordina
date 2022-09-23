@@ -65,40 +65,38 @@ const ClientDashboard = (props) => {
       setOrder(true);
     }, 3000);
   };
-
+  const fetchLoginUserDetail = async () => {
+    try {
+      await props.userDetail(token);
+    } catch (err) {
+    }
+  };
+  const fetchClientOrder = async () => {
+    try {
+      await props.clientOrder(token);
+    } catch (err) {
+    }
+  };
+  const fetchClientOrderUnpaid = async () => {
+    try {
+      await props.clientUnPaidOrder(token);
+    } catch (err) {
+      // alert(err.message);
+    }
+  };
   useEffect(() => {
-    const fetchLoginUserDetail = async () => {
-      try {
-        await props.userDetail(token);
-      } catch (err) {
-        // alert(err.message);
-      }
-    };
-    const fetchClientOrder = async () => {
-      try {
-        await props.clientOrder(token);
-      } catch (err) {
-        // alert(err.message);
-      }
-    };
-    const fetchClientOrderUnpaid = async () => {
-      try {
-        await props.clientUnPaidOrder(token);
-      } catch (err) {
-        // alert(err.message);
-      }
-    };
     fetchLoginUserDetail().catch(console.error);
     fetchClientOrder().catch(console.error);
     fetchClientOrderUnpaid().catch(console.error());
   }, [token, refreshData]);
+
   const removeUnPaidData = async (e, id) => {
     const response = await props.removeDataHanlder(id, token);
     if (response === 200) {
-     
-      setTimeout(() => {
-        window.location.reload(true);
-      }, 1000);
+      fetchClientOrderUnpaid().catch(console.error());
+      // setTimeout(() => {
+      //   window.location.reload(true);
+      // }, 1000);
       toast.success("Order Delete SuccessFully !".toString(), {
         position: "top-right",
         autoClose: 5000,
@@ -109,7 +107,6 @@ const ClientDashboard = (props) => {
         progress: undefined,
         theme: "colored",
       });
-      
     }
   };
   return (
@@ -126,46 +123,45 @@ const ClientDashboard = (props) => {
         pauseOnHover
         theme="colored"
       />
-       <div className="client__dashboard">
-      <main>
-        <div className="main__wrapper">
-          <div className="sidebar__dashboard__content d-flex justify-content-between">
-            <SideBar
-              profileClick={profileClick}
-              appoinmentClick={appoinmentClick}
-              medicationClick={medicationClick}
-              orderClick={orderClick}
-            />
-            <div className="dashboard__content">
-              <DashBoardHeader />
+      <div className="client__dashboard">
+        <main>
+          <div className="main__wrapper">
+            <div className="sidebar__dashboard__content d-flex justify-content-between">
+              <SideBar
+                profileClick={profileClick}
+                appoinmentClick={appoinmentClick}
+                medicationClick={medicationClick}
+                orderClick={orderClick}
+              />
+              <div className="dashboard__content">
+                <DashBoardHeader />
 
-              {loading && (
-                <div className="loader">
-                  <BounceLoader color="#1695b9" />
-                  <p>Please Wait a Second .. !</p>
-                </div>
-              )}
-              {appointment ? (
-                <ClientApointment blurContent={loading} />
-              ) : profile ? (
-                <ClientProfile blurContent={loading} userData={loginUser} />
-              ) : order ? (
-                <ClientOrder
-                  blurContent={loading}
-                  orderPaidData={orderPaidData}
-                  unPaidOrder={unPaidOrder}
-                  removeUnPaidData={removeUnPaidData}
-                />
-              ) : (
-                medication && <ClientMedication blurContent={loading} />
-              )}
+                {loading && (
+                  <div className="loader">
+                    <BounceLoader color="#1695b9" />
+                    <p>Please Wait a Second .. !</p>
+                  </div>
+                )}
+                {appointment ? (
+                  <ClientApointment blurContent={loading} />
+                ) : profile ? (
+                  <ClientProfile blurContent={loading} userData={loginUser} />
+                ) : order ? (
+                  <ClientOrder
+                    blurContent={loading}
+                    orderPaidData={orderPaidData}
+                    unPaidOrder={unPaidOrder}
+                    removeUnPaidData={removeUnPaidData}
+                  />
+                ) : (
+                  medication && <ClientMedication blurContent={loading} />
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      </main>
-    </div>
+        </main>
+      </div>
     </>
-   
   );
 };
 const mapStateToProps = (state) => ({
