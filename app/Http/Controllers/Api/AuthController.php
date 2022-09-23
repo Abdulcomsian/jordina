@@ -133,30 +133,13 @@ class AuthController extends ApiController
             } else {
                 $appointment = new Appointment();
             }
-//            $gender->user_id = $user_id;
-//            $gender->gender = $request->gender;
-//            if($request->gender == 'male'){
-//                $gender->height = $request->height;
-//                $gender->weight = $request->weight;
-//                if($request->allergie == 'yes'){
-//
-//                }
-//            }
-//            if($request->gender == 'female'){
-//                $gender->pregnancy = $request->pregnancy;
-//                if($request->pregnancy == 'no'){
-//                    $gender->height = $request->height;
-//                    $gender->weight = $request->weight;
-//                }
-//            }
+
             $appointment->user_id = $user_id;
             $appointment->gender = $request->gender;
             $appointment->height = $request->height;
             $appointment->weight = $request->weight;
             $appointment->past_medication = $request->past_medication;
             $appointment->current_medication = $request->current_medication;
-//            $appointment->pregnancy = $request->pregnancy;
-//            $appointment->pregnency_condition = $request->pregnency_condition;
             $appointment->about_condition = $request->about_condition;
             $appointment->female_condition = $request->female_condition;
             $appointment->pregnency_time = $request->pregnency_time;
