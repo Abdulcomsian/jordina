@@ -24,6 +24,7 @@ return new class extends Migration
             $table->text('calendy')->nullable();
             $table->string('phone_number')->nullable();
             $table->text('address')->nullable();
+            $table->string('status')->default('active');
             $table->rememberToken();
             $table->timestamps();
         });

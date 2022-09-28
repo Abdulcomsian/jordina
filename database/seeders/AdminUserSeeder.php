@@ -47,7 +47,12 @@ class AdminUserSeeder extends Seeder
             'name' => 'doctor',
         ]);
 
-        $permissions = Permission::pluck('id','id')->all();
+        $permissions = array(
+            9 => 9,
+           10 => 10,
+           11 => 11,
+           12 => 12,
+        );
 
         $role->syncPermissions($permissions);
 

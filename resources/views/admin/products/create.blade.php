@@ -12,20 +12,20 @@
                 <div class="d-flex flex-column flex-lg-row">
                     <!--begin::Content-->
                     <div class="flex-lg-row-fluid mb-10 mb-lg-0">
-                        <form method="post" action="{{route('users.update', $user->id)}}">
+                        <form method="post" action="{{route('users.store')}}">
                             @csrf
                             <!--begin::Card-->
                             <div class="card">
                                 <!--begin::Card body-->
                                 <div class="card-body p-12">
+                                    @include('admin.includes.msg')
                                     <!--begin::Form-->
-                                    <form action="" id="kt_invoice_form">
                                         <!--begin::Wrapper-->
                                         <div class="d-flex flex-column align-items-start flex-xxl-row">
 
                                             <!--begin::Input group-->
                                             <div class="d-flex flex-center flex-equal fw-row text-nowrap order-1 order-xxl-2 me-4">
-                                                <span class="fs-2x fw-bolder text-gray-800">Edit User</span>
+                                                <span class="fs-2x fw-bolder text-gray-800">Add User</span>
                                             </div>
                                             <!--end::Input group-->
                                         </div>
@@ -42,7 +42,7 @@
                                                     <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">First Name</label>
                                                     <!--begin::Input group-->
                                                     <div class="mb-5">
-                                                        <input type="text" name="first_name" value="{{$user->first_name}}" class="form-control form-control-solid" placeholder="Company Name" />
+                                                        <input type="text" name="first_name" class="form-control form-control-solid" placeholder="First Name" />
                                                     </div>
                                                     <!--end::Input group-->
                                                 </div>
@@ -52,7 +52,7 @@
                                                     <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Last Name</label>
                                                     <!--begin::Input group-->
                                                     <div class="mb-5">
-                                                        <input type="text" name="last_name" value="{{$user->last_name}}" class="form-control form-control-solid" placeholder="Full Name" />
+                                                        <input type="text" name="last_name" class="form-control form-control-solid" placeholder="Last Name" />
                                                     </div>
                                                     <!--end::Input group-->
                                                 </div>
@@ -62,7 +62,7 @@
                                                     <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Email</label>
                                                     <!--begin::Input group-->
                                                     <div class="mb-5">
-                                                        <input type="text" name="email" value="{{$user->email}}" class="form-control form-control-solid" placeholder="Email" />
+                                                        <input type="text" name="email" class="form-control form-control-solid" placeholder="Email" />
                                                     </div>
                                                     <!--end::Input group-->
                                                 </div>
@@ -71,14 +71,12 @@
                                             <!--end::Row-->
                                         </div>
                                         <!--end::Wrapper-->
-                                    </form>
                                     <!--end::Form-->
                                 </div>
                                 <!--end::Card body-->
                                 <!--begin::Card body-->
                                 <div class="card-body p-12">
                                     <!--begin::Form-->
-                                    <form action="" id="kt_invoice_form">
                                         <!--begin::Wrapper-->
                                         <div class="d-flex flex-column align-items-start flex-xxl-row">
 
@@ -111,19 +109,18 @@
                                                     <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Confrim Password</label>
                                                     <!--begin::Input group-->
                                                     <div class="mb-5">
-                                                        <input type="password" name="confirm-password"  class="form-control form-control-solid" placeholder="Confrim Password" />
+                                                        <input type="password" name="password_confirmation"  class="form-control form-control-solid" placeholder="Confrim Password" />
                                                     </div>
                                                     <!--end::Input group-->
                                                 </div>
                                                 <!--end::Col-->
-                                                <button type="button" class="btn btn-primary updateBtn" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user">
+                                                <button type="submit" class="btn btn-primary updateBtn">
                                                     Update User Details
                                                 </button>
                                             </div>
                                             <!--end::Row-->
                                         </div>
                                         <!--end::Wrapper-->
-                                    </form>
                                     <!--end::Form-->
                                 </div>
                                 <!--end::Card body-->
@@ -142,3 +139,4 @@
     </div>
     <!--end::Content-->
 @endsection
+
