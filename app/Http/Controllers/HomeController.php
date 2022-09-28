@@ -22,6 +22,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+    public function dashboard()
+    {
+     return view('admin.dashboard.index');
+    }
+
     public function index()
     {
         $categories = Disease::whereNull('parent_id')

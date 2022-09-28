@@ -25,10 +25,34 @@ class AdminUserSeeder extends Seeder
         ]);
 
         $role = Role::create([
-            'name' => 'Admin',
+            'name' => 'admin',
         ]);
 
         $permissions = Permission::pluck('id','id')->all();
+
+        $role->syncPermissions($permissions);
+
+        $user->assignRole([$role->id]);
+
+        $user = User::create([
+            'first_name' => 'Doctor',
+            'last_name' => 'User',
+            'email' => 'doctor@gmail.com',
+            'calendy' => 'https://calendly.com/abdul-71',
+            'password' => bcrypt('12345678'),
+            'state' => 'AL',
+        ]);
+
+        $role = Role::create([
+            'name' => 'doctor',
+        ]);
+
+        $permissions = array(
+            9 => 9,
+           10 => 10,
+           11 => 11,
+           12 => 12,
+        );
 
         $role->syncPermissions($permissions);
 
@@ -40,11 +64,28 @@ class AdminUserSeeder extends Seeder
             'email' => 'user@domain.com',
             'password' => bcrypt('12345678'),
             'state' => 'Acne',
-            'skin_condition' => 'Redness'
+//            'skin_condition' => 'Redness',
+            'address' => 'Islamabad'
         ]);
 
         $role = Role::create([
-            'name' => 'User',
+            'name' => 'user',
+        ]);
+
+        $permissions = Permission::pluck('id','id')->all();
+
+        $role->syncPermissions($permissions);
+
+        $user->assignRole([$role->id]);
+
+        $user = User::create([
+            'first_name' => 'Hamza',
+            'last_name' => 'Alam',
+            'email' => 'alamhamza18@gmail.com',
+            'password' => bcrypt('Ha5630972'),
+            'state' => 'AL',
+//            'skin_condition' => 'Redness',
+            'address' => 'Islamabad',
         ]);
 
         $permissions = Permission::pluck('id','id')->all();

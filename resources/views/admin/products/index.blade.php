@@ -84,17 +84,17 @@
                             <!--begin::Table body-->
                             <tbody class="text-gray-600 fw-bold">
                             <!--begin::Table row-->
-                            @foreach($users as $user)
+                            @foreach($products as $product)
                                 <tr>
                                     <!--begin::User=-->
-                                    <td>{{$user->first_name.' '.$user->last_name}}</td>
-                                    <td>{{$user->email}}</td>
-                                    <td>{{$user->phone}}</td>
-                                    <td>{{date('d M Y h:i a', strtotime($user->created_at))}}</td>
+                                    <td>{{$product->name}}</td>
+                                    <td>{{$product->slug}}</td>
+                                    <td>{{$product->amount}}</td>
+                                    <td>{{date('d M Y h:i a', strtotime($product->created_at))}}</td>
                                     <td>10 Mar 2021, 8:43 pm</td>
                                     <td class="text-end">
 
-                                        <a href="{{route('users.edit',$user->id)}}"
+                                        <a href="{{route('products.edit',$product->id)}}"
                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                             <!--begin::Svg Icon | path: icons/duotone/Communication/Write.svg-->
                                             <span class="svg-icon svg-icon-3">
@@ -112,7 +112,7 @@
                                                             </span>
                                             <!--end::Svg Icon-->
                                         </a>
-                                        <a onclick="event.preventDefault(); document.getElementById('delete-form-{{$user->id}}').submit();" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                                        <a onclick="event.preventDefault(); document.getElementById('delete-form-{{$product->id}}').submit();" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
                                             <!--begin::Svg Icon | path: icons/duotone/General/Trash.svg-->
                                             <span class="svg-icon svg-icon-3">
                                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -136,7 +136,7 @@
                                     </td>
                                     <!--end::Action=-->
                                 </tr>
-                                <form id="delete-form-{{$user->id}}" action="{{route('users.destroy', $user->id)}}" method="post">
+                                <form id="delete-form-{{$product->id}}" action="{{route('products.destroy', $product->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                 </form>

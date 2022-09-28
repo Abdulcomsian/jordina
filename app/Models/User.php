@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\Disease;
+use App\Models\User;
 
 class User extends Authenticatable
 {
@@ -18,13 +20,14 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'first_name',
-        'last_name',
-        'email',
-        'password',
-        'state',
-    ];
+    // protected $fillable = [
+    //     'first_name',
+    //     'last_name',
+    //     'email',
+    //     'password',
+    //     'state',
+    // ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -44,4 +47,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function gender()
+    {
+        return $this->hasOne('App\Gender');
+    }
+
+    public function diseases()
+    {
+//        return $this->belongsToMany(Disease::class, 'user_payments')->withPivot('payment_status', 'payment_amount')->withTimestamps();
+        return $this->belongsToMany(Disease::class, 'user_payments');
+    }
 }

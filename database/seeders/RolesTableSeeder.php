@@ -18,7 +18,8 @@ class RolesTableSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('roles')->truncate();
 
-        DB::table('roles')->insert(['name' => 'Admin','guard_name' => 'web']);
-        DB::table('roles')->insert(['name' => 'User','guard_name' => 'web']);
+        DB::table('roles')->insert(['name' => 'admin','guard_name' => 'web']);
+        DB::table('roles')->insert(['name' => 'doctor','guard_name' => 'web']);
+        DB::table('roles')->insert(['name' => 'user','guard_name' => 'web']);
     }
 }

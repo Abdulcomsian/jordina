@@ -21,7 +21,10 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('state')->nullable();
-            $table->string('skin_condition')->nullable();
+            $table->text('calendy')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->text('address')->nullable();
+            $table->string('status')->default('active');
             $table->rememberToken();
             $table->timestamps();
         });

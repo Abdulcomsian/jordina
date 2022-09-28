@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Disease;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Auth;
 
 class DiseasesController extends Controller
 {
@@ -167,8 +168,7 @@ class DiseasesController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public
-    function destroy($id)
+    public function destroy($id)
     {
         //
     }
