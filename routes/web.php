@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\DiseasesController;
 use App\Http\Controllers\Admin\AppointmentsController;
 use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\Admin\OrdersController;
 use Spatie\Permission\Models\Permission;
 
 /*
@@ -24,15 +25,7 @@ use Spatie\Permission\Models\Permission;
 // });
 
 Route::get('/', function () {
-//    $permissions = array(
-//            9 => 9,
-//           10 => 10,
-//           11 => 11,
-//           12 => 12,
-//        );
-//    $permissions = Permission::pluck('id', 'id')->all();
-//    dd($permissions);
-    return view('welcome');
+    return to_route('login');
 });
 
 Auth::routes();
@@ -40,11 +33,13 @@ Auth::routes();
 //Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('home', [HomeController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('test', [HomeController::class, 'test'])->name('test');
 
 /*****************ADMIN ROUTES*******************/
 Route::prefix('admin')->middleware('web')->group(function () {
     Route::resource('users', UsersController::class);
     Route::resource('diseases', DiseasesController::class);
+    Route::resource('orders', OrdersController::class);
     Route::resource('products', ProductsController::class);
     Route::get('/profile', [DiseasesController::class, 'editProfile'])->name('profile.edit');
     Route::post('/profile', [DiseasesController::class, 'updateProfile']);

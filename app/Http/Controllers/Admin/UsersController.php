@@ -76,10 +76,6 @@ class UsersController extends Controller
             return to_route('users.index');
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
-//        }
-        } catch (\Throwable $th) {
-            Session::flash('error', $th->getMessage());
-            return back();
         }
 
     }

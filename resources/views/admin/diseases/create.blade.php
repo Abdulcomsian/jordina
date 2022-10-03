@@ -32,7 +32,7 @@
                                         <div
                                             class="d-flex flex-center flex-equal fw-row text-nowrap order-1 order-xxl-2 me-4"
                                             data-bs-toggle="tooltip" data-bs-trigger="hover" title="Enter Disease Name">
-                                            <span class="fs-2x fw-bolder text-gray-800">Add Disease</span>
+                                            <span class="fs-2x fw-bolder text-gray-800">Add Question</span>
                                         </div>
                                         <!--end::Input group-->
                                     </div>
@@ -52,8 +52,7 @@
                                                 <div class="mb-5">
                                                     <textarea rows='5' name="disease[]"
                                                               class="form-control form-control-solid @error('disease') is-invalid @enderror"
-                                                              placeholder="Disease">
-                                                    </textarea>
+                                                              placeholder="Disease"></textarea>
                                                 </div>
                                                 <!--end::Input group-->
                                             </div>
