@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\Disease;
 
@@ -38,5 +39,13 @@ class HomeController extends Controller
 //            echo '<a>'.$row->title.'</a>';
 //        }
         return view('home',['categories'=>$categories]);
+    }
+
+
+    public function test()
+    {
+        $data['order']=Order::findorfail(1)->with('order_items.product', 'user')->first();
+//        $data['order']=Order::findorfail(1);
+        return view('test', $data);
     }
 }

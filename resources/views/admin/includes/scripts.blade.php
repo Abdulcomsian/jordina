@@ -3,6 +3,7 @@
 <script src="{{asset('assets/plugins/global/plugins.bundle.js')}}"></script>
 <script src="{{asset('assets/js/scripts.bundle.js')}}"></script>
 <!--end::Global Javascript Bundle-->
+@yield('datatable-script')
 <!--begin::Page Custom Javascript(used by this page)-->
 <script src="{{asset('assets/js/custom/widgets.js')}}"></script>
 <script src="{{asset('assets/js/custom/apps/chat/chat.js')}}"></script>
