@@ -86,8 +86,7 @@ class UsersController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public
-    function show($id)
+    public function show($id)
     {
         //
     }
@@ -98,8 +97,7 @@ class UsersController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public
-    function edit($id)
+    public function edit($id)
     {
         $user = User::findorfail($id);
         return view('admin.users.edit', ['user' => $user]);
@@ -112,8 +110,7 @@ class UsersController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public
-    function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
         try {
             $this->validate($request, [

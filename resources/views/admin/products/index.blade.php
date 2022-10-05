@@ -91,6 +91,8 @@
                                 <th class="min-w-125px">Email</th>
                                 <th class="min-w-125px">Phone</th>
                                 <th class="min-w-125px">Created Date</th>
+                                <th class="min-w-125px">Amount</th>
+                                <th class="min-w-125px">Registration Date</th>
                                 <th class="text-end min-w-100px">Actions</th>
                             </tr>
                             <!--end::Table row-->
@@ -104,7 +106,7 @@
                                     <!--begin::User=-->
                                     <td>{{$product->name}}</td>
                                     <td>{{$product->slug}}</td>
-                                    <td>{{$product->amount}}</td>
+                                    <td>${{$product->amount}}</td>
                                     <td>{{date('d M Y h:i a', strtotime($product->created_at))}}</td>
                                     <td class="text-end">
 

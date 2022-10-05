@@ -36,6 +36,7 @@ class DiseasesController extends Controller
 
     public function diseasesList($id = null)
     {
+        session()->put('parent_id', $id ?? null);
         $diseases = Disease::where('parent_id', $id ?? null)->get();
         return view('admin.diseases.index', ['diseases' => $diseases]);
     }
@@ -58,37 +59,23 @@ class DiseasesController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+//        dd($request);
+        $this->validate($request, [
             'disease' => 'required|max:100',
         ]);
-        if ($validator->fails()) {
-            return redirect()
-                ->back()
-                // ->with('errors', ['Falha no Upload'])
-                ->withErrors($validator)
-                ->withInput();
-        } else {
-            $disease = new Disease([
-                'title' => $request->disease,
-                'type' => 'disease',
-            ]);
-
-            $disease->save();
-
-            if ($request->questions) {
-                foreach ($request->questions as $question) {
-                    $diseases = new Disease([
-                        'title' => $question,
-                        'parent_id' => $disease->id,
-                        'type' => 'disease',
-                    ]);
-
-                    $diseases->save();
-                }
+        if ($request->questions) {
+            for ($i = 0; $i < count($request->questions); $i++) {
+                $diseases = new Disease([
+                    'title' => $request->questions[$i],
+                    'amount' => $request->price[$i],
+                    'parent_id' => $request->parent_id,
+                    'type' => $request->type[$i],
+                ]);
+                $diseases->save();
             }
-
-            return back();
         }
+        Session::flash('success', 'Disease saved successfully!');
+        return back();
     }
 
     /**
@@ -124,6 +111,7 @@ class DiseasesController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $validator = Validator::make($request->all(), [
             'disease' => 'required|max:100',
         ]);
@@ -171,5 +159,10 @@ class DiseasesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function diseaseShow()
+    {
+        dd("ss");
     }
 }

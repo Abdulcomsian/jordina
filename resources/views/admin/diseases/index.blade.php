@@ -21,9 +21,9 @@
                             <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
                                 <!--begin::Add user-->
 {{--                                @if(Auth::user()->hasRole('Admin'))--}}
-                                    <a href={{route('diseases.create')}} type="button" class="btn btn-primary">
-                                        <!--begin::Svg Icon | path: icons/duotone/Navigation/Plus.svg-->
-                                        <span class="svg-icon svg-icon-2">
+                                <a href={{route('diseases.create')}} type="button" class="btn btn-primary">
+                                    <!--begin::Svg Icon | path: icons/duotone/Navigation/Plus.svg-->
+                                    <span class="svg-icon svg-icon-2">
 													<svg xmlns="http://www.w3.org/2000/svg"
                                                          xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                          height="24px" viewBox="0 0 24 24" version="1.1">
