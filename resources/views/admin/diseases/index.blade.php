@@ -45,7 +45,7 @@
                             <!--begin::Toolbar-->
                             <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
                                 <!--begin::Add user-->
-                                @if(Auth::user()->hasRole('Admin'))
+{{--                                @if(Auth::user()->hasRole('Admin'))--}}
                                 <a href={{route('diseases.create')}} type="button" class="btn btn-primary">
                                     <!--begin::Svg Icon | path: icons/duotone/Navigation/Plus.svg-->
                                     <span class="svg-icon svg-icon-2">
@@ -60,7 +60,7 @@
 												</span>
                                     <!--end::Svg Icon-->Add Disease
                                 </a>
-                                @endif
+{{--                                @endif--}}
                                 <!--end::Add user-->
                             </div>
                             <!--end::Toolbar-->

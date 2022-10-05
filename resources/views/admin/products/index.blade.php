@@ -74,7 +74,7 @@
                             <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                 <th class="min-w-125px">Name</th>
                                 <th class="min-w-125px">Email</th>
-                                <th class="min-w-125px">Phone</th>
+                                <th class="min-w-125px">Amount</th>
                                 <th class="min-w-125px">Registration Date</th>
                                 <th class="text-end min-w-100px">Actions</th>
                             </tr>
@@ -89,9 +89,8 @@
                                     <!--begin::User=-->
                                     <td>{{$product->name}}</td>
                                     <td>{{$product->slug}}</td>
-                                    <td>{{$product->amount}}</td>
+                                    <td>${{$product->amount}}</td>
                                     <td>{{date('d M Y h:i a', strtotime($product->created_at))}}</td>
-                                    <td>10 Mar 2021, 8:43 pm</td>
                                     <td class="text-end">
 
                                         <a href="{{route('products.edit',$product->id)}}"
