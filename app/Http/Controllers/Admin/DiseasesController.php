@@ -8,6 +8,7 @@ use App\Models\Disease;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Auth;
+use Illuminate\Support\Facades\Session;
 
 class DiseasesController extends Controller
 {
@@ -59,20 +60,17 @@ class DiseasesController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request);
         $this->validate($request, [
             'disease' => 'required|max:100',
         ]);
-        if ($request->questions) {
-            for ($i = 0; $i < count($request->questions); $i++) {
-                $diseases = new Disease([
-                    'title' => $request->questions[$i],
-                    'amount' => $request->price[$i],
-                    'parent_id' => $request->parent_id,
-                    'type' => $request->type[$i],
-                ]);
-                $diseases->save();
-            }
+        for ($i = 0; $i < count($request->disease); $i++) {
+            $diseases = new Disease([
+                'title' => $request->disease[$i],
+                'amount' => $request->price[$i],
+                'parent_id' => $request->parent_id,
+                'type' => $request->type[$i],
+            ]);
+            $diseases->save();
         }
         Session::flash('success', 'Disease saved successfully!');
         return back();
