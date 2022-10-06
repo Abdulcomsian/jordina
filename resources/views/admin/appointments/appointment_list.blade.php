@@ -1,4 +1,17 @@
 @extends('admin.layouts.master')
+@section('datatable-css')
+    <style src="{{asset('assets/plugins/custom/datatables/datatables.bundle.css')}}"></style>
+@endsection
+@section('datatable-script')
+    <script src="{{asset('assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
+    <script src="{{asset('assets/js/custom/apps/customers/list/list.js')}}"></script>
+    <script src="{{asset('assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
+    {{--    <script>--}}
+    {{--        $(document).ready( function () {--}}
+    {{--            $('.datatable').DataTable();--}}
+    {{--        } );--}}
+    {{--    </script>--}}
+@endsection
 @section('content')
     <!--begin::Content-->
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -7,54 +20,54 @@
             <!--begin::Container-->
             <div id="kt_content_container" class="container">
                 <!--begin::Card-->
+                @include('admin.includes.msg')
+
                 <div class="card">
                     <!--begin::Card header-->
                     <div class="card-header border-0 pt-6">
                         <!--begin::Card title-->
                         <div class="card-title">
-
-                        </div>
-                        <!--begin::Card title-->
-                        <!--begin::Card toolbar-->
-                        <div class="card-toolbar">
-                            <!--begin::Toolbar-->
-                            <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-                                <!--begin::Add user-->
-                                <a href={{route('diseases.create')}} type="button" class="btn btn-primary">
-                                    <!--begin::Svg Icon | path: icons/duotone/Navigation/Plus.svg-->
-                                    <span class="svg-icon svg-icon-2">
+                            <!--begin::Search-->
+                            <div class="d-flex align-items-center position-relative my-1">
+                                <!--begin::Svg Icon | path: icons/duotone/General/Search.svg-->
+                                <span class="svg-icon svg-icon-1 position-absolute ms-6">
 													<svg xmlns="http://www.w3.org/2000/svg"
                                                          xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                          height="24px" viewBox="0 0 24 24" version="1.1">
-														<rect fill="#000000" x="4" y="11" width="16" height="2" rx="1"/>
-														<rect fill="#000000" opacity="0.5"
-                                                              transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000)"
-                                                              x="4" y="11" width="16" height="2" rx="1"/>
+														<g stroke="none" stroke-width="1" fill="none"
+                                                           fill-rule="evenodd">
+															<rect x="0" y="0" width="24" height="24"/>
+															<path
+                                                                    d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z"
+                                                                    fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+															<path
+                                                                    d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"
+                                                                    fill="#000000" fill-rule="nonzero"/>
+														</g>
 													</svg>
 												</span>
-                                    <!--end::Svg Icon-->Add Disease
-                                </a>
-                                <!--end::Add user-->
+                                <!--end::Svg Icon-->
+                                <input type="text" data-kt-user-table-filter="search"
+                                       class="form-control form-control-solid w-250px ps-14" placeholder="Search user"/>
                             </div>
-                            <!--end::Toolbar-->
+                            <!--end::Search-->
                         </div>
-                        <!--end::Card toolbar-->
+                        <!--begin::Card title-->
                     </div>
                     <!--end::Card header-->
                     <!--begin::Card body-->
-{{--                    @dd(session()->pull('parent_id'))--}}
                     <div class="card-body pt-0">
                         <!--begin::Table-->
-                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
+                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
                             <!--begin::Table head-->
                             <thead>
                             <!--begin::Table row-->
                             <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                <th>Title</th>
-                                @if(session()->pull('parent_id'))
-                                    <th class="min-w-125px">Amount</th>
-                                @endif
-                                <th class="min-w-125px">Registration Date</th>
+                                <th class="min-w-125px">Disease Name</th>
+                                <th class="min-w-125px">Gender</th>
+                                <th class="min-w-125px">Height</th>
+                                <th class="min-w-125px">Weight</th>
+                                <th class="min-w-125px">Created Date</th>
                                 <th class="text-end min-w-100px">Actions</th>
                             </tr>
                             <!--end::Table row-->
@@ -63,15 +76,20 @@
                             <!--begin::Table body-->
                             <tbody class="text-gray-600 fw-bold">
                             <!--begin::Table row-->
-                            @foreach($diseases as $disease)
+                            @foreach($appointments as $appointment)
                                 <tr>
                                     <!--begin::User=-->
-                                    <td>{{$disease->title}}</td>
-                                    <td>${{$disease->amount ?? '0'}}</td>
-                                    <td>{{date('d M Y h:i a', strtotime($disease->created_at))}}</td>
+                                    <td>{{$appointment->disease->title}}</td>
+                                    <td>{{$appointment->gender}}</td>
+                                    <td>{{$appointment->height}}</td>
+                                    <td>{{$appointment->weight}}</td>
+                                    <td>{{date('d M Y h:i a', strtotime($appointment->created_at))}}</td>
                                     <td class="text-end">
-
-                                        <a href="{{route('diseases.edit',$disease->id)}}"
+                                        <a href="{{route('appointments.show',$appointment->disease->id)}}"
+                                           class="btn btn-bg-primary btn-active-color-dark btn-sm me-1">
+                                            Show Details
+                                        </a>
+                                        <a href="{{route('products.edit',$appointment->id)}}"
                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                             <!--begin::Svg Icon | path: icons/duotone/Communication/Write.svg-->
                                             <span class="svg-icon svg-icon-3">
@@ -89,7 +107,8 @@
                                                             </span>
                                             <!--end::Svg Icon-->
                                         </a>
-                                        <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                                        <a onclick="event.preventDefault(); document.getElementById('delete-form-{{$appointment->id}}').submit();"
+                                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
                                             <!--begin::Svg Icon | path: icons/duotone/General/Trash.svg-->
                                             <span class="svg-icon svg-icon-3">
                                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -110,13 +129,14 @@
                                                             </span>
                                             <!--end::Svg Icon-->
                                         </a>
-                                        <a href="{{route('diseases.list',$disease->id)}}"
-                                           class="btn btn-bg-light btn-active-color-primary btn-sm">
-                                            Sub Question
-                                        </a>
                                     </td>
                                     <!--end::Action=-->
                                 </tr>
+                                <form id="delete-form-{{$appointment->id}}"
+                                      action="{{route('products.destroy', $appointment->id)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
                             @endforeach
                             </tbody>
                             <!--end::Table body-->

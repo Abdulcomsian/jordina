@@ -15,6 +15,7 @@ class Disease extends Model
         'title',
         'parent_id',
         'type',
+        'amount',
     ];
 
 

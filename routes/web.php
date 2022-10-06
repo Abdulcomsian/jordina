@@ -53,6 +53,8 @@ Route::prefix('doctor')->middleware('web')->group(function () {
 //    Route::get('/profile', [DiseasesController::class, 'editProfile'])->name('profile.edit');
 });
 Route::resource('appointments', AppointmentsController::class);
+Route::get('appointment-list', [AppointmentsController::class, 'appointmentList'])->name('appointments.list');
+Route::get('appointment-show/{id?}', [AppointmentsController::class, 'appointmentShow'])->name('appointments.show');
 
 /********************DASHBOARD ROUTES END******************************/
 
