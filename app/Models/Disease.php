@@ -24,7 +24,7 @@ class Disease extends Model
     }
 
     public function childrenCategories(){
-        return $this->hasMany(Disease::class, 'parent_id')->with('subCategories');
+        return $this->hasMany(Disease::class, 'parent_id')->with('subCategories')->whereNotNull('parent_id');
     }
 
     public function users()

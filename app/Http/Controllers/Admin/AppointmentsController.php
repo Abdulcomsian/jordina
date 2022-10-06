@@ -93,11 +93,9 @@ class AppointmentsController extends Controller
 
     public function appointmentShow($id=null)
     {
-        $categories = Disease::find($id);
-//            ->with('childrenCategories')
-//            ->get();
+        $category = Disease::with('childrenCategories')->find($id);
 //        dd($categories);
 
-        return view('admin.appointments.create',['categories'=>$categories]);
+        return view('admin.appointments.create',['category'=>$category]);
     }
 }

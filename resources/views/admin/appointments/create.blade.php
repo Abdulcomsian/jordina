@@ -36,7 +36,7 @@
                     <!--end::Card header-->
                     <!--begin::Card body-->
                     <div class="card-body pt-0">
-                        @include('home', ['categories'=>$categories]))
+                        @include('home', ['category'=>$category])
                         <!--begin::Row-->
                        {{-- <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
                             <thead>
