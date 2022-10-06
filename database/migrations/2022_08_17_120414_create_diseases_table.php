@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->text('title');
             $table->text('type');
+            $table->float('amount')->nullable();
             $table->timestamps();
         });
     }

@@ -26,14 +26,14 @@
                                 <!--begin::Form-->
                                 <form id="kt_invoice_form" method="post" action="{{route('diseases.store')}}">
                                     @csrf
-                                    <input type="hidden" name="parent_id" value="{{session()->pull('parent_id', 'default')}}">
+                                    <input type="hidden" name="parent_id" value="{{session()->pull('parent_id')}}">
                                     <!--begin::Wrapper-->
                                     <div class="d-flex flex-column align-items-start flex-xxl-row">
 
                                         <!--begin::Input group-->
                                         <div class="d-flex flex-center flex-equal fw-row text-nowrap order-1 order-xxl-2 me-4"
                                                 data-bs-toggle="tooltip" data-bs-trigger="hover">
-                                            <span class="fs-2x fw-bolder text-gray-800">Add Disease</span>
+                                            <span class="fs-2x fw-bolder text-gray-800">Add Question</span>
                                         </div>
                                         <!--end::Input group-->
                                     </div>
