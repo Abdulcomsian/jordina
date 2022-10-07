@@ -27,6 +27,10 @@ class Disease extends Model
         return $this->hasMany(Disease::class, 'parent_id')->with('subCategories')->whereNotNull('parent_id');
     }
 
+    public function parentCategory(){
+        return $this->belongsTo(Disease::class, 'parent_id')->with('subCategories');
+    }
+
     public function users()
     {
         return $this->belongsToMany(User::class, 'user_payments');
