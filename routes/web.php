@@ -68,4 +68,5 @@ Route::prefix('user')->middleware('can:user')->group(function () {
 
 Route::get('diseases-list/{id?}', [DiseasesController::class, 'diseasesList'])->name('diseases.list');
 Route::get('diseases-show/{id?}', [DiseasesController::class, 'diseaseShow'])->name('diseases-show');
+Route::post('generate-transcript', [DiseasesController::class, 'generateTranscript'])->name('generate_transcript');
 

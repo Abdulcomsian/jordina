@@ -20,8 +20,8 @@ return new class extends Migration
             $table->float('amount');
             $table->longText('description');
             $table->unsignedBigInteger('product_category_id');
-            $table->unsignedBigInteger('disease_id');
-            $table->foreign('disease_id')->references('id')->on('diseases')->onDelete('cascade');
+//            $table->unsignedBigInteger('disease_id');
+//            $table->foreign('disease_id')->references('id')->on('diseases')->onDelete('cascade');
             $table->foreign('product_category_id')->references('id')->on('product_categories')->onDelete('cascade');
             $table->timestamps();
         });

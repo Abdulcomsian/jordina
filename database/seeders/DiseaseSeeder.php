@@ -67,5 +67,95 @@ class DiseaseSeeder extends Seeder
            "title" =>  "Not sure / I just want to talk to the dermatologist.",
             "type" =>  "disease",
         ]);
+        $disease = Disease::create([
+            "title" =>  "Lorem ipsum dolor sit amet",
+            "type" =>  "question",
+            "parent_id" =>  "1",
+        ]);
+        $disease = Disease::create([
+            "title" =>  "Lorem ipsum dolor sit amet",
+            "type" =>  "question",
+            "parent_id" =>  "1",
+        ]);
+        $disease = Disease::create([
+            "title" =>  "Lorem ipsum dolor sit amet",
+            "type" =>  "question",
+            "parent_id" =>  "1",
+        ]);
+        $disease = Disease::create([
+            "title" =>  "Lorem ipsum dolor sit amet",
+            "type" =>  "question",
+            "parent_id" =>  "14",
+        ]);
+        $disease = Disease::create([
+            "title" =>  "Lorem ipsum dolor sit amet",
+            "type" =>  "question",
+            "parent_id" =>  "14",
+        ]);
+        $disease = Disease::create([
+            "title" =>  "Lorem ipsum dolor sit amet",
+            "type" =>  "question",
+            "parent_id" =>  "14",
+        ]);
+        $disease = Disease::create([
+            "title" =>  "Lorem ipsum dolor sit amet",
+            "type" =>  "question",
+            "parent_id" =>  "15",
+        ]);
+        $disease = Disease::create([
+            "title" =>  "Lorem ipsum dolor sit amet",
+            "type" =>  "question",
+            "parent_id" =>  "15",
+        ]);
+        $disease = Disease::create([
+            "title" =>  "Lorem ipsum dolor sit amet",
+            "type" =>  "question",
+            "parent_id" =>  "15",
+        ]);
+        $disease = Disease::create([
+            "title" =>  "Lorem ipsum dolor sit amet",
+            "type" =>  "question",
+            "parent_id" =>  "16",
+        ]);
+        $disease = Disease::create([
+            "title" =>  "Lorem ipsum dolor sit amet",
+            "type" =>  "question",
+            "parent_id" =>  "16",
+        ]);
+        $disease = Disease::create([
+            "title" =>  "Lorem ipsum dolor sit amet",
+            "type" =>  "question",
+            "parent_id" =>  "16",
+        ]);
+        $disease = Disease::create([
+            "title" =>  "Lorem ipsum dolor sit amet",
+            "type" =>  "solution",
+            "parent_id" =>  "25",
+        ]);
+        $disease = Disease::create([
+            "title" =>  "Lorem ipsum dolor sit amet",
+            "type" =>  "solution",
+            "parent_id" =>  "25",
+        ]);
+        $disease = Disease::create([
+            "title" =>  "Lorem ipsum dolor sit amet",
+            "type" =>  "solution",
+            "parent_id" =>  "22",
+        ]);
+        $disease = Disease::create([
+            "title" =>  "Lorem ipsum dolor sit amet",
+            "type" =>  "solution",
+            "parent_id" =>  "17",
+        ]);
+        $disease = Disease::create([
+            "title" =>  "Lorem ipsum dolor sit amet",
+            "type" =>  "solution",
+            "parent_id" =>  "17",
+        ]);
+        $disease = Disease::create([
+            "title" =>  "Lorem ipsum dolor sit amet",
+            "type" =>  "solution",
+            "parent_id" =>  "17",
+        ]);
     }
 }
