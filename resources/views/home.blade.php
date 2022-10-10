@@ -6,38 +6,16 @@
                 {{ $category->title }}
             </button>
         </h2>
-        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
-             data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">
-                @foreach ($category->childrenCategories as $childCategory)
-                    @include('admin.includes.child_category', ['child_category' => $childCategory])
-                @endforeach
+        @if(!$category->amount)
+            <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne"
+                 data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    @foreach ($category->childrenCategories as $childCategory)
+                        @include('admin.includes.child_category', ['child_category' => $childCategory])
+                    @endforeach
+                </div>
             </div>
-        </div>
+        @endif
     </div>
 </div>
-
-{{--<div class="container">--}}
-{{--    <div id="html1">--}}
-
-{{--        <ul>--}}
-{{--            <li>{{ $category->title }}--}}
-{{--                <ul>--}}
-{{--                    @foreach ($category->childrenCategories as $childCategory)--}}
-{{--                        @include('admin.includes.child_category', ['child_category' => $childCategory])--}}
-{{--                    @endforeach--}}
-{{--                </ul>--}}
-{{--            </li>--}}
-{{--        </ul>--}}
-{{--    </div>--}}
-{{--</div>--}}
-
-{{--<ul>--}}
-{{--    <li>{{ $category->title }}</li>--}}
-{{--    <ul>--}}
-{{--        @foreach ($category->childrenCategories as $childCategory)--}}
-{{--            @include('admin.includes.child_category', ['child_category' => $childCategory])--}}
-{{--        @endforeach--}}
-{{--    </ul>--}}
-{{--</ul>--}}
 

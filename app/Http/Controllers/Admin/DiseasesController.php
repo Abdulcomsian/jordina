@@ -163,4 +163,23 @@ class DiseasesController extends Controller
     {
         dd("ss");
     }
+
+
+    function generateTranscript(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'disease_id' => 'required',
+        ]); // create the validations
+        if ($validator->fails())   //check all validations are fine, if not then redirect and show error messages
+        {
+            return response()->json($validator->errors(), 422);
+            // validation failed return back to form
+
+        } else {
+            //validations are passed, save new user in database
+            $disease = Disease::findorfail($request->disease_id);
+            return response()->json(["status" => true, "data" => $disease]);
+
+        }
+    }
 }

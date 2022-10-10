@@ -25,7 +25,7 @@ class ProductFactory extends Factory
             'slug' => $this->faker->unique()->slug,
             'description' => $this->faker->paragraph($nb = 2),
             'amount' => $this->faker->numberBetween($min = 20, $max = 1200),
-            'disease_id' => $this->faker->numberBetween($min = 1, $max = 13),
+//            'disease_id' => $this->faker->numberBetween($min = 1, $max = 13),
             'product_category_id' => $this->faker->numberBetween($min = 1, $max = 4),
         ];
     }
