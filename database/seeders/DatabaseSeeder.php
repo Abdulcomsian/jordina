@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         Product::factory(100)->create();
         Order::factory(50)->create();
         OrderItem::factory(2000)->create();
+        $this->call(AppointmentSeeder::class);
 //        $this->call(OrdersSeeder::class);
 //        $this->call(DiseaseSeeder::class);
 

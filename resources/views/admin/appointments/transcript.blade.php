@@ -17,31 +17,40 @@
                 </div>
                 <!--end::Card header-->
                 <!--begin::Card body-->
-                <div class="card-body pt-0">
-                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="transcript_table">
-                        <thead>
-                        <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="d-none">Disease ID</th>
-                            <th>Medicine Name</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Sub Total</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+                <form method="POST" action="{{route('transcript.store')}}">
+                    @csrf
+                    <div class="card-body">
+                        <div class="card-body pt-0">
+                            <table class="table align-middle table-row-dashed fs-6 gy-5" id="transcript_table">
+                                <thead>
+                                <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
+                                    <th class="d-none">Disease ID</th>
+                                    <th>Medicine Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Sub Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
 
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td>Grand Total</td>
-                            <td>$<span id="grand_total">0</span></td>
-                        </tr>
-                        </tfoot>
-                    </table>
-                </div>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Grand Total</td>
+                                    <td>$<span id="grand_total">0</span></td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-info">Place Order</button>
+                    </div>
+                </form>
                 <!--end::Card body-->
+
             </div>
             <!--end::Card-->
         </div>
@@ -61,7 +70,6 @@
                     _token: CSRF_TOKEN,
                     disease_id: disease_id
                 }).done(function (response) {
-                    console.log(response)
                     addTableRow(response, disease_id)
                 }).fail(function (response) {
                     console.log(error)
@@ -77,8 +85,9 @@
                 html += '<tr id="table_' + diseaseId + '">';
                 html += '<td>' + response.data.product.name + '</td>';
                 html += '<td>$<span class="amount" id="amount_' + diseaseId + '">' + response.data.product.amount + '</span></td>';
-                html += '<td><input type="number" class="quantity" min="1" id="quantity_' + diseaseId + '" value="1" name="quantity" placeholder="Enter Quantity"></td>';
+                html += '<td><input type="number" name="quantity[]" class="quantity" min="1" id="quantity_' + diseaseId + '" value="1" placeholder="Enter Quantity"></td>';
                 html += '<td>$<span class="sub_total" id="sub_total_' + diseaseId + '">' + response.data.product.amount + '</span></td>';
+                html += '<td style="display:none;"><input type="hidden" name="product_id[]" value="' + diseaseId + '" /></td>';
                 html += '</tr>';
                 $("#transcript_table tbody").append(html);
             }
@@ -97,9 +106,8 @@
             total_quantity = parseInt(total_quantity);
             var price = $('#amount_' + quantity).text();
             price = parseFloat(price);
-            var sub_price = total_quantity*price;
-            console.log(sub_price)
-            $('#sub_total_'+quantity).text(sub_price);
+            var sub_price = total_quantity * price;
+            $('#sub_total_' + quantity).text(sub_price);
             grandTotal();
         }
 
