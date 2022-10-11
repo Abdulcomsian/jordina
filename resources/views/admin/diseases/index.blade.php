@@ -20,7 +20,7 @@
                             <!--begin::Toolbar-->
                             <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
                                 <!--begin::Add user-->
-                                <a href={{route('diseases.create')}} type="button" class="btn btn-primary">
+                                <a href={{route('diseases.create', $parent_id ?? '')}} type="button" class="btn btn-primary">
                                     <!--begin::Svg Icon | path: icons/duotone/Navigation/Plus.svg-->
                                     <span class="svg-icon svg-icon-2">
 													<svg xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +51,7 @@
                             <!--begin::Table row-->
                             <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                 <th>Title</th>
-                                @if(session()->pull('parent_id'))
+                                @if($parent_id)
                                     <th class="min-w-125px">Amount</th>
                                 @endif
                                 <th class="min-w-125px">Registration Date</th>

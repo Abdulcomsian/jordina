@@ -26,7 +26,7 @@
                                 <!--begin::Form-->
                                 <form id="kt_invoice_form" method="post" action="{{route('diseases.store')}}">
                                     @csrf
-                                    <input type="hidden" name="parent_id" value="{{session()->pull('parent_id')}}">
+                                    <input type="hidden" name="parent_id" value="{{$parent_id}}">
                                     <!--begin::Wrapper-->
                                     <div class="d-flex flex-column align-items-start flex-xxl-row">
 
@@ -41,17 +41,15 @@
                                     <!--begin::Separator-->
                                     <div class="separator separator-dashed my-10"></div>
                                     <div class="row gx-10 mb-5">
-                                        <div class="col-lg-2 mb-5 flex">
-                                            <label
-                                                    class="form-label fs-6 fw-bolder text-gray-700 mb-3 ">Select
-                                                Type</label>
+                                        <div class="col-lg-3 mb-5 flex">
+                                            <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">
+                                                Select Type
+                                            </label>
                                             <select class="form-control" name="type[]" id="select_type">
-                                                <option
-                                                        value="question">
+                                                <option value="question">
                                                     Question
                                                 </option>
-                                                <option
-                                                        value="solution">
+                                                <option value="solution">
                                                     Solution
                                                 </option>
                                             </select>
@@ -61,8 +59,8 @@
                                             <div class="align-items-start flex-xxl-row">
                                                 <label class="form-label">Add New Row</label>
                                                 <!--begin::Input group-->
-                                                <button type="button" class="form-control btn btn-info add_new">Add New
-                                                    Row
+                                                <button type="button" class="form-control btn btn-info add_new" onclick="fetchProducts()">
+                                                    Add New Row
                                                 </button>
                                                 <!--end::Input group-->
                                             </div>
@@ -103,91 +101,6 @@
 @endsection
 @section('script')
     <script type="text/javascript">
-        // add row
-
-        $(".add-question").click(function (e) {
-            e.preventDefault();
-            var html = '';
-            html += '<div class="row gx-10 mb-5">';
-            html += '<div class="col-lg-7">';
-            html += '<label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Question</label>';
-            html += '<div class="mb-5">';
-            html += '<textarea rows = "5" name="disease[]" class="form-control form-control-solid" placeholder="Disease"></textarea>';
-            html += '</div>';
-            html += '</div>';
-            html += '<div class="col-lg-1">';
-            html += '<label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Price</label>';
-            html += '<div class="mb-5">';
-            html += '<input class="form-control" type="text" placeholder="price" name="price[]">';
-            html += '</div>';
-            html += '</div>';
-            html += '<div class="col-lg-2 mb-5 flex">';
-            html += '<label class="form-label fs-6 fw-bolder text-gray-700 mb-3 ">Select Type</label>';
-            html += '<select class="form-control" name="type[]">';
-            html += '<option value="question">Question</option>';
-            html += '<option value="solution">Solution</option>';
-            html += '</select>';
-            html += '</div>';
-            html += '<div class="col-lg-2 d-flex align-items-center">';
-            html += '<button type="button" class="btn btn-danger remove-question" style="padding: 0; width: 200px; height: 36px px;">Remove Question</button>';
-            html += '</div>';
-            html += '</div>';
-
-
-            $('.new-question').append(html);
-        });
-
-        // remove row
-        $(".add_new").click(function (e) {
-            e.preventDefault();
-            var select_type = $('#select_type').val()
-            var html = '';
-            if (select_type == 'solution') {
-                fetchProducts();
-                html += '<div class="row gx-10 mb-5">';
-                html += '<div class="col-lg-7">';
-                html += '<label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Question</label>';
-                html += '<div class="mb-5">';
-                html += '<textarea rows = "5" name="disease[]" class="form-control form-control-solid" placeholder="Disease"></textarea>';
-                html += '</div>';
-                html += '</div>';
-                html += '<div class="col-lg-2 mb-5 flex">';
-                html += '<label class="form-label fs-6 fw-bolder text-gray-700 mb-3 ">Select Type</label>';
-                html += '<select class="form-control" name="type[]">';
-                html += '<option value="question">Question</option>';
-                html += '<option value="solution">Solution</option>';
-                html += '</select>';
-                html += '</div>';
-                html += '<div class="col-lg-2 d-flex align-items-center">';
-                html += '<button type="button" class="btn btn-danger remove-question" style="padding: 0; width: 200px; height: 36px px;">Remove Question</button>';
-                html += '</div>';
-                html += '</div>';
-            } else {
-                fetchProducts();
-                html += '<div class="row gx-10 mb-5">';
-                html += '<div class="col-lg-7">';
-                html += '<label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Question</label>';
-                html += '<div class="mb-5">';
-                html += '<textarea rows = "5" name="disease[]" class="form-control form-control-solid" placeholder="Disease"></textarea>';
-                html += '</div>';
-                html += '</div>';
-                html += '<div class="col-lg-2 mb-5 flex">';
-                html += '<label class="form-label fs-6 fw-bolder text-gray-700 mb-3 ">Select Type</label>';
-                html += '<select class="form-control" name="type[]">';
-                html += '<option value="question">Question</option>';
-                html += '<option value="solution">Solution</option>';
-                html += '</select>';
-                html += '</div>';
-                html += '<div class="col-lg-2 d-flex align-items-center">';
-                html += '<button type="button" class="btn btn-danger remove-question" style="padding: 0; width: 200px; height: 36px px;">Remove Question</button>';
-                html += '</div>';
-                html += '</div>';
-            }
-
-            $('.new-question').append(html);
-
-        });
-
         $('body').on('click', '.remove-question', function (e) {
             e.preventDefault();
             $(this).parent('.row').remove();
@@ -195,27 +108,13 @@
         });
 
         function fetchProducts() {
+            var type = $('#select_type').val();
             $.ajax({
                 type: "get",
+                data: {'type': type},
                 url: '{{route('fetch_products')}}',
-                dataType: "json",
-                contentType: "application/json",
                 success: function (response) {
-                    /*var len = 0;
-                    if (response.data != null) {
-                        len = response.data.length;
-                    }
-
-                    if (len>0) {
-                        for (var i = 0; i<len; i++) {
-                            var id = response.data[i].id;
-                            var name = response.data[i].name;
-
-                            var option = "<option value='"+id+"'>"+name+"</option>";
-
-                            $("#subCategory").append(option);
-                        }
-                    }*/
+                    $(".new-question").append(response);
                 }
 
             });

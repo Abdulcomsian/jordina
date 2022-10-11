@@ -39,10 +39,12 @@ Route::get('test', [HomeController::class, 'test'])->name('test');
 Route::prefix('admin')->middleware('web')->group(function () {
     Route::resource('users', UsersController::class);
     Route::resource('diseases', DiseasesController::class);
+    Route::get('diseases/create/{parent_id}', [DiseasesController::class, 'create'])->name('diseases.create');
     Route::resource('orders', OrdersController::class);
     Route::resource('products', ProductsController::class);
     Route::get('/profile', [DiseasesController::class, 'editProfile'])->name('profile.edit');
     Route::post('/profile', [DiseasesController::class, 'updateProfile']);
+    Route::post('/transcript-store', [DiseasesController::class, 'transcriptStore'])->name('transcript.store');
 
 });
 /********************DASHBOARD ROUTES END******************************/

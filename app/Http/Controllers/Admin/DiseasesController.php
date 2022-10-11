@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Disease;
 use App\Models\Product;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Auth;
@@ -38,9 +39,8 @@ class DiseasesController extends Controller
 
     public function diseasesList($id = null)
     {
-        session()->put('parent_id', $id ?? null);
         $diseases = Disease::where('parent_id', $id ?? null)->get();
-        return view('admin.diseases.index', ['diseases' => $diseases]);
+        return view('admin.diseases.index', ['diseases' => $diseases,'parent_id' => $id]);
     }
 
     /**
@@ -48,9 +48,9 @@ class DiseasesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($parent_id = null)
     {
-        return view('admin.diseases.create');
+        return view('admin.diseases.create', ['parent_id' => $parent_id]);
     }
 
     /**
@@ -64,15 +64,18 @@ class DiseasesController extends Controller
         $this->validate($request, [
             'disease' => 'required|max:100',
         ]);
+//        dd($request);
+
         for ($i = 0; $i < count($request->disease); $i++) {
             $diseases = new Disease([
                 'title' => $request->disease[$i],
-                'amount' => $request->price[$i],
+                'product_id' => $request->products[$i],
                 'parent_id' => $request->parent_id,
-                'type' => $request->type[$i],
+                'type' => $request->select_type[$i],
             ]);
             $diseases->save();
         }
+
         Session::flash('success', 'Disease saved successfully!');
         return back();
     }
@@ -189,8 +192,26 @@ class DiseasesController extends Controller
     function fetchProducts(Request $request)
     {
         $products = Product::pluck('name','id');
-        return response()->json(["status" => true, "data" => $products]);
+        return view('admin.diseases.new_section',['products' => $products, 'type' => $request->type]);
+    }
+
+    public function transcriptStore(Request $request)
+    {
+        $this->validate($request, [
+            'quantity' => 'required|max:100',
+            'product_id' => 'required|max:100',
+        ]);
+        $total = 0;
+        for($i = 0; $i < count($request->product_id); $i++) {
+            $product = Product::findorfail($request->product_id[$i]);
+            dd($product);
+            dd($product->amount*$request->product_id[$i]);
+            $total += $product->amount*$request->product_id[$i];
+//            $diseases->save();
+        }
+        dd($total);
 
     }
+
 
 }
