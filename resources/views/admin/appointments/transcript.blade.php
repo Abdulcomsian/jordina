@@ -61,6 +61,7 @@
                     _token: CSRF_TOKEN,
                     disease_id: disease_id
                 }).done(function (response) {
+                    console.log(response)
                     addTableRow(response, disease_id)
                 }).fail(function (response) {
                     console.log(error)
@@ -74,10 +75,10 @@
             if (response.status) { // If success then redirect to login url
                 var html = '';
                 html += '<tr id="table_' + diseaseId + '">';
-                html += '<td>' + response.data.title + '</td>';
-                html += '<td>$<span class="amount" id="amount_' + diseaseId + '">' + response.data.amount + '</span></td>';
+                html += '<td>' + response.data.product.name + '</td>';
+                html += '<td>$<span class="amount" id="amount_' + diseaseId + '">' + response.data.product.amount + '</span></td>';
                 html += '<td><input type="number" class="quantity" min="1" id="quantity_' + diseaseId + '" value="1" name="quantity" placeholder="Enter Quantity"></td>';
-                html += '<td>$<span class="sub_total" id="sub_total_' + diseaseId + '">' + response.data.amount + '</span></td>';
+                html += '<td>$<span class="sub_total" id="sub_total_' + diseaseId + '">' + response.data.product.amount + '</span></td>';
                 html += '</tr>';
                 $("#transcript_table tbody").append(html);
             }

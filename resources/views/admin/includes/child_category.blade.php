@@ -9,8 +9,9 @@
                     aria-controls="flush-collapseTwo{{$child_category->id}}">
                 <div style="display:flex; justify-content:space-between; width:90%">
                     <div>
-                        @if(empty($disease->id))
-                            <input type="checkbox" name="disease_id" class="disease_id" id="disease_{{ $child_category->id }}" value="{{ $child_category->id }}">
+                        @if($child_category->product_id && $child_category->product->amount)
+                            <input type="checkbox" name="disease_id" class="disease_id"
+                                   id="disease_{{ $child_category->id }}" value="{{ $child_category->id }}">
                         @endif
                         {{--@if($child_category->parent_id)
                             <input type="checkbox" value="{{ $child_category->id }}">
@@ -18,24 +19,22 @@
                         <span style="margin-left: 20px">{{ $child_category->title }}</span>
                     </div>
 
-                    @if($child_category->amount)
-                        <p style="margin: 0px;"><span>Price</span> {{ $child_category->amount }}</p>
+                    @if($child_category->product_id && $child_category->product->amount)
+                        <p style="margin: 0px;"><span>Price</span> {{ $child_category->product->amount }}</p>
                     @endif
                 </div>
 
             </button>
         </h2>
-        @if(!$child_category->amount)
-            <div id="flush-collapseTwo{{$child_category->id}}" class="accordion-collapse collapse"
-                 aria-labelledby="flush-headingTwo" data-bs-parent="#accordionChildExample{{$child_category->id}}">
-                <div class="accordion-body">
-                    @foreach ($child_category->subCategories as $childCategory)
-                        @include('admin.includes.child_category', ['child_category' => $childCategory])
-                    @endforeach
-                </div>
+        <div id="flush-collapseTwo{{$child_category->id}}" class="accordion-collapse collapse"
+             aria-labelledby="flush-headingTwo" data-bs-parent="#accordionChildExample{{$child_category->id}}">
+            <div class="accordion-body">
+                @foreach($child_category->subCategories as $childCategory)
+{{--                    @php print_r($childCategory->id) @endphp--}}
+                    @include('admin.includes.child_category', ['child_category' => $childCategory])
+                @endforeach
             </div>
-        @endif
-
+        </div>
 
     </div>
 </div>
