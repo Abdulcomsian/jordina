@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Disease;
 use App\Models\User;
+use App\Models\Product;
 
 class Disease extends Model
 {
@@ -34,6 +35,11 @@ class Disease extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'user_payments');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
     }
 
 }

@@ -32,7 +32,7 @@
 
                                         <!--begin::Input group-->
                                         <div class="d-flex flex-center flex-equal fw-row text-nowrap order-1 order-xxl-2 me-4"
-                                                data-bs-toggle="tooltip" data-bs-trigger="hover">
+                                             data-bs-toggle="tooltip" data-bs-trigger="hover">
                                             <span class="fs-2x fw-bolder text-gray-800">Add Question</span>
                                         </div>
                                         <!--end::Input group-->
@@ -40,53 +40,37 @@
                                     <!--end::Top-->
                                     <!--begin::Separator-->
                                     <div class="separator separator-dashed my-10"></div>
+                                    <div class="row gx-10 mb-5">
+                                        <div class="col-lg-2 mb-5 flex">
+                                            <label
+                                                    class="form-label fs-6 fw-bolder text-gray-700 mb-3 ">Select
+                                                Type</label>
+                                            <select class="form-control" name="type[]" id="select_type">
+                                                <option
+                                                        value="question">
+                                                    Question
+                                                </option>
+                                                <option
+                                                        value="solution">
+                                                    Solution
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-3 mb-5">
+                                            <!--begin::Wrapper-->
+                                            <div class="align-items-start flex-xxl-row">
+                                                <label class="form-label">Add New Row</label>
+                                                <!--begin::Input group-->
+                                                <button type="button" class="form-control btn btn-info add_new">Add New
+                                                    Row
+                                                </button>
+                                                <!--end::Input group-->
+                                            </div>
+                                        </div>
+                                    </div>
                                     <!--end::Separator-->
                                     <!--begin::Wrapper-->
                                     <div class="mb-0">
-                                        <!--begin::Row-->
-                                        <div class="row gx-10 mb-5">
-                                            <!--begin::Col-->
-                                            <div class="col-lg-7">
-                                                <label
-                                                        class="form-label fs-6 fw-bolder text-gray-700 mb-3">Question</label>
-                                                <!--begin::Input group-->
-                                                <div class="mb-5">
-                                                    <textarea rows='5' name="disease[]"
-                                                              class="form-control form-control-solid @error('disease') is-invalid @enderror"
-                                                              placeholder="Disease"></textarea>
-                                                </div>
-                                                <!--end::Input group-->
-                                            </div>
-                                            <div class="col-lg-1">
-                                                <label
-                                                        class="form-label fs-6 fw-bolder text-gray-700 mb-3">Price</label>
-                                                <div class="mb-5">
-                                                    <input class="form-control" type="text" placeholder="Price" name="price[]">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-2 mb-5 flex">
-                                                <label
-                                                        class="form-label fs-6 fw-bolder text-gray-700 mb-3 ">Select
-                                                    Type</label>
-                                                <select class="form-control" name="type[]">
-                                                    <option
-                                                            value="question">
-                                                        Question
-                                                    </option>
-                                                    <option
-                                                            value="solution">
-                                                        Solution
-                                                    </option>
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-2 d-flex align-items-center">
-                                                <button type="button" class="btn btn-primary add-question"
-                                                        style="padding: 0; width: 200px; height: 36px px;">Add
-                                                    Question
-                                                </button>
-                                            </div>
-                                            <!--end::Col-->
-                                        </div>
 
                                         <!--end::Row-->
                                         <div class="new-question">
@@ -153,27 +137,88 @@
             $('.new-question').append(html);
         });
 
-        /*$(".add-question").click(function (e) {
+        // remove row
+        $(".add_new").click(function (e) {
             e.preventDefault();
+            var select_type = $('#select_type').val()
             var html = '';
-            html += '<div class="row gx-10 mb-5">';
-            html += '<div class="col-lg-12">';
-            html += '<label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Question</label>';
-            html += '<div class="mb-5 d-flex align-items-center">';
-            html += '<textarea rows = "5" name="disease" class="form-control form-control-solid" placeholder="Disease"></textarea>';
-            html += '<button type="button" class="btn btn-danger remove-question" style="padding: 0; width: 200px; height: 36px px;">Remove Question</button>';
-            html += '</div>';
-            html += '</div>';
-            html += '</div>';
+            if (select_type == 'solution') {
+                fetchProducts();
+                html += '<div class="row gx-10 mb-5">';
+                html += '<div class="col-lg-7">';
+                html += '<label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Question</label>';
+                html += '<div class="mb-5">';
+                html += '<textarea rows = "5" name="disease[]" class="form-control form-control-solid" placeholder="Disease"></textarea>';
+                html += '</div>';
+                html += '</div>';
+                html += '<div class="col-lg-2 mb-5 flex">';
+                html += '<label class="form-label fs-6 fw-bolder text-gray-700 mb-3 ">Select Type</label>';
+                html += '<select class="form-control" name="type[]">';
+                html += '<option value="question">Question</option>';
+                html += '<option value="solution">Solution</option>';
+                html += '</select>';
+                html += '</div>';
+                html += '<div class="col-lg-2 d-flex align-items-center">';
+                html += '<button type="button" class="btn btn-danger remove-question" style="padding: 0; width: 200px; height: 36px px;">Remove Question</button>';
+                html += '</div>';
+                html += '</div>';
+            } else {
+                fetchProducts();
+                html += '<div class="row gx-10 mb-5">';
+                html += '<div class="col-lg-7">';
+                html += '<label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Question</label>';
+                html += '<div class="mb-5">';
+                html += '<textarea rows = "5" name="disease[]" class="form-control form-control-solid" placeholder="Disease"></textarea>';
+                html += '</div>';
+                html += '</div>';
+                html += '<div class="col-lg-2 mb-5 flex">';
+                html += '<label class="form-label fs-6 fw-bolder text-gray-700 mb-3 ">Select Type</label>';
+                html += '<select class="form-control" name="type[]">';
+                html += '<option value="question">Question</option>';
+                html += '<option value="solution">Solution</option>';
+                html += '</select>';
+                html += '</div>';
+                html += '<div class="col-lg-2 d-flex align-items-center">';
+                html += '<button type="button" class="btn btn-danger remove-question" style="padding: 0; width: 200px; height: 36px px;">Remove Question</button>';
+                html += '</div>';
+                html += '</div>';
+            }
 
             $('.new-question').append(html);
-        });*/
 
-        // remove row
+        });
+
         $('body').on('click', '.remove-question', function (e) {
             e.preventDefault();
             $(this).parent('.row').remove();
             console.log($(this).parent().parent().remove())
         });
+
+        function fetchProducts() {
+            $.ajax({
+                type: "get",
+                url: '{{route('fetch_products')}}',
+                dataType: "json",
+                contentType: "application/json",
+                success: function (response) {
+                    /*var len = 0;
+                    if (response.data != null) {
+                        len = response.data.length;
+                    }
+
+                    if (len>0) {
+                        for (var i = 0; i<len; i++) {
+                            var id = response.data[i].id;
+                            var name = response.data[i].name;
+
+                            var option = "<option value='"+id+"'>"+name+"</option>";
+
+                            $("#subCategory").append(option);
+                        }
+                    }*/
+                }
+
+            });
+        }
     </script>
 @endsection

@@ -6,16 +6,15 @@
                 {{ $category->title }}
             </button>
         </h2>
-        @if(!$category->amount)
-            <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne"
-                 data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">
-                    @foreach ($category->childrenCategories as $childCategory)
-                        @include('admin.includes.child_category', ['child_category' => $childCategory])
-                    @endforeach
-                </div>
+        <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne"
+             data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+                @foreach ($category->childrenCategories as $childCategory)
+{{--                    @php print_r($childCategory->id) @endphp--}}
+                    @include('admin.includes.child_category', ['child_category' => $childCategory])
+                @endforeach
             </div>
-        @endif
+        </div>
     </div>
 </div>
 

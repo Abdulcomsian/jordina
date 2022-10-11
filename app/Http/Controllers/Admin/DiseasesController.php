@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Disease;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Auth;
@@ -177,9 +178,19 @@ class DiseasesController extends Controller
 
         } else {
             //validations are passed, save new user in database
-            $disease = Disease::findorfail($request->disease_id);
+            $disease = Disease::with('product')->findorfail($request->disease_id);
             return response()->json(["status" => true, "data" => $disease]);
 
         }
+
     }
+
+
+    function fetchProducts(Request $request)
+    {
+        $products = Product::pluck('name','id');
+        return response()->json(["status" => true, "data" => $products]);
+
+    }
+
 }
