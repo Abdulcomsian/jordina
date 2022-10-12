@@ -63,7 +63,7 @@ class AdminUserSeeder extends Seeder
             'last_name' => 'User',
             'email' => 'user@domain.com',
             'password' => bcrypt('12345678'),
-            'state' => 'Acne',
+            'state' => 'AL',
 //            'skin_condition' => 'Redness',
             'address' => 'Islamabad'
         ]);
