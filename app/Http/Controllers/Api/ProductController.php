@@ -79,7 +79,7 @@ class ProductController extends ApiController
             $user = User::findorfail($request->user_id);
             $doctor = DB::table('users')
                 ->join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
-                ->where([['model_has_roles.role_id', '=', 2], ['users.state', '=', $user->state]])
+                ->where([['model_has_roles.role_id', '=', 2], ['users.state', '=', $user->state], ['users.calendy', '!=', null]])
                 ->select('users.*')
                 ->get();
 
