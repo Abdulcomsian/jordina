@@ -16,11 +16,13 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('appointment_id')->nullable();
             $table->float('amount');
             $table->enum('payment_method',['stripe', 'cod','paypal'])->default('stripe');
             $table->enum('payment_status',['paid','unpaid'])->default('unpaid');
             $table->enum('status',['new','process','delivered','cancel'])->default('new');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('appointment_id')->references('id')->on('appointments')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -10,7 +10,7 @@
              data-bs-parent="#accordionFlushExample">
             <div class="accordion-body">
                 @foreach ($category->childrenCategories as $childCategory)
-                    @php print_r($childCategory->id) @endphp
+{{--                    @php print_r($childCategory->id) @endphp--}}
                     @include('admin.includes.child_category', ['child_category' => $childCategory])
                 @endforeach
             </div>

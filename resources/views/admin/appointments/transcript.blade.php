@@ -19,6 +19,7 @@
                 <!--begin::Card body-->
                 <form method="POST" action="{{route('transcript.store')}}">
                     @csrf
+                    <input type="hidden" name="appointment_id" value="{{$appointment_id}}" />
                     <div class="card-body">
                         <div class="card-body pt-0">
                             <table class="table align-middle table-row-dashed fs-6 gy-5" id="transcript_table">
@@ -87,7 +88,7 @@
                 html += '<td>$<span class="amount" id="amount_' + diseaseId + '">' + response.data.product.amount + '</span></td>';
                 html += '<td><input type="number" name="quantity[]" class="quantity" min="1" id="quantity_' + diseaseId + '" value="1" placeholder="Enter Quantity"></td>';
                 html += '<td>$<span class="sub_total" id="sub_total_' + diseaseId + '">' + response.data.product.amount + '</span></td>';
-                html += '<td style="display:none;"><input type="hidden" name="product_id[]" value="' + diseaseId + '" /></td>';
+                html += '<td style="display:none;"><input type="hidden" name="product_id[]" value="' + response.data.product.id + '" /></td>';
                 html += '</tr>';
                 $("#transcript_table tbody").append(html);
             }

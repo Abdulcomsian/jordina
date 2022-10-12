@@ -14,4 +14,9 @@ class Appointment extends Model
     {
         return $this->belongsTo(Disease::class, 'skin_condition');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

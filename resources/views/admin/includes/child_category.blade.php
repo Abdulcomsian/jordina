@@ -30,7 +30,7 @@
              aria-labelledby="flush-headingTwo" data-bs-parent="#accordionChildExample{{$child_category->id}}">
             <div class="accordion-body">
                 @foreach($child_category->subCategories as $childCategory)
-                    @php print_r($childCategory->id) @endphp
+{{--                    @php print_r($childCategory->id) @endphp--}}
                     @include('admin.includes.child_category', ['child_category' => $childCategory])
                 @endforeach
             </div>

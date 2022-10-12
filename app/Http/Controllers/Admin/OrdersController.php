@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use Illuminate\Support\Facades\Session;
+
 class OrdersController extends Controller
 {
     /**
@@ -47,8 +49,8 @@ class OrdersController extends Controller
      */
     public function show($id)
     {
-        $data['order']=Order::findorfail($id)->with('order_items.product.product_category','user')->first();
-//        dd($data);
+//        dd($id);
+        $data['order']=Order::with('order_items.product.product_category','user','appointment.user')->findorfail($id);
         return view('admin.orders.order_details', $data);
     }
 
@@ -83,6 +85,8 @@ class OrdersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $order = Order::findorfail($id)->delete();
+        Session::flash('error', 'Order deleted successfully!');
+        return to_route('orders.index');
     }
 }

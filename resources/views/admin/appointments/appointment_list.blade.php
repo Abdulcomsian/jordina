@@ -85,7 +85,7 @@
                                     <td>{{$appointment->weight}}</td>
                                     <td>{{date('d M Y h:i a', strtotime($appointment->created_at))}}</td>
                                     <td class="text-end">
-                                        <a href="{{route('appointments.show',$appointment->disease->id)}}"
+                                        <a href="{{route('appointments.show',['disease_id' => $appointment->disease->id,  'appointment_id' => $appointment->id])}}"
                                            class="btn btn-bg-primary btn-active-color-dark btn-sm me-1">
                                             Show Details
                                         </a>
