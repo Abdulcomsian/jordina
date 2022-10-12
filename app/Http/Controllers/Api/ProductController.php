@@ -83,7 +83,7 @@ class ProductController extends ApiController
                 ->select('users.*')
                 ->get();*/
 
-            $doctor = User::findorfail(2);
+            $doctor = User::where('id', 2)->get();
 
             $response = array(
                 'doctor' => $doctor
