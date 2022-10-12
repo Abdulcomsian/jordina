@@ -77,11 +77,13 @@ class ProductController extends ApiController
     {
         try {
             $user = User::findorfail($request->user_id);
-            $doctor = DB::table('users')
+            /*$doctor = DB::table('users')
                 ->join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
                 ->where([['model_has_roles.role_id', '=', 2], ['users.state', '=', $user->state]])
                 ->select('users.*')
-                ->get();
+                ->get();*/
+
+            $doctor = User::findorfail(2);
 
             $response = array(
                 'doctor' => $doctor
