@@ -20,7 +20,7 @@ class ProductController extends ApiController
     public function getAllProducts()
     {
         try {
-            $products = Product::with('product_categories:id,name as category_name', 'diseases:id,title as disease_title')->get();
+            $products = Product::with('product_category:id,name as category_name', 'diseases:id,title as disease_title')->get();
             $min_price = Product::min('amount');
             $max_price = Product::max('amount');
 
