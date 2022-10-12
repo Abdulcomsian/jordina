@@ -40,20 +40,23 @@ Route::prefix('admin')->middleware('web')->group(function () {
     Route::resource('users', UsersController::class);
     Route::resource('diseases', DiseasesController::class);
     Route::get('diseases/create/{parent_id}', [DiseasesController::class, 'create'])->name('diseases.create');
-    Route::resource('orders', OrdersController::class);
-    Route::resource('products', ProductsController::class);
-    Route::get('/profile', [DiseasesController::class, 'editProfile'])->name('profile.edit');
-    Route::post('/profile', [DiseasesController::class, 'updateProfile']);
-    Route::post('/transcript-store', [DiseasesController::class, 'transcriptStore'])->name('transcript.store');
+
 
 });
 /********************DASHBOARD ROUTES END******************************/
 
 /*****************Doctor ROUTES*******************/
-Route::prefix('doctor')->middleware('web')->group(function () {
-//    Route::get('/disease', [DiseasesController::class, 'index'])->name('show-disease');
-//    Route::get('/profile', [DiseasesController::class, 'editProfile'])->name('profile.edit');
-});
+//Route::prefix('doctor')->middleware('web')->group(function () {
+////    Route::get('/disease', [DiseasesController::class, 'index'])->name('show-disease');
+////    Route::get('/profile', [DiseasesController::class, 'editProfile'])->name('profile.edit');
+//});
+Route::resource('orders', OrdersController::class);
+Route::resource('products', ProductsController::class);
+Route::get('/profile', [DiseasesController::class, 'editProfile'])->name('profile.edit');
+Route::post('/profile', [DiseasesController::class, 'updateProfile']);
+Route::post('/transcript-store', [DiseasesController::class, 'transcriptStore'])->name('transcript.store');
+
+
 Route::resource('appointments', AppointmentsController::class);
 Route::get('appointment-list', [AppointmentsController::class, 'appointmentList'])->name('appointments.list');
 Route::get('appointment-show/{disease_id}/{appointment_id}', [AppointmentsController::class, 'appointmentShow'])->name('appointments.show');

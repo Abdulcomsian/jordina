@@ -49,7 +49,7 @@ class ProductsController extends Controller
                 'amount' => 'required|max:100',
                 'description' => 'required|max:500',
                 'category' => 'required|max:100',
-                'disease' => 'required|max:100',
+//                'disease' => 'required|max:100',
             ]);
 
             $product = new Product([
@@ -58,7 +58,7 @@ class ProductsController extends Controller
                 'amount' => $request->amount,
                 'description' => $request->description,
                 'product_category_id' => $request->category,
-                'disease_id' => $request->disease,
+//                'disease_id' => $request->disease,
             ]);
 
             $product->save();

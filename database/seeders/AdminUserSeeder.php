@@ -37,7 +37,7 @@ class AdminUserSeeder extends Seeder
         $user = User::create([
             'first_name' => 'Doctor',
             'last_name' => 'User',
-            'email' => 'doctor@gmail.com',
+            'email' => 'doctor@domain.com',
             'calendy' => 'https://calendly.com/abdul-71',
             'password' => bcrypt('12345678'),
             'state' => 'AL',
@@ -86,6 +86,28 @@ class AdminUserSeeder extends Seeder
             'state' => 'AL',
 //            'skin_condition' => 'Redness',
             'address' => 'Islamabad',
+        ]);
+
+        $permissions = Permission::pluck('id','id')->all();
+
+        $role->syncPermissions($permissions);
+
+        $user->assignRole([$role->id]);
+
+
+
+        //pharmacist
+        $user = User::create([
+            'first_name' => 'Pharmacist',
+            'last_name' => 'Pharmacist',
+            'email' => 'pharmacist@domain.com',
+            'password' => bcrypt('12345678'),
+//            'skin_condition' => 'Redness',
+            'address' => 'Islamabad',
+        ]);
+
+        $role = Role::create([
+            'name' => 'pharmacist',
         ]);
 
         $permissions = Permission::pluck('id','id')->all();
