@@ -127,7 +127,7 @@ class AuthController extends ApiController
             }
 
             $user_id = Auth::user()->id;
-            $chk_appointment = Appointment::where([['user_id', $user_id],['id',$request->apppointment_id]])->first();
+            $chk_appointment = Appointment::where([['user_id', $user_id],['id',$request->appointment_id]])->first();
             if ($chk_appointment) {
                 $appointment = Appointment::find($chk_appointment->id);
             } else {
