@@ -56,7 +56,7 @@ Route::prefix('doctor')->middleware('web')->group(function () {
 });
 Route::resource('appointments', AppointmentsController::class);
 Route::get('appointment-list', [AppointmentsController::class, 'appointmentList'])->name('appointments.list');
-Route::get('appointment-show/{id?}', [AppointmentsController::class, 'appointmentShow'])->name('appointments.show');
+Route::get('appointment-show/{disease_id}/{appointment_id}', [AppointmentsController::class, 'appointmentShow'])->name('appointments.show');
 Route::get('appointment-store', [AppointmentsController::class, 'appointmentStore'])->name('appointments.store');
 
 /********************DASHBOARD ROUTES END******************************/

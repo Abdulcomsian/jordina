@@ -91,7 +91,6 @@
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->phone}}</td>
                                     <td>{{date('d M Y h:i a', strtotime($user->created_at))}}</td>
-                                    <td>10 Mar 2021, 8:43 pm</td>
                                     <td class="text-end">
 
                                         <a href="{{route('users.edit',$user->id)}}"

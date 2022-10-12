@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Disease;
 use App\Models\Product;
 use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Auth;
@@ -40,7 +42,7 @@ class DiseasesController extends Controller
     public function diseasesList($id = null)
     {
         $diseases = Disease::where('parent_id', $id ?? null)->get();
-        return view('admin.diseases.index', ['diseases' => $diseases,'parent_id' => $id]);
+        return view('admin.diseases.index', ['diseases' => $diseases, 'parent_id' => $id]);
     }
 
     /**
@@ -183,7 +185,6 @@ class DiseasesController extends Controller
             //validations are passed, save new user in database
             $disease = Disease::with('product')->findorfail($request->disease_id);
             return response()->json(["status" => true, "data" => $disease]);
-
         }
 
     }
@@ -191,8 +192,8 @@ class DiseasesController extends Controller
 
     function fetchProducts(Request $request)
     {
-        $products = Product::pluck('name','id');
-        return view('admin.diseases.new_section',['products' => $products, 'type' => $request->type]);
+        $products = Product::pluck('name', 'id');
+        return view('admin.diseases.new_section', ['products' => $products, 'type' => $request->type]);
     }
 
     public function transcriptStore(Request $request)
@@ -202,15 +203,24 @@ class DiseasesController extends Controller
             'product_id' => 'required|max:100',
         ]);
         $total = 0;
-        for($i = 0; $i < count($request->product_id); $i++) {
+        for ($i = 0; $i < count($request->product_id); $i++) {
             $product = Product::findorfail($request->product_id[$i]);
-            dd($product);
-            dd($product->amount*$request->product_id[$i]);
-            $total += $product->amount*$request->product_id[$i];
-//            $diseases->save();
+            $total = $total + ($product->amount * $request->quantity[$i]);
         }
-        dd($total);
-
+        $appointment = Appointment::findorfail($request->appointment_id);
+        $order = new Order();
+        $order->amount = $total;
+        $order->user_id = $appointment->user_id;
+        $order->save();
+        for ($i = 0; $i < count($request->product_id); $i++) {
+            $order_item = new OrderItem();
+            $order_item->order_id = $order->id;
+            $order_item->product_id = $request->product_id[$i];
+            $order_item->quantity = $request->quantity[$i];
+            $order_item->save();
+        }
+        Session::flash('success', 'Order placed successfully!');
+        return to_route('orders.index');
     }
 
 

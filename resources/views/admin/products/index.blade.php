@@ -108,6 +108,7 @@
                                     <td>{{date('d M Y h:i a', strtotime($product->created_at))}}</td>
                                     <td class="text-end">
 
+{{--
                                         <a href="{{route('products.edit',$product->id)}}"
                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                             <!--begin::Svg Icon | path: icons/duotone/Communication/Write.svg-->
@@ -126,6 +127,7 @@
                                                             </span>
                                             <!--end::Svg Icon-->
                                         </a>
+--}}
                                         <a onclick="event.preventDefault(); document.getElementById('delete-form-{{$product->id}}').submit();"
                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
                                             <!--begin::Svg Icon | path: icons/duotone/General/Trash.svg-->
