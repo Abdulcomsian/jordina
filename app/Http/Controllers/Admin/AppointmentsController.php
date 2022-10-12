@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Appointment;
 use App\Models\Disease;
+use Illuminate\Support\Facades\Session;
 
 class AppointmentsController extends Controller
 {
@@ -82,7 +83,9 @@ class AppointmentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = Appointment::find($id)->delete();
+        Session::flash('success', 'Appointment deleted successfully');
+        return redirect()->back();
     }
 
     public function appointmentList()
