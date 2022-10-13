@@ -64,6 +64,7 @@
                             <!--begin::Table row-->
                             <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                 <th class="min-w-125px">Disease Name</th>
+                                <th class="min-w-125px">Patient Name</th>
                                 <th class="min-w-125px">Gender</th>
                                 <th class="min-w-125px">Height</th>
                                 <th class="min-w-125px">Weight</th>
@@ -80,6 +81,7 @@
                                 <tr>
                                     <!--begin::User=-->
                                     <td>{{$appointment->disease->title}}</td>
+                                    <td>{{$appointment->user->first_name.' '.$appointment->user->last_name}}</td>
                                     <td>{{$appointment->gender}}</td>
                                     <td>{{$appointment->height}}</td>
                                     <td>{{$appointment->weight}}</td>

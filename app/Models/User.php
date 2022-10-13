@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->hasOne('App\Gender');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public function diseases()
     {
 //        return $this->belongsToMany(Disease::class, 'user_payments')->withPivot('payment_status', 'payment_amount')->withTimestamps();
