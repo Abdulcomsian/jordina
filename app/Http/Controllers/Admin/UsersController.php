@@ -32,7 +32,19 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::get();
+        $users = User::role('user')->get();
+        return view('admin.users.index', ['users' => $users]);
+    }
+
+    public function doctors()
+    {
+        $users = User::role('doctor')->get();
+        return view('admin.users.index', ['users' => $users]);
+    }
+
+    public function pharmacists()
+    {
+        $users = User::role('pharmacist')->get();
         return view('admin.users.index', ['users' => $users]);
     }
 

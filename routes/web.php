@@ -38,6 +38,8 @@ Route::get('test', [HomeController::class, 'test'])->name('test');
 /*****************ADMIN ROUTES*******************/
 Route::prefix('admin')->middleware('web')->group(function () {
     Route::resource('users', UsersController::class);
+    Route::get('doctors', [UsersController::class, 'doctors'])->name('doctors.index');
+    Route::get('pharmacists', [UsersController::class, 'pharmacists'])->name('pharmacists.index');
     Route::resource('diseases', DiseasesController::class);
     Route::get('diseases/create/{parent_id}', [DiseasesController::class, 'create'])->name('diseases.create');
 
