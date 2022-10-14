@@ -48,7 +48,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('getMedication', [ProductController::class,'getMedication']);
     Route::post('deleteOrder', [ProductController::class,'deleteOrder']);
 
-});
+}); 
 
 Route::get('getAllProducts', [ProductController::class,'getAllProducts']);
 Route::get('getAllProductCategories', [ProductController::class,'getAllProductCategories']);

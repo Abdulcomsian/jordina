@@ -149,8 +149,8 @@ class AuthController extends ApiController
                 $image = $request->file('image');
                 $extensions = $image->extension();
 
-                $image_name = time() . '.' . $extensions;
-                $image->move('blog/', $image_name);
+                $image_name = rand() . '.' . $extensions;
+                $image->move('images/', $image_name);
                 $appointment->image = $image_name;
             }
             $appointment->save();
