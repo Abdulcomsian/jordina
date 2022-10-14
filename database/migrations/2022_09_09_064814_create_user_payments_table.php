@@ -17,9 +17,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('disease_id');
+            $table->unsignedBigInteger('disease_id')->nullable();
             $table->foreign('disease_id')->references('id')->on('diseases')->onDelete('cascade');
-            $table->string('payment_status')->nullable();
+            $table->enum('payment_status',['paid','unpaid'])->default('unpaid');
+//            $table->string('payment_status')->nullable();
             $table->string('payment_amount')->nullable();
             $table->timestamps();
         });

@@ -130,13 +130,14 @@ class ProductController extends ApiController
 
                 ], 401);
             }
-        } catch (\Throwable $th) {
+        }
+        /*catch (\Throwable $th) {
             return response()->json([
                 'status' => false,
                 'message' => $th->getMessage()
             ], 500);
 
-        }
+        }*/
     }
 
     public function placeOrder(Request $request)

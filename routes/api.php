@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\DiseaseController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\AppointmentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('getCartItems', [ProductController::class,'getCartItems']);
     Route::post('getMedication', [ProductController::class,'getMedication']);
     Route::post('deleteOrder', [ProductController::class,'deleteOrder']);
+
+    Route::post('user-payment', [AuthController::class,'payment']);
+    Route::post('user-appointment', [AppointmentsController::class,'appointment']);
 
 }); 
 

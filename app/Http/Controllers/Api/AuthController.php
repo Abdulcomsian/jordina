@@ -110,6 +110,12 @@ class AuthController extends ApiController
         }
     }
 
+
+    public function()
+    {
+
+    }
+
     public function registerStepThree(Request $request)
     {
         try {
@@ -259,4 +265,38 @@ class AuthController extends ApiController
 
         }
     }
+
+    public function payment(Request $request)
+    {
+        try {
+            $secret = Stripe\Stripe::setApiKey('sk_test_51LhsdnGCTNDeFrTZbu5vvte3Di3FhoS7MBwh4wBmDuzsbSeyCGvu3iJwzrThxsZddHSYvLqtca3d8HTLP4ye6u9p00ehlb2iDb');
+            $result = Stripe\PaymentIntent::create([
+                "amount" => 30 * 100,
+                "currency" => "usd",
+                "description" => "AppointmentPayment"
+            ]);
+
+            $user_payment = new UserPayment();
+//                $user_payment = UserPayment::find($request->order_id);
+                $user_payment->payment_amount = 30;
+                $user_payment->save();
+
+            $response = array(
+                'user_payment' => $user_payment,
+            );
+            return $this->successResponse($response, null, 200);
+//        } catch (\Throwable $th) {
+        } catch (Stripe\Exception\CardException $th) {
+            if ($th->getError()->code == 'authentication_required') {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'authentication_required',
+                    'secret_key' => 'sk_test_51LhsdnGCTNDeFrTZbu5vvte3Di3FhoS7MBwh4wBmDuzsbSeyCGvu3iJwzrThxsZddHSYvLqtca3d8HTLP4ye6u9p00ehlb2iDb',
+                    'result' => $result,
+
+                ], 401);
+            }
+        }
+    }
+
 }
