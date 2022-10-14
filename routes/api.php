@@ -33,10 +33,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    Route::get('getAllDiseases', [DiseaseController::class,'getAllDiseases']);
     Route::post('userPayment', [DiseaseController::class,'userPayment']);
 
-    Route::get('getAllProductCategories', [ProductController::class,'getAllProductCategories']);
 
     Route::post('getCalendy', [ProductController::class,'getCalendy']);
     Route::post('payment', [ProductController::class,'payment']);
@@ -53,6 +51,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 });
 
 Route::get('getAllProducts', [ProductController::class,'getAllProducts']);
+Route::get('getAllProductCategories', [ProductController::class,'getAllProductCategories']);
+Route::get('getAllDiseases', [DiseaseController::class,'getAllDiseases']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
