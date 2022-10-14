@@ -29,6 +29,7 @@ const SkinConditionScreen = (props) => {
                     className="form-control"
                     onChange={(e) => handleSkinCondition(e)}
                   >
+                  <option>Select your Skin Condition</option>
                     {diseasesArray.map((item, index) => (
                       <option value={item.title} key={index}>
                         {item.title}

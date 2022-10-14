@@ -1,7 +1,7 @@
 import * as Actions from "../actionTypes";
 import axios from "axios";
-// var base_url = "http://127.0.0.1:8000/api/";
-var base_url = "https://portfolio.accrualhub.com/jordina-api/public/api/";
+var base_url = "http://127.0.0.1:8000/api/";
+// var base_url = "https://portfolio.accrualhub.com/jordina-api/public/api/";
 
 export const getUserDetail = (token) => {
   return async (dispatch, getState) => {

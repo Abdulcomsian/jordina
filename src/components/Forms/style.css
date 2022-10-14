@@ -142,3 +142,9 @@ button{
     border: none;
     color: #fff;
 }
+.StripeElement{
+    box-shadow: none !important;
+    padding: 17px 20px !important;
+    border-radius: 0.267rem;
+    border-color: #af6fac;
+}

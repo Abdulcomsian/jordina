@@ -83,7 +83,12 @@ const Header = (props) => {
                 <Nav.Link href="#banner">Home</Nav.Link>
                 <Nav.Link href="#our_process">Our Process</Nav.Link>
                 <Nav.Link href="#skin_discover">Skin Disorders</Nav.Link>
-                <Nav.Link href="/Jordina/products">Our Products</Nav.Link>
+                {token ? (
+                  <Nav.Link href="/Jordina/products">Our Products</Nav.Link>
+                  ) : (
+                    <Nav.Link href="/Jordina/login">Our Products</Nav.Link>
+                  )}
+                
               </Nav>
               <div className="header__right--div">
                 <ul>

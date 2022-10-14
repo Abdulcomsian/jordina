@@ -1,7 +1,7 @@
 import * as Actions from "../actionTypes";
 import axios from "axios";
-// var base_url = "http://127.0.0.1:8000/api/";
-var base_url = "https://portfolio.accrualhub.com/jordina-api/public/api/";
+var base_url = "http://127.0.0.1:8000/api/";
+// var base_url = "https://portfolio.accrualhub.com/jordina-api/public/api/";
 
 export const getAllProduct = (token) => {
   console.log("Token Action:", token)
@@ -37,6 +37,7 @@ export const getAllProduct = (token) => {
   };
 };
 export const getAllProductSkinType = (token) => {
+  console.log("Token Category :", token)
   return async (dispatch, getState) => {
     try {
       const request = await axios(base_url + "getAllProductCategories", {

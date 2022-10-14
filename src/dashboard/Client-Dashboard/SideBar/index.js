@@ -41,17 +41,17 @@ const SideBar = ({ profileClick, appoinmentClick, medicationClick,orderClick }) 
                 <span>Dashboard</span>
               </a>
             </li>
-            <li>
+            {/* <li>
               <a onClick={appoinmentClick}>
                 <i className="fa-solid fa-calendar-check"></i>{" "}
                 <span>Appointments</span>
               </a>
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
               <a onClick={medicationClick}>
                 <i className="fa-solid fa-capsules"></i> <span>Medication</span>
               </a>
-            </li>
+            </li> */}
             <li>
               <a onClick={orderClick}>
                 <i className="fa-solid fa-capsules"></i> <span>Orders</span>
@@ -65,7 +65,7 @@ const SideBar = ({ profileClick, appoinmentClick, medicationClick,orderClick }) 
           </ul>
         </div>
       </div>
-      <div className="side__bar__footer">
+      {/* <div className="side__bar__footer">
         <ul>
           <li>
             <a>
@@ -74,7 +74,7 @@ const SideBar = ({ profileClick, appoinmentClick, medicationClick,orderClick }) 
             </a>
           </li>
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 };

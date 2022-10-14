@@ -7,9 +7,15 @@ import BounceLoader from "react-spinners/BounceLoader";
 import "../style.css";
 
 const Register = (props) => {
-  const { navigation, token, errorEmail, errorFirstName, errorLastName, authenticated } =
-    props;
-    console.log("Index:", token)
+  const {
+    navigation,
+    token,
+    errorEmail,
+    errorFirstName,
+    errorLastName,
+    authenticated,
+  } = props;
+  console.log("Index:", token);
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfrimPassword] = useState(false);
@@ -209,9 +215,19 @@ const Register = (props) => {
                             />
                             <span className="position-absolute eye__icon">
                               {showPassword ? (
-                                <i class="fa-solid fa-eye-slash" onClick={(e)=>setShowPassword(!showPassword)}></i>
+                                <i
+                                  class="fa-solid fa-eye-slash"
+                                  onClick={(e) =>
+                                    setShowPassword(!showPassword)
+                                  }
+                                ></i>
                               ) : (
-                                <i className="fa-solid fa-eye" onClick={(e)=>setShowPassword(!showPassword)}></i>
+                                <i
+                                  className="fa-solid fa-eye"
+                                  onClick={(e) =>
+                                    setShowPassword(!showPassword)
+                                  }
+                                ></i>
                               )}
                             </span>
                           </div>
@@ -225,7 +241,7 @@ const Register = (props) => {
                               <i className="fa-solid fa-lock"></i>
                             </span>
                             <input
-                            type={showConfirmPassword ? "text" : "password"}
+                              type={showConfirmPassword ? "text" : "password"}
                               className={
                                 errorMessage
                                   ? "form-control error"
@@ -238,9 +254,19 @@ const Register = (props) => {
                             />
                             <span className="position-absolute eye__icon">
                               {showConfirmPassword ? (
-                                <i class="fa-solid fa-eye-slash" onClick={(e)=>setShowConfrimPassword(!showConfirmPassword)}></i>
+                                <i
+                                  class="fa-solid fa-eye-slash"
+                                  onClick={(e) =>
+                                    setShowConfrimPassword(!showConfirmPassword)
+                                  }
+                                ></i>
                               ) : (
-                                <i className="fa-solid fa-eye" onClick={(e)=>setShowConfrimPassword(!showConfirmPassword)}></i>
+                                <i
+                                  className="fa-solid fa-eye"
+                                  onClick={(e) =>
+                                    setShowConfrimPassword(!showConfirmPassword)
+                                  }
+                                ></i>
                               )}
                             </span>
                           </div>
@@ -280,8 +306,58 @@ const Register = (props) => {
                               }
                               onChange={(e) => setUserState(e.target.value)}
                             >
-                              <option value="Pakistan">Pakistan</option>
-                              <option value="India">India</option>
+                              <option value="Your State">Your State</option>
+                              <option value="AL">Alabama</option>
+                              <option value="AK">Alaska</option>
+                              <option value="AZ">Arizona</option>
+                              <option value="AR">Arkansas</option>
+                              <option value="CA">California</option>
+                              <option value="CO">Colorado</option>
+                              <option value="CT">Connecticut</option>
+                              <option value="DE">Delaware</option>
+                              <option value="DC">District Of Columbia</option>
+                              <option value="FL">Florida</option>
+                              <option value="GA">Georgia</option>
+                              <option value="HI">Hawaii</option>
+                              <option value="ID">Idaho</option>
+                              <option value="IL">Illinois</option>
+                              <option value="IN">Indiana</option>
+                              <option value="IA">Iowa</option>
+                              <option value="KS">Kansas</option>
+                              <option value="KY">Kentucky</option>
+                              <option value="LA">Louisiana</option>
+                              <option value="ME">Maine</option>
+                              <option value="MD">Maryland</option>
+                              <option value="MA">Massachusetts</option>
+                              <option value="MI">Michigan</option>
+                              <option value="MN">Minnesota</option>
+                              <option value="MS">Mississippi</option>
+                              <option value="MO">Missouri</option>
+                              <option value="MT">Montana</option>
+                              <option value="NE">Nebraska</option>
+                              <option value="NV">Nevada</option>
+                              <option value="NH">New Hampshire</option>
+                              <option value="NJ">New Jersey</option>
+                              <option value="NM">New Mexico</option>
+                              <option value="NY">New York</option>
+                              <option value="NC">North Carolina</option>
+                              <option value="ND">North Dakota</option>
+                              <option value="OH">Ohio</option>
+                              <option value="OK">Oklahoma</option>
+                              <option value="OR">Oregon</option>
+                              <option value="PA">Pennsylvania</option>
+                              <option value="RI">Rhode Island</option>
+                              <option value="SC">South Carolina</option>
+                              <option value="SD">South Dakota</option>
+                              <option value="TN">Tennessee</option>
+                              <option value="TX">Texas</option>
+                              <option value="UT">Utah</option>
+                              <option value="VT">Vermont</option>
+                              <option value="VA">Virginia</option>
+                              <option value="WA">Washington</option>
+                              <option value="WV">West Virginia</option>
+                              <option value="WI">Wisconsin</option>
+                              <option value="WY">Wyoming</option>
                             </select>
                           </div>
                           {/* {errorMessage && (
@@ -323,7 +399,7 @@ const mapStateToProps = (state) => ({
   errorEmail: state.auth.errorEmail,
   errorFirstName: state.auth.errorFirstName,
   errorLastName: state.auth.errorLastName,
-  authenticated: state.auth.authenticated
+  authenticated: state.auth.authenticated,
 });
 
 const mapDispatchToProps = (dispatch) => ({

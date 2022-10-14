@@ -45,6 +45,9 @@ const valueImg = require("../../assets/images/value-image.png");
 const peopleViewed = require("../../assets/images/people-viewes.png");
 const profileImg = require("../../assets/images/profile-image.webp");
 const receiptImg = require("../../assets/images/receipt.png");
+const skinCare = require("../../assets/images/Main-home-img-2.jpeg");
+const skinCare1 = require("../../assets/images/skincare.png");
+const skinCare2 = require("../../assets/images/skincare2.png");
 
 export default {
   mobile_bg,
@@ -93,5 +96,8 @@ export default {
   valueImg,
   peopleViewed,
   profileImg,
-  receiptImg
+  receiptImg,
+  skinCare,
+  skinCare1,
+  skinCare2
 };

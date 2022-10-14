@@ -19,10 +19,10 @@ import { ToastContainer, toast } from "react-toastify";
 const ClientDashboard = (props) => {
   const { token, loginUser, orderPaidData, unPaidOrder, refreshData } = props;
   console.log("Token Dahbaord :", unPaidOrder);
-  const [appointment, setAppoinment] = useState(true);
+  const [appointment, setAppoinment] = useState(false);
   const [profile, setProfile] = useState(false);
   const [medication, setMedication] = useState(false);
-  const [order, setOrder] = useState(false);
+  const [order, setOrder] = useState(true);
   const [loading, setLoading] = useState(false);
 
   const profileClick = () => {

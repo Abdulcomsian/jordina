@@ -18,10 +18,7 @@ const Checkout = (props) => {
   const stripePromise = loadStripe(
     "pk_test_51LhsdnGCTNDeFrTZI9H9kLQWpzYfNXNFww1rUvYc4Yzh9cZaO44KQqterVrEuI0ne1w9dnGDTqsEO11yi7GCHvhn00rGEnAYLF"
   );
-  const [isPaymentLoading, setPaymentLoading] = useState(false);
-  const [name, setName] = useState(null);
-  const [phoneNumber, setPhoneNumber] = useState(null);
-  const [address, setAddress] = useState(null);
+
   const [showLoader, setShowLoader] = useState(false);
 
   return (

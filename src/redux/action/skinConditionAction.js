@@ -1,7 +1,7 @@
 import * as Actions from "../actionTypes";
 import axios from "axios";
-// var base_url = "http://127.0.0.1:8000/api/";
-var base_url = "https://portfolio.accrualhub.com/jordina-api/public/api/";
+var base_url = "http://127.0.0.1:8000/api/";
+// var base_url = "https://portfolio.accrualhub.com/jordina-api/public/api/";
 
 export const skinConditionTest = (
   skin_condition,
@@ -13,7 +13,6 @@ export const skinConditionTest = (
   question_6,
   token
 ) => {
-  console.log("Token", token);
   return async (dispatch, getState) => {
     try {
       const body = {
@@ -25,7 +24,6 @@ export const skinConditionTest = (
         question_5,
         question_6,
       };
-      console.log("Response Body :", body);
       const request = await axios(base_url + "registerStepTwo", {
         method: "POST",
         data: body,
@@ -34,7 +32,6 @@ export const skinConditionTest = (
         },
       });
       const response = request;
-      console.log("Response Question:", response);
       if (response.status === 200) {
         dispatch({
           type: Actions.SKIN_TEST_SUCCESS,
@@ -48,7 +45,7 @@ export const skinConditionTest = (
         payload: err.response.data,
       });
       //   console.log("Error Question:", err.response.data)
-      throw new Error(err.response.message);
+      throw new Error(err);
     }
   };
 };
@@ -69,9 +66,23 @@ export const maleAllergieExistHandler = (
   appointment_id,
   token
 ) => {
-  console.log("Token", token, is_allergy, image);
+  console.log("Token", token, is_allergy, image,appointment_id);
   return async (dispatch, getState) => {
     try {
+      const formData = new FormData();
+      formData.append("gender", gender);
+      formData.append("height", height);
+      formData.append("weight", weight);
+      formData.append("is_allergy", is_allergy);
+      formData.append("past_medication", past_medication);
+      formData.append("current_medication", current_medication);
+      formData.append("image", image);
+      formData.append("about_condition", about_condition);
+      formData.append("female_condition", female_condition);
+      formData.append("plan_breastfeeding", plan_breastfeeding);
+      formData.append("plan_conceive", plan_conceive);
+      formData.append("pregnency_time", pregnency_time);
+      formData.append("appointment_id", appointment_id);
       const body = {
         gender,
         height,
@@ -87,12 +98,15 @@ export const maleAllergieExistHandler = (
         pregnency_time,
         appointment_id,
       };
-      console.log("Action :", body);
+      console.log("Action :", formData);
       const request = await axios(base_url + "registerStepthree", {
         method: "POST",
-        data: body,
+        data: formData,
+        dataType: "jsonp",
         headers: {
           authorization: "Bearer " + token,
+          "Content-Type": "multipart/form-data",
+          'Accept': 'application/json'
         },
       });
       const response = request;

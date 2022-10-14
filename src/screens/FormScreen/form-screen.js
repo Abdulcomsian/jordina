@@ -6,7 +6,7 @@ import PersonalInfo from "../../components/Forms/personal-information";
 import SkinCondition from "../Skin/Skin-Condition/index";
 import SkinTestForm from "../../components/Forms/skin-test-form";
 import FormHeader from "../../components/Header/Form-Header/from-header";
-import PaymentForm from "../../components/Forms/payment-form";
+import PaymentForm from "../../components/StripePayment/indexDieasesPayment.js"
 import GenderForm from "../../components/Forms/gender-form";
 import { connect } from "react-redux";
 import {
@@ -25,6 +25,7 @@ import url from "../../constant/url/api_url";
 
 const FormScreen = (props) => {
   const { token, message, user_id, appointmentId } = props;
+  console.log("Appoinment ID : ",appointmentId)
   const [skinLook, setSkinLook] = useState("");
   const [skinPores, setSkinPores] = useState("");
   const [skinFeel, setSkinFeel] = useState("");
@@ -171,6 +172,7 @@ const FormScreen = (props) => {
           skinExposed,
           token
         );
+        console.log("Reponse Step Two : ",response)
         if (response.status === 200) {
           setTimeout(() => {
             setModalShow(false);
@@ -219,7 +221,11 @@ const FormScreen = (props) => {
         });
       }
     } catch (err) {
-      alert(err.message);
+      setTimeout(() => {
+        setModalShow(false);
+      }, 1000);
+      alert(err);
+      
     }
   };
   const givePayment = () => {
@@ -386,6 +392,96 @@ const FormScreen = (props) => {
     // }, 1000);
     // setShowCalender(true);
   };
+  const handlePayment = async (e,stripe,elements) =>{
+    setModalShow(true);
+    e.preventDefault();
+    console.log("hello",stripe,elements)
+    // if (!stripe || !elements) {
+    //   return;
+    // }
+    // const card = elements.getElement(CardElement);
+    // const result = await stripe.createToken(card);
+    // if (result.error) {
+    //   var error = result.error.message;
+    //   toast.error(error.toString(), {
+    //     position: "top-right",
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     theme: "colored",
+    //   });
+    //   console.log(result.error.message);
+    // } else {
+    //   console.log(result.token);
+    //   try {
+    //     const response = await props.paymentHandler(
+    //       payment,
+    //       result.token.id,
+    //       token,
+    //       addedItems,
+    //       orderItemId
+    //     );
+    //     console.log(
+    //       "Response  :",
+    //       response,
+    //       response.data.data.result.client_secret
+    //     );
+    //     if (response.status === 200) {
+    //       const confrimPayment = await stripe.confirmCardPayment(
+    //         response.data.data.result.client_secret,
+    //         {
+    //           payment_method: { card: card },
+    //         }
+    //       );
+    //       console.log("ConfrimPayment :", confrimPayment);
+    //       const { paymentIntent } = confrimPayment;
+    //       if (paymentIntent.status === "succeeded") {
+    //         setShowLoader(false);
+    //         setShowSuccessLoader(true);
+    //       } else {
+    //         setShowLoader(false);
+    //         toast.error("Payment Failed !", {
+    //           position: "top-right",
+    //           autoClose: 5000,
+    //           hideProgressBar: false,
+    //           closeOnClick: true,
+    //           pauseOnHover: true,
+    //           draggable: true,
+    //           progress: undefined,
+    //           theme: "colored",
+    //         });
+    //       }
+    //     } else {
+    //       setShowLoader(false);
+    //       toast.error("Payment Failed !", {
+    //         position: "top-right",
+    //         autoClose: 5000,
+    //         hideProgressBar: false,
+    //         closeOnClick: true,
+    //         pauseOnHover: true,
+    //         draggable: true,
+    //         progress: undefined,
+    //         theme: "colored",
+    //       });
+    //     }
+    //   } catch (error) {
+    //     setShowLoader(false);
+    //     toast.error("Payment Failed !", {
+    //       position: "top-right",
+    //       autoClose: 5000,
+    //       hideProgressBar: false,
+    //       closeOnClick: true,
+    //       pauseOnHover: true,
+    //       draggable: true,
+    //       progress: undefined,
+    //       theme: "colored",
+    //     });
+    //   }
+    // }
+  }
   useEffect(() => {
     // declare the data fetching function
     const fetchData = async () => {
@@ -440,7 +536,7 @@ const FormScreen = (props) => {
                   {showImgColumn && (
                     <Col md={6}>
                       <div className="form-left-side">
-                        <img src={Images.mobile_bg} className="img-fluid" />
+                        {/* <img src={Images.mobile_bg} className="img-fluid" />
                         <div className="multiple_left-side-images">
                           <img src={Images.women} className="img-fluid img1" />
                           <img
@@ -456,7 +552,8 @@ const FormScreen = (props) => {
                             src={Images.notification}
                             className="img-fluid img5"
                           />
-                        </div>
+                        </div> */}
+                        <img src={Images.skinCare2} className="img-fluid" />
                       </div>
                     </Col>
                   )}
@@ -491,7 +588,7 @@ const FormScreen = (props) => {
                   skinExposed={skinExposedHandler}
                 />
               )}
-              {showGetPayment && <PaymentForm onGivePayment={givePayment} />}
+              {showGetPayment && <PaymentForm onGivePayment={givePayment} handlePayment={handlePayment} />}
               {showGenderForm && (
                 <GenderForm onSubmitInfo={onSubmitGenderInfo} />
               )}

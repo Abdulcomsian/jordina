@@ -167,7 +167,7 @@ const GenderForm = ({ onSubmitInfo }) => {
         <Col lg={6}>
           <div className="form_box">
             <h3 className="title">What sex were you assigned at birth?</h3>
-            <form>
+            <form enctype="multipart/form-data">
               <div className="form-group">
                 <select
                   className="form-control"
