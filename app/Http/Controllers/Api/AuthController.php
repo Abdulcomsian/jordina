@@ -110,12 +110,7 @@ class AuthController extends ApiController
         }
     }
 
-
-    public function()
-    {
-
-    }
-
+    
     public function registerStepThree(Request $request)
     {
         try {
