@@ -276,6 +276,7 @@ class AuthController extends ApiController
             $user_payment = new UserPayment();
 //                $user_payment = UserPayment::find($request->order_id);
                 $user_payment->payment_amount = 30;
+                $user_payment->user_id = Auth::user()->id;
                 $user_payment->save();
 
             $response = array(
