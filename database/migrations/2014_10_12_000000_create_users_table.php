@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('phone_number')->nullable();
             $table->text('address')->nullable();
             $table->string('status')->default('active');
+            $table->string('stripe_cust_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

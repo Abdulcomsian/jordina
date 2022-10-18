@@ -269,6 +269,18 @@ class AuthController extends ApiController
                 "description" => "AppointmentPayment"
             ]);
 
+            $stripe = new \Stripe\StripeClient(
+                'sk_test_51LhsdnGCTNDeFrTZbu5vvte3Di3FhoS7MBwh4wBmDuzsbSeyCGvu3iJwzrThxsZddHSYvLqtca3d8HTLP4ye6u9p00ehlb2iDb'
+            );
+
+            $customer = $stripe->customers->create([
+                'description' => 'My First Test Customer (created for API docs at https://www.stripe.com/docs/api)',
+            ]);
+
+            $user = User::findorfail($id);
+            $user->customer_id = $customer->id;
+            $user->save();
+
             $user_payment = new UserPayment();
 //                $user_payment = UserPayment::find($request->order_id);
                 $user_payment->payment_amount = 30;
