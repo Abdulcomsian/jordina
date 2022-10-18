@@ -65,10 +65,6 @@
                             <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                 <th class="min-w-125px">Disease Name</th>
                                 <th class="min-w-125px">Patient Name</th>
-                                <th class="min-w-125px">Gender</th>
-                                <th class="min-w-125px">Height</th>
-                                <th class="min-w-125px">Weight</th>
-                                <th class="min-w-125px">Created Date</th>
                                 <th class="text-end min-w-100px">Actions</th>
                             </tr>
                             <!--end::Table row-->
@@ -82,10 +78,6 @@
                                     <!--begin::User=-->
                                     <td>{{$appointment->disease->title}}</td>
                                     <td>{{$appointment->user->first_name.' '.$appointment->user->last_name}}</td>
-                                    <td>{{$appointment->gender}}</td>
-                                    <td>{{$appointment->height}}</td>
-                                    <td>{{$appointment->weight}}</td>
-                                    <td>{{date('d M Y h:i a', strtotime($appointment->created_at))}}</td>
                                     <td class="text-end">
                                         <a href="{{route('appointments.show',['disease_id' => $appointment->disease->id,  'appointment_id' => $appointment->id])}}"
                                            class="btn btn-bg-primary btn-active-color-dark btn-sm me-1">

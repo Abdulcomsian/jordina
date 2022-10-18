@@ -280,6 +280,7 @@ class AuthController extends ApiController
 
             $response = array(
                 'user_payment' => $user_payment,
+                'secret_key' => 'sk_test_51LhsdnGCTNDeFrTZbu5vvte3Di3FhoS7MBwh4wBmDuzsbSeyCGvu3iJwzrThxsZddHSYvLqtca3d8HTLP4ye6u9p00ehlb2iDb'
             );
             return $this->successResponse($response, null, 200);
 //        } catch (\Throwable $th) {
