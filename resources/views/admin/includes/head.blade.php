@@ -3,7 +3,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <title>
-    {{ config('app.name') }}
+    Jordina
     @isset($page_title)
         | {{ $page_title }}
     @endisset

@@ -67,6 +67,21 @@
                                                     <!--end::Input group-->
                                                 </div>
                                                 <!--end::Col-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-6">
+                                                    <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">Role</label>
+                                                    <!--begin::Input group-->
+                                                    <div class="mb-5">
+                                                        <select class="form-control form-control-solid" name="role">
+                                                            <option value="1" {{($user->hasRole('admin')) ? 'selected' : ''}}>Admin</option>
+                                                            <option value="2" {{($user->hasRole('doctor')) ? 'selected' : ''}}>Doctor</option>
+                                                            <option value="3" {{($user->hasRole('user')) ? 'selected' : ''}}>Patient</option>
+                                                            <option value="4" {{($user->hasRole('pharmacist')) ? 'selected' : ''}}>Pharmacist</option>
+                                                        </select>
+                                                    </div>
+                                                    <!--end::Input group-->
+                                                </div>
+                                                <!--end::Col-->
                                             </div>
                                             <!--end::Row-->
                                         </div>
@@ -116,6 +131,7 @@
                                                     <!--end::Input group-->
                                                 </div>
                                                 <!--end::Col-->
+
                                                 <button type="button" class="btn btn-primary updateBtn" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user">
                                                     Update User Details
                                                 </button>

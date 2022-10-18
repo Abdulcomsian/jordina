@@ -20,7 +20,8 @@
                             <!--begin::Toolbar-->
                             <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
                                 <!--begin::Add user-->
-                                <a href={{route('diseases.create', $parent_id ?? '')}} type="button" class="btn btn-primary">
+                                <a href={{route('diseases.create', $parent_id ?? '')}} type="button"
+                                   class="btn btn-primary">
                                     <!--begin::Svg Icon | path: icons/duotone/Navigation/Plus.svg-->
                                     <span class="svg-icon svg-icon-2">
 													<svg xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +43,7 @@
                     </div>
                     <!--end::Card header-->
                     <!--begin::Card body-->
-{{--                    @dd(session()->pull('parent_id'))--}}
+                    {{--                    @dd(session()->pull('parent_id'))--}}
                     <div class="card-body pt-0">
                         <!--begin::Table-->
                         <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
@@ -70,7 +71,6 @@
                                     <td>${{$disease->amount ?? '0'}}</td>
                                     <td>{{date('d M Y h:i a', strtotime($disease->created_at))}}</td>
                                     <td class="text-end">
-
                                         <a href="{{route('diseases.edit',$disease->id)}}"
                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                             <!--begin::Svg Icon | path: icons/duotone/Communication/Write.svg-->
@@ -124,6 +124,11 @@
                         <!--end::Table-->
                     </div>
                     <!--end::Card body-->
+
+                    <div class="card-footer">
+                        <a class="btn btn-info" href="{{route('diseases.list',$parent_id)}}">Back</a>
+                    </div>
+
                 </div>
                 <!--end::Card-->
             </div>

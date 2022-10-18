@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Carbon\Carbon;
 
 
 class UsersController extends Controller
@@ -79,11 +80,12 @@ class UsersController extends Controller
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
                 'email' => $request->email,
+                'email_verified_at' => Carbon::now()->timestamp,
                 'password' => bcrypt($request->password),
                 'status' => $request->status ?? 'active',
             ]);
-
             $user->save();
+            $user->assignRole([$request->role]);
             Session::flash('success', 'User created successfully!');
             return to_route('users.index');
         } catch (ModelNotFoundException $exception) {
@@ -137,8 +139,12 @@ class UsersController extends Controller
             $user->first_name = $request->first_name;
             $user->last_name = $request->last_name;
             $user->email = $request->email;
-            $user->password = $request->first_name;
+            if ($request->password) {
+                $user->password = $request->password;
+            }
             $user->save();
+
+            $user->assignRole([$request->role]);
 
             return route('users.index')->with('success', 'User updated successfully!');
         } catch (\Throwable $th) {
