@@ -279,8 +279,7 @@ class AuthController extends ApiController
                 $user_payment->save();
 
             $response = array(
-                'user_payment' => $user_payment,
-                'secret_key' => 'sk_test_51LhsdnGCTNDeFrTZbu5vvte3Di3FhoS7MBwh4wBmDuzsbSeyCGvu3iJwzrThxsZddHSYvLqtca3d8HTLP4ye6u9p00ehlb2iDb'
+                'result' => $result,
             );
             return $this->successResponse($response, null, 200);
 //        } catch (\Throwable $th) {
@@ -289,7 +288,6 @@ class AuthController extends ApiController
                 return response()->json([
                     'status' => false,
                     'message' => 'authentication_required',
-                    'secret_key' => 'sk_test_51LhsdnGCTNDeFrTZbu5vvte3Di3FhoS7MBwh4wBmDuzsbSeyCGvu3iJwzrThxsZddHSYvLqtca3d8HTLP4ye6u9p00ehlb2iDb',
                     'result' => $result,
 
                 ], 401);
