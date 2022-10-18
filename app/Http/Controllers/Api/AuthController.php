@@ -119,10 +119,7 @@ class AuthController extends ApiController
             //Validated
             $validateUser = Validator::make($request->all(),
                 [
-//                'gender' => 'required',
-//                'height' => 'required',
-//                'weight' => 'required',
-//                'skin_allergy' => 'required'
+
                 ]);
 
             if ($validateUser->fails()) {

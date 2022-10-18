@@ -14,7 +14,7 @@ class AppointmentsController extends ApiController
     {
         try {
             $user = Auth::user();
-            $appointments = Appointment::with('disease')->where('user_id',$user->id)->get();
+            $appointments = Appointment::with('disease','doctor')->where('user_id',$user->id)->get();
             $response = array(
                 'appointments' => $appointments
             );

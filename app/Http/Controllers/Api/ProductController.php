@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Appointment;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Auth;
@@ -81,20 +82,20 @@ class ProductController extends ApiController
                 ->join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
                 ->where([['model_has_roles.role_id', '=', 2], ['users.state', '=', $user->state], ['users.calendy', '!=', null]])
                 ->select('users.*')
-                ->get();
+                ->first();
 
 //            $doctor = User::where('id', 2)->get();
+            $appointment = Appointment::findorfail($request->appointment_id);
+            $appointment->doctor_id = $doctor->id;
+            $appointment->save();
 
             $response = array(
-                'doctor' => $doctor
+                'doctor' => $doctor,
+                'appointment' => $appointment
             );
             return $this->successResponse($response, null, 200);
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'message' => $th->getMessage()
-            ], 500);
-
+            return $this->errorResponse($th->getMessage(), 401);
         }
     }
 
