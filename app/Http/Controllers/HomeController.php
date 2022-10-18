@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\Disease;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -26,7 +27,10 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-     return view('admin.dashboard.index');
+        $data['total_users'] = User::role('user')->count();
+        $data['total_doctors'] = User::role('doctor')->count();
+        $data['pharmacist'] = User::role('pharmacist')->count();
+        return view('admin.dashboard.index', $data);
     }
 
     public function index()

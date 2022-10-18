@@ -235,7 +235,6 @@ class AuthController extends ApiController
 
     public function logout(Request $request)
     {
-        // dd($request);
         try {
             if (!Auth::id()) {
                 return $this->errorResponse('You are already logout.', 401);

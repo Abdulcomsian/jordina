@@ -126,7 +126,7 @@
                     <!--end::Card body-->
 
                     <div class="card-footer">
-                        <a class="btn btn-info" href="{{route('diseases.list',$parent_id)}}">Back</a>
+                        <a class="btn btn-info" href="{{route('diseases.list',$return_back)}}">Back</a>
                     </div>
 
                 </div>

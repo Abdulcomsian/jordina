@@ -30,8 +30,12 @@ class Disease extends Model
     }
 
     public function parentCategory(){
-        return $this->belongsTo(Disease::class, 'parent_id')->with('subCategories');
+        return $this->belongsTo(Disease::class, 'parent_id');
     }
+
+//    public function parentCategory(){
+//        return $this->belongsTo(Disease::class, 'parent_id')->with('subCategories');
+//    }
 
     public function users()
     {

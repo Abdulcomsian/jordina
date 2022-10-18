@@ -41,8 +41,9 @@ class DiseasesController extends Controller
 
     public function diseasesList($id = null)
     {
+        $return_back = Disease::with('parentCategory')->find($id);
         $diseases = Disease::where('parent_id', $id ?? null)->get();
-        return view('admin.diseases.index', ['diseases' => $diseases, 'parent_id' => $id]);
+        return view('admin.diseases.index', ['diseases' => $diseases, 'parent_id' => $id, 'return_back' => $return_back->parentCategory->id ?? '']);
     }
 
     /**

@@ -47,7 +47,7 @@
                     class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500"
                     id="#kt_aside_menu" data-kt-menu="true">
                 <div class="menu-item">
-                    <a class="menu-link" href="/">
+                    <a class="menu-link @if(Route::is('admin.dashboard')) active @endif" href="{{route('admin.dashboard')}}">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotone/Design/PenAndRuller.svg-->
                                             <i class="bi bi-house fs-1"></i>
@@ -78,13 +78,13 @@
                             <span class="menu-icon">
                                 <i class="bi bi-people fs-1"></i>
                             </span>
-                            <span class="menu-title">User Management</span>
+                            <span class="menu-title @if(Route::is('users.index')) active @endif">User Management</span>
                             <span class="menu-arrow"></span>
                         </span>
                         <div class="menu-sub menu-sub-accordion" kt-hidden-height="136"
                              style="display: none; overflow: hidden;">
                             <div class="menu-item my-0">
-                                <a class="menu-link" href="{{route('users.index')}}">
+                                <a class="menu-link @if(Route::is('users.index')) active @endif" href="{{route('users.index')}}">
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
@@ -92,7 +92,7 @@
                                 </a>
                             </div>
                             <div class="menu-item my-0">
-                                <a class="menu-link" href="{{route('doctors.index')}}">
+                                <a class="menu-link @if(Route::is('doctors.index')) active @endif" href="{{route('doctors.index')}}">
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
@@ -101,7 +101,7 @@
                             </div>
 
                             <div class="menu-item my-0">
-                                <a class="menu-link" href="{{route('pharmacists.index')}}">
+                                <a class="menu-link @if(Route::is('pharmacists.index')) active @endif" href="{{route('pharmacists.index')}}">
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
@@ -120,7 +120,7 @@
                         </a>
                     </div>--}}
                     <div class="menu-item">
-                        <a class="menu-link" href="{{route('diseases.list')}}">
+                        <a class="menu-link @if(Route::is('diseases.list')) active @endif" href="{{route('diseases.list')}}">
 									<span class="menu-icon">
 										<!--begin::Svg Icon | path: icons/duotone/Design/Sketch.svg-->
 										<i class="bi bi-archive fs-1"></i>
@@ -132,7 +132,7 @@
                 @endif
                 @if(Auth::user()->hasRole('admin') || Auth::user()->hasRole('doctor'))
                     <div class="menu-item">
-                        <a class="menu-link" href="{{route('appointments.list')}}">
+                        <a class="menu-link @if(Route::is('appointments.list')) active @endif" href="{{route('appointments.list')}}">
 									<span class="menu-icon">
 										<!--begin::Svg Icon | path: icons/duotone/Design/Sketch.svg-->
 										<i class="bi bi-hr fs-1"></i>
@@ -179,7 +179,7 @@
                 {{--                @endif--}}
                 @if(Auth::user()->hasRole('admin'))
                     <div class="menu-item">
-                        <a class="menu-link" href="{{route('products.index')}}">
+                        <a class="menu-link @if(Route::is('products.index')) active @endif" href="{{route('products.index')}}">
                             <span class="menu-icon">
                                 <!--begin::Svg Icon | path: icons/duotone/Design/Sketch.svg-->
                                 <span class="svg-icon svg-icon-2">
@@ -193,7 +193,7 @@
                 @endif
                 @if(Auth::user()->hasRole('admin') || Auth::user()->hasRole('pharmacist'))
                     <div class="menu-item">
-                        <a class="menu-link" href="{{route('orders.index')}}">
+                        <a class="menu-link @if(Route::is('orders.index')) active @endif" href="{{route('orders.index')}}">
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotone/Design/Sketch.svg-->
                             <i class="bi bi-cart fs-1"></i>
