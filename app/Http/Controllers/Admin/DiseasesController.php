@@ -43,7 +43,7 @@ class DiseasesController extends Controller
     {
         $return_back = Disease::with('parentCategory')->find($id);
         $diseases = Disease::where('parent_id', $id ?? null)->get();
-        return view('admin.diseases.index', ['diseases' => $diseases, 'parent_id' => $id, 'return_back' => $return_back->parentCategory->id ?? '']);
+        return view('admin.diseases.index', ['diseases' => $diseases, 'parent_id' => $id, 'return_back' => $return_back->parentCategory->id ?? '0']);
     }
 
     /**
@@ -78,6 +78,21 @@ class DiseasesController extends Controller
             ]);
             $diseases->save();
         }
+
+        Session::flash('success', 'Disease saved successfully!');
+        return back();
+    }
+
+
+    public function storeDisease(Request $request)
+    {
+        $this->validate($request, [
+            'disease' => 'required|max:100',
+        ]);
+        $disease = new Disease();
+        $disease->title = $request->disease;
+        $disease->type = 'disease';
+        $disease->save();
 
         Session::flash('success', 'Disease saved successfully!');
         return back();
@@ -163,7 +178,9 @@ class DiseasesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $order = Disease::findorfail($id)->delete();
+        Session::flash('error', 'Order deleted successfully!');
+        return to_route('diseases.list');
     }
 
     public function diseaseShow()
@@ -209,10 +226,29 @@ class DiseasesController extends Controller
             $total = $total + ($product->amount * $request->quantity[$i]);
         }
         $appointment = Appointment::findorfail($request->appointment_id);
-        $order = new Order();
-        $order->amount = $total;
-        $order->user_id = $appointment->user_id;
-        $order->save();
+
+        $user = User::findorfail($appointment->user_id);
+        if($user->stripe_cust_id)
+        {
+            $secret = Stripe\Stripe::setApiKey('sk_test_51LhsdnGCTNDeFrTZbu5vvte3Di3FhoS7MBwh4wBmDuzsbSeyCGvu3iJwzrThxsZddHSYvLqtca3d8HTLP4ye6u9p00ehlb2iDb');
+            $paymentIntent = \Stripe\PaymentIntent::create([
+                'customer' =>  $user->stripe_cust_id,
+                'amount' => $total * 100,
+                'currency' => 'usd',
+            ]);
+
+            $order = new Order();
+            $order->amount = $total;
+            $order->user_id = $appointment->user_id;
+            $order->payment_status = 'paid';
+            $order->save();
+
+        } else{
+            $order = new Order();
+            $order->amount = $total;
+            $order->user_id = $appointment->user_id;
+            $order->save();
+        }
         for ($i = 0; $i < count($request->product_id); $i++) {
             $order_item = new OrderItem();
             $order_item->order_id = $order->id;

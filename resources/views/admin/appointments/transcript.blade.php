@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-info">Place Order</button>
+                        <button type="submit" class="btn btn-info">Place Order</button>
                     </div>
                 </form>
                 <!--end::Card body-->

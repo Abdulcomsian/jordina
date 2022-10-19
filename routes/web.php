@@ -41,6 +41,7 @@ Route::prefix('admin')->middleware('web')->group(function () {
     Route::get('doctors', [UsersController::class, 'doctors'])->name('doctors.index');
     Route::get('pharmacists', [UsersController::class, 'pharmacists'])->name('pharmacists.index');
     Route::resource('diseases', DiseasesController::class);
+    Route::post('disease-store', [DiseasesController::class, 'storeDisease'])->name('disease_store');
     Route::get('diseases/create/{parent_id}', [DiseasesController::class, 'create'])->name('diseases.create');
 
 
@@ -61,7 +62,7 @@ Route::post('/transcript-store', [DiseasesController::class, 'transcriptStore'])
 
 Route::resource('appointments', AppointmentsController::class);
 Route::get('appointment-list', [AppointmentsController::class, 'appointmentList'])->name('appointments.list');
-Route::get('appointment-show/{disease_id}/{appointment_id}', [AppointmentsController::class, 'appointmentShow'])->name('appointments.show');
+Route::get('appointment-show/{disease_id}/{appointment_id}', [AppointmentsController::class, 'appointmentShow'])->name('appointments.generate');
 Route::get('appointment-store', [AppointmentsController::class, 'appointmentStore'])->name('appointments.store');
 
 /********************DASHBOARD ROUTES END******************************/

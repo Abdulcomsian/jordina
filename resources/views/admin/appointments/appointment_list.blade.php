@@ -79,9 +79,13 @@
                                     <td>{{$appointment->disease->title}}</td>
                                     <td>{{$appointment->user->first_name.' '.$appointment->user->last_name}}</td>
                                     <td class="text-end">
-                                        <a href="{{route('appointments.show',['disease_id' => $appointment->disease->id,  'appointment_id' => $appointment->id])}}"
-                                           class="btn btn-bg-primary btn-active-color-dark btn-sm me-1">
+                                        <a href="{{route('appointments.show',$appointment->id)}}"
+                                           class="btn btn-primary btn-active-color-dark btn-sm me-1">
                                             Show Details
+                                        </a>
+                                        <a href="{{route('appointments.generate',['disease_id' => $appointment->disease->id,  'appointment_id' => $appointment->id])}}"
+                                           class="btn btn-danger btn-active-color-dark btn-sm me-1">
+                                            Generate Transcript
                                         </a>
                                         <a onclick="event.preventDefault(); document.getElementById('delete-form-{{$appointment->id}}').submit();"
                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">

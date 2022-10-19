@@ -2,6 +2,84 @@
 @section('content')
     <!--begin::Content-->
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        @if(!$parent_id)
+            <div class="post d-flex flex-column-fluid my-5" id="kt_post">
+                <!--begin::Container-->
+                <div id="kt_content_container" class="container">
+                    <!--begin::Layout-->
+                    <div class="d-flex flex-column flex-lg-row">
+                        <!--begin::Content-->
+                        <div class="flex-lg-row-fluid mb-10 mb-lg-0">
+                            <form method="post" action="{{route('disease_store')}}">
+                                @csrf
+                                <!--begin::Card-->
+                                <div class="card">
+                                    <!--begin::Card body-->
+                                    <div class="card-body p-12">
+                                        @include('admin.includes.msg')
+                                        <!--begin::Form-->
+                                        <!--begin::Wrapper-->
+                                        <div class="d-flex flex-column align-items-start flex-xxl-row">
+
+                                            <!--begin::Input group-->
+                                            <div class="d-flex flex-center flex-equal fw-row text-nowrap order-1 order-xxl-2 me-4">
+                                                <span class="fs-2x fw-bolder text-gray-800">Add Disease</span>
+                                            </div>
+                                            <!--end::Input group-->
+                                        </div>
+                                        <!--end::Top-->
+                                        <!--begin::Separator-->
+                                        <div class="separator separator-dashed my-10"></div>
+                                        <!--end::Separator-->
+                                        <!--begin::Wrapper-->
+                                        <div class="mb-0">
+                                            <!--begin::Row-->
+                                            <div class="row gx-10 mb-5">
+                                                <!--begin::Col-->
+                                                <div class="col-lg-6">
+                                                    <label class="form-label fs-6 fw-bolder text-gray-700 mb-3">
+                                                        Disease Name
+                                                    </label>
+                                                    <!--begin::Input group-->
+                                                    <div class="mb-5">
+                                                        <input type="text" name="disease"
+                                                               class="form-control form-control-solid"
+                                                               placeholder="Disease Name"/>
+                                                    </div>
+                                                    <!--end::Input group-->
+                                                </div>
+                                                <!--end::Col-->
+                                                <!--end::Col-->
+                                            </div>
+                                            <!--end::Row-->
+                                        </div>
+                                        <!--end::Wrapper-->
+                                        <div class="mb-0">
+                                            <!--begin::Row-->
+                                            <div class="mb-5">
+                                                <div class="row gx-10 mb-5">
+                                                    <button type="submit" class="btn btn-primary updateBtn">
+                                                        Add Diseases
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <!--end::Row-->
+                                        </div>
+                                        <!--end::Wrapper-->
+                                    </div>
+                                    <!--end::Card body-->
+                                </div>
+                                <!--end::Card-->
+                            </form>
+
+                        </div>
+                        <!--end::Content-->
+                    </div>
+                    <!--end::Layout-->
+                </div>
+                <!--end::Container-->
+            </div>
+        @endif
         <!--begin::Post-->
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <!--begin::Container-->
@@ -12,18 +90,19 @@
                     <div class="card-header border-0 pt-6">
                         <!--begin::Card title-->
                         <div class="card-title">
-
+                            Diseases
                         </div>
                         <!--begin::Card title-->
                         <!--begin::Card toolbar-->
-                        <div class="card-toolbar">
-                            <!--begin::Toolbar-->
-                            <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-                                <!--begin::Add user-->
-                                <a href={{route('diseases.create', $parent_id ?? '')}} type="button"
-                                   class="btn btn-primary">
-                                    <!--begin::Svg Icon | path: icons/duotone/Navigation/Plus.svg-->
-                                    <span class="svg-icon svg-icon-2">
+                        @if($parent_id)
+                            <div class="card-toolbar">
+                                <!--begin::Toolbar-->
+                                <div class="d-flex justify-content-start" data-kt-user-table-toolbar="base">
+                                    <!--begin::Add user-->
+                                    <a href={{route('diseases.create', $parent_id ?? '')}} type="button"
+                                       class="btn btn-primary">
+                                        <!--begin::Svg Icon | path: icons/duotone/Navigation/Plus.svg-->
+                                        <span class="svg-icon svg-icon-2">
 													<svg xmlns="http://www.w3.org/2000/svg"
                                                          xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                          height="24px" viewBox="0 0 24 24" version="1.1">
@@ -33,12 +112,13 @@
                                                               x="4" y="11" width="16" height="2" rx="1"/>
 													</svg>
 												</span>
-                                    <!--end::Svg Icon-->Add Disease
-                                </a>
-                                <!--end::Add user-->
+                                        <!--end::Svg Icon-->Add Disease
+                                    </a>
+                                    <!--end::Add user-->
+                                </div>
+                                <!--end::Toolbar-->
                             </div>
-                            <!--end::Toolbar-->
-                        </div>
+                        @endif
                         <!--end::Card toolbar-->
                     </div>
                     <!--end::Card header-->
@@ -52,10 +132,6 @@
                             <!--begin::Table row-->
                             <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                 <th>Title</th>
-                                @if($parent_id)
-                                    <th class="min-w-125px">Amount</th>
-                                @endif
-                                <th class="min-w-125px">Registration Date</th>
                                 <th class="text-end min-w-100px">Actions</th>
                             </tr>
                             <!--end::Table row-->
@@ -68,10 +144,8 @@
                                 <tr>
                                     <!--begin::User=-->
                                     <td>{{$disease->title}}</td>
-                                    <td>${{$disease->amount ?? '0'}}</td>
-                                    <td>{{date('d M Y h:i a', strtotime($disease->created_at))}}</td>
                                     <td class="text-end">
-                                        <a href="{{route('diseases.edit',$disease->id)}}"
+                                        {{--<a href="{{route('diseases.edit',$disease->id)}}"
                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                             <!--begin::Svg Icon | path: icons/duotone/Communication/Write.svg-->
                                             <span class="svg-icon svg-icon-3">
@@ -88,8 +162,9 @@
                                                                 </svg>
                                                             </span>
                                             <!--end::Svg Icon-->
-                                        </a>
-                                        <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                                        </a>--}}
+                                        <a onclick="event.preventDefault(); document.getElementById('delete-form-{{$disease->id}}').submit();"
+                                           class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
                                             <!--begin::Svg Icon | path: icons/duotone/General/Trash.svg-->
                                             <span class="svg-icon svg-icon-3">
                                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -117,6 +192,11 @@
                                     </td>
                                     <!--end::Action=-->
                                 </tr>
+                                <form id="delete-form-{{$disease->id}}"
+                                      action="{{route('diseases.destroy', $disease->id)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
                             @endforeach
                             </tbody>
                             <!--end::Table body-->

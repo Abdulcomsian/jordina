@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Appointment;
 use App\Models\Disease;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class AppointmentsController extends Controller
 {
@@ -49,7 +50,8 @@ class AppointmentsController extends Controller
      */
     public function show($id)
     {
-        //
+        $appointment=Appointment::with('user','disease')->findorfail($id);
+        return view('admin.appointments.show',['appointment' => $appointment]);
     }
 
     /**
@@ -90,7 +92,14 @@ class AppointmentsController extends Controller
 
     public function appointmentList()
     {
-        $data['appointments'] = Appointment::with('disease')->get();
+        $doctor = Auth::user()->hasRole('doctor');
+        if($doctor)
+        {
+            $data['appointments'] = Appointment::with('disease')->where('doctor_id', Auth::user()->id)->orWhere('user_id', Auth::user()->id)->get();
+        } else
+        {
+            $data['appointments'] = Appointment::with('disease')->get();
+        }
         return view('admin.appointments.appointment_list', $data);
     }
 

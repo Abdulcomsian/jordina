@@ -1,17 +1,19 @@
 @if(Session::has('success'))
-    <div class="alert alert-success alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        {{ Session::get('success') }}
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <p>
+            {{ Session::get('success') }}
+        </p>
     </div>
 @endif
 @if(Session::has('error'))
-    <div class="alert alert-danger alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        {{ Session::get('error') }}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <p>
+            {{ Session::get('error') }}
+        </p>
     </div>
 @endif
 @if($errors->any())
-    <div class="alert alert-danger">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
         @foreach($errors->all() as $error)
             <p>
                 {{ $error }}
