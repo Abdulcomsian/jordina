@@ -33,20 +33,23 @@ class UsersController extends Controller
      */
     public function index()
     {
+        $heading="Patients";
         $users = User::role('user')->get();
-        return view('admin.users.index', ['users' => $users]);
+        return view('admin.users.index', ['users' => $users, 'heading' => $heading]);
     }
 
     public function doctors()
     {
+        $heading="Doctors";
         $users = User::role('doctor')->get();
-        return view('admin.users.index', ['users' => $users]);
+        return view('admin.users.index', ['users' => $users, 'heading' => $heading]);
     }
 
     public function pharmacists()
     {
+        $heading="Pharmacists";
         $users = User::role('pharmacist')->get();
-        return view('admin.users.index', ['users' => $users]);
+        return view('admin.users.index', ['users' => $users, 'heading' => $heading]);
     }
 
     /**
