@@ -205,7 +205,7 @@
                 @endif
                 @if(Auth::user()->hasRole('doctor'))
                     <div class="menu-item">
-                        <a class="menu-link" href="{{route('appointments.index')}}">
+                        <a class="menu-link @if(Route::is('appointments.index')) active @endif" href="{{route('appointments.index')}}">
                         									<span class="menu-icon">
                         										<!--begin::Svg Icon | path: icons/duotone/Design/Sketch.svg-->
                         										<i class="bi bi-calendar-check fs-1"></i>

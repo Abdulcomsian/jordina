@@ -53,6 +53,9 @@ Route::prefix('admin')->middleware('web')->group(function () {
 ////    Route::get('/disease', [DiseasesController::class, 'index'])->name('show-disease');
 ////    Route::get('/profile', [DiseasesController::class, 'editProfile'])->name('profile.edit');
 //});
+
+Route::prefix('admin')->middleware('web')->group(function () {
+
 Route::resource('orders', OrdersController::class);
 Route::resource('products', ProductsController::class);
 Route::get('/profile', [DiseasesController::class, 'editProfile'])->name('profile.edit');
@@ -68,8 +71,8 @@ Route::get('appointment-store', [AppointmentsController::class, 'appointmentStor
 /********************DASHBOARD ROUTES END******************************/
 
 /*****************User ROUTES*******************/
-Route::prefix('user')->middleware('can:user')->group(function () {
-});
+/*Route::prefix('user')->middleware('can:user')->group(function () {
+});*/
 /********************DASHBOARD ROUTES END******************************/
 //Users
 
@@ -78,4 +81,5 @@ Route::get('diseases-list/{id?}', [DiseasesController::class, 'diseasesList'])->
 Route::get('diseases-show/{id?}', [DiseasesController::class, 'diseaseShow'])->name('diseases-show');
 Route::post('generate-transcript', [DiseasesController::class, 'generateTranscript'])->name('generate_transcript');
 Route::get('fetch_products', [DiseasesController::class, 'fetchProducts'])->name('fetch_products');
+});
 
