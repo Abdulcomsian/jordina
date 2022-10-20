@@ -231,12 +231,12 @@ class DiseasesController extends Controller
         $user = User::findorfail($appointment->user_id);
         if($user->stripe_cust_id)
         {
-            /*$secret = Stripe\Stripe::setApiKey('sk_test_51LhsdnGCTNDeFrTZbu5vvte3Di3FhoS7MBwh4wBmDuzsbSeyCGvu3iJwzrThxsZddHSYvLqtca3d8HTLP4ye6u9p00ehlb2iDb');
+            $secret = Stripe\Stripe::setApiKey('sk_test_51LhsdnGCTNDeFrTZbu5vvte3Di3FhoS7MBwh4wBmDuzsbSeyCGvu3iJwzrThxsZddHSYvLqtca3d8HTLP4ye6u9p00ehlb2iDb');
             $paymentIntent = \Stripe\PaymentIntent::create([
                 'customer' =>  $user->stripe_cust_id,
                 'amount' => $total * 100,
                 'currency' => 'usd',
-            ]);*/
+            ]);
 
             $order = new Order();
             $order->amount = $total;
