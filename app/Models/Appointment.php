@@ -28,6 +28,6 @@ class Appointment extends Model
 
     public function orders()
     {
-        return $this->hasMany(Order::class, 'appointment_id');
+        return $this->hasOne(Order::class, 'appointment_id');
     }
 }

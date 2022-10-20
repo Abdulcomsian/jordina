@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Auth;
 use Illuminate\Support\Facades\Session;
+use Stripe;
 
 class DiseasesController extends Controller
 {
