@@ -278,7 +278,7 @@ class AuthController extends ApiController
             ]);
 
             $user = User::findorfail(Auth::user()->id);
-            $user->stripe_cust_id = Auth::user()->id;
+            $user->stripe_cust_id = $customer->id;
             $user->save();
 
             $user_payment = new UserPayment();

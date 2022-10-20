@@ -33,10 +33,7 @@ class DiseaseController extends ApiController
 
     public function userPayment(Request $request)
     {
-//        dd($request);
         try {
-
-//            $user = Auth::user();
 
             $user =User::findorfail(2);
 
