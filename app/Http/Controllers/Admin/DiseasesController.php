@@ -240,6 +240,7 @@ class DiseasesController extends Controller
             $order = new Order();
             $order->amount = $total;
             $order->user_id = $appointment->user_id;
+            $order->appointment_id = $appointment->id;
             $order->payment_status = 'paid';
             $order->save();
 
@@ -247,6 +248,7 @@ class DiseasesController extends Controller
             $order = new Order();
             $order->amount = $total;
             $order->user_id = $appointment->user_id;
+            $order->appointment_id = $appointment->id;
             $order->save();
         }
         for ($i = 0; $i < count($request->product_id); $i++) {

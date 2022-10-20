@@ -182,6 +182,7 @@ class UsersController extends Controller
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
             'state' => 'required|max:255',
+            'calendy' => 'required|max:444',
             'email' => 'required|unique:users,email,'.Auth::user()->id,
 //            'password' => 'required|min:6',
         ]);
@@ -196,6 +197,7 @@ class UsersController extends Controller
         $user->state = $request->state;
         $user->status = $request->status;
         $user->email = $request->email;
+        $user->calendy = $request->calendy;
         $user->status = 'active';
         $user->password = $password;
         $user->save();

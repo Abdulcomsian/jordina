@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Disease;
+use App\Models\Order;
 
 class Appointment extends Model
 {
@@ -23,5 +24,10 @@ class Appointment extends Model
     public function doctor()
     {
         return $this->belongsTo(User::class, 'doctor_id');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'appointment_id');
     }
 }
