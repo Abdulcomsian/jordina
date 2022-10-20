@@ -139,7 +139,7 @@
                                         </a>
                                         <a href="{{route('appointments.generate',['disease_id' => $appointment->disease->id,  'appointment_id' => $appointment->id])}}"
                                            class="btn btn-danger btn-active-color-dark btn-sm me-1">
-                                            Generate Transcript
+                                            Appointment Flow
                                         </a>
                                         <a onclick="event.preventDefault(); document.getElementById('delete-form-{{$appointment->id}}').submit();"
                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
