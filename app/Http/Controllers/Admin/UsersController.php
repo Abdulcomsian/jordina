@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Carbon\Carbon;
 
@@ -133,7 +134,7 @@ class UsersController extends Controller
             $this->validate($request, [
                 'first_name' => 'required|max:100',
                 'last_name' => 'required|max:100',
-                'email' => 'required|max:100|unique:users',
+                'email' => 'required|max:100|unique:users,'.$id,
                 'password' => 'required|max:100|confirmed',
 //            'status' => $request->get('status'),
             ]);
@@ -161,8 +162,7 @@ class UsersController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public
-    function destroy($id)
+    public function destroy($id)
     {
         $user = User::find($id);
         $user->delete();
@@ -170,30 +170,36 @@ class UsersController extends Controller
         return redirect()->back();
     }
 
-    public
-    function editProfile()
+    public function editProfile()
     {
         $user = Auth::user();
         return view('admin.profile.edit', ['user' => $user]);
     }
 
-    public
-    function updateProfile(Request $request)
+    public function updateProfile(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
-            'email' => 'required|unique:users,email',
-            'password' => 'required|min:6',
+            'first_name' => 'required|max:255',
+            'last_name' => 'required|max:255',
+            'state' => 'required|max:255',
+            'email' => 'required|unique:users,email,'.Auth::user()->id,
+//            'password' => 'required|min:6',
         ]);
-        $ambassador = new User([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'status' => $request->status,
-        ]);
-
-        $ambassador->save();
-
-        return route('users.index')->with('success', __('users.messages.added_success'));
+        if(!empty($request->password)) {
+            $password = bcrypt($request->password);
+        } else{
+            $password = Auth::user()->password;
+        }
+        $user = User::findorfail(Auth::user()->id);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->state = $request->state;
+        $user->status = $request->status;
+        $user->email = $request->email;
+        $user->status = 'active';
+        $user->password = $password;
+        $user->save();
+        Session::flash('success', 'Profile Update Successfully!');
+        return redirect()->back();
     }
 }

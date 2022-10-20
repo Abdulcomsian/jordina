@@ -45,118 +45,6 @@
                     <!--end::Breadcrumb-->
                 </div>
                 <!--end::Page title-->
-                <!--begin::Actions-->
-                <div class="d-flex align-items-center py-1">
-                    <!--begin::Wrapper-->
-                    <div class="me-4">
-                        <!--begin::Menu-->
-                        <a href="#" class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder"
-                           data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">
-                            <!--begin::Svg Icon | path: icons/duotone/Text/Filter.svg-->
-                            <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
-											<svg xmlns="http://www.w3.org/2000/svg"
-                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
-                                                 viewBox="0 0 24 24" version="1.1">
-												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-													<rect x="0" y="0" width="24" height="24"/>
-													<path d="M5,4 L19,4 C19.2761424,4 19.5,4.22385763 19.5,4.5 C19.5,4.60818511 19.4649111,4.71345191 19.4,4.8 L14,12 L14,20.190983 C14,20.4671254 13.7761424,20.690983 13.5,20.690983 C13.4223775,20.690983 13.3458209,20.6729105 13.2763932,20.6381966 L10,19 L10,12 L4.6,4.8 C4.43431458,4.5790861 4.4790861,4.26568542 4.7,4.1 C4.78654809,4.03508894 4.89181489,4 5,4 Z"
-                                                          fill="#000000"/>
-												</g>
-											</svg>
-										</span>
-                            <!--end::Svg Icon-->Filter</a>
-                        <!--begin::Menu 1-->
-                        <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true">
-                            <!--begin::Header-->
-                            <div class="px-7 py-5">
-                                <div class="fs-5 text-dark fw-bolder">Filter Options</div>
-                            </div>
-                            <!--end::Header-->
-                            <!--begin::Menu separator-->
-                            <div class="separator border-gray-200"></div>
-                            <!--end::Menu separator-->
-                            <!--begin::Form-->
-                            <div class="px-7 py-5">
-                                <!--begin::Input group-->
-                                <div class="mb-10">
-                                    <!--begin::Label-->
-                                    <label class="form-label fw-bold">Status:</label>
-                                    <!--end::Label-->
-                                    <!--begin::Input-->
-                                    <div>
-                                        <select class="form-select form-select-solid" data-kt-select2="true"
-                                                data-placeholder="Select option" data-allow-clear="true">
-                                            <option></option>
-                                            <option value="1">Approved</option>
-                                            <option value="2">Pending</option>
-                                            <option value="2">In Process</option>
-                                            <option value="2">Rejected</option>
-                                        </select>
-                                    </div>
-                                    <!--end::Input-->
-                                </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
-                                <div class="mb-10">
-                                    <!--begin::Label-->
-                                    <label class="form-label fw-bold">Member Type:</label>
-                                    <!--end::Label-->
-                                    <!--begin::Options-->
-                                    <div class="d-flex">
-                                        <!--begin::Options-->
-                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-                                            <input class="form-check-input" type="checkbox" value="1"/>
-                                            <span class="form-check-label">Author</span>
-                                        </label>
-                                        <!--end::Options-->
-                                        <!--begin::Options-->
-                                        <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="checkbox" value="2"
-                                                   checked="checked"/>
-                                            <span class="form-check-label">Customer</span>
-                                        </label>
-                                        <!--end::Options-->
-                                    </div>
-                                    <!--end::Options-->
-                                </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
-                                <div class="mb-10">
-                                    <!--begin::Label-->
-                                    <label class="form-label fw-bold">Notifications:</label>
-                                    <!--end::Label-->
-                                    <!--begin::Switch-->
-                                    <div class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="" name="notifications"
-                                               checked="checked"/>
-                                        <label class="form-check-label">Enabled</label>
-                                    </div>
-                                    <!--end::Switch-->
-                                </div>
-                                <!--end::Input group-->
-                                <!--begin::Actions-->
-                                <div class="d-flex justify-content-end">
-                                    <button type="reset" class="btn btn-sm btn-white btn-active-light-primary me-2"
-                                            data-kt-menu-dismiss="true">Reset
-                                    </button>
-                                    <button type="submit" class="btn btn-sm btn-primary" data-kt-menu-dismiss="true">
-                                        Apply
-                                    </button>
-                                </div>
-                                <!--end::Actions-->
-                            </div>
-                            <!--end::Form-->
-                        </div>
-                        <!--end::Menu 1-->
-                        <!--end::Menu-->
-                    </div>
-                    <!--end::Wrapper-->
-                    <!--begin::Button-->
-                    <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                       data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">Create</a>
-                    <!--end::Button-->
-                </div>
-                <!--end::Actions-->
             </div>
             <!--end::Container-->
         </div>
@@ -167,10 +55,9 @@
             <div id="kt_content_container" class="container">
                 <!--begin::Basic info-->
                 <div class="card mb-5 mb-xl-10">
+                    @include('admin.includes.msg')
                     <!--begin::Card header-->
-                    <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
-                         data-bs-target="#kt_account_profile_details" aria-expanded="true"
-                         aria-controls="kt_account_profile_details">
+                    <div class="card-header border-0 cursor-pointer">
                         <!--begin::Card title-->
                         <div class="card-title m-0">
                             <h3 class="fw-bolder m-0">Profile Details</h3>
@@ -179,9 +66,10 @@
                     </div>
                     <!--begin::Card header-->
                     <!--begin::Content-->
-                    <div id="kt_account_profile_details" class="collapse show">
+                    <div id="kt_account_profile_details" class="">
                         <!--begin::Form-->
-                        <form id="kt_account_profile_details_form" class="form">
+                        <form id="kt_account_profile_details_form" method="post" action="{{route('profile.update')}}" class="form">
+                            @csrf
                             <!--begin::Card body-->
                             <div class="card-body border-top p-9">
                                 <!--begin::Input group-->
@@ -195,14 +83,14 @@
                                         <div class="row">
                                             <!--begin::Col-->
                                             <div class="col-lg-6 fv-row">
-                                                <input type="text" name="fname" value="{{$user->first_name}}"
+                                                <input type="text" name="first_name" value="{{$user->first_name}}"
                                                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
                                                        placeholder="First name" value="Max"/>
                                             </div>
                                             <!--end::Col-->
                                             <!--begin::Col-->
                                             <div class="col-lg-6 fv-row">
-                                                <input type="text" name="lname" value="{{$user->last_name}}"
+                                                <input type="text" name="last_name" value="{{$user->last_name}}"
                                                        class="form-control form-control-lg form-control-solid"
                                                        placeholder="Last name" value="Smith"/>
                                             </div>
@@ -235,57 +123,57 @@
                                     <!--begin::Col-->
                                     <div class="col-lg-8 fv-row">
                                         <select class="form-control form-control-lg form-control-solid" name="state">
-                                            <option value="AL">Alabama</option>
-                                            <option value="AK">Alaska</option>
-                                            <option value="AZ">Arizona</option>
-                                            <option value="AR">Arkansas</option>
-                                            <option value="CA">California</option>
-                                            <option value="CO">Colorado</option>
-                                            <option value="CT">Connecticut</option>
-                                            <option value="DE">Delaware</option>
-                                            <option value="DC">District Of Columbia</option>
-                                            <option value="FL">Florida</option>
-                                            <option value="GA">Georgia</option>
-                                            <option value="HI">Hawaii</option>
-                                            <option value="ID">Idaho</option>
-                                            <option value="IL">Illinois</option>
-                                            <option value="IN">Indiana</option>
-                                            <option value="IA">Iowa</option>
-                                            <option value="KS">Kansas</option>
-                                            <option value="KY">Kentucky</option>
-                                            <option value="LA">Louisiana</option>
-                                            <option value="ME">Maine</option>
-                                            <option value="MD">Maryland</option>
-                                            <option value="MA">Massachusetts</option>
-                                            <option value="MI">Michigan</option>
-                                            <option value="MN">Minnesota</option>
-                                            <option value="MS">Mississippi</option>
-                                            <option value="MO">Missouri</option>
-                                            <option value="MT">Montana</option>
-                                            <option value="NE">Nebraska</option>
-                                            <option value="NV">Nevada</option>
-                                            <option value="NH">New Hampshire</option>
-                                            <option value="NJ">New Jersey</option>
-                                            <option value="NM">New Mexico</option>
-                                            <option value="NY">New York</option>
-                                            <option value="NC">North Carolina</option>
-                                            <option value="ND">North Dakota</option>
-                                            <option value="OH">Ohio</option>
-                                            <option value="OK">Oklahoma</option>
-                                            <option value="OR">Oregon</option>
-                                            <option value="PA">Pennsylvania</option>
-                                            <option value="RI">Rhode Island</option>
-                                            <option value="SC">South Carolina</option>
-                                            <option value="SD">South Dakota</option>
-                                            <option value="TN">Tennessee</option>
-                                            <option value="TX">Texas</option>
-                                            <option value="UT">Utah</option>
-                                            <option value="VT">Vermont</option>
-                                            <option value="VA">Virginia</option>
-                                            <option value="WA">Washington</option>
-                                            <option value="WV">West Virginia</option>
-                                            <option value="WI">Wisconsin</option>
-                                            <option value="WY">Wyoming</option>
+                                            <option value="AL" {{($user->state == 'AL') ? 'selected' : ''}}>Alabama</option>
+                                            <option value="AK" {{($user->state == 'AK') ? 'selected' : ''}}>Alaska</option>
+                                            <option value="AZ" {{($user->state == 'AZ') ? 'selected' : ''}}>Arizona</option>
+                                            <option value="AR" {{($user->state == 'AR') ? 'selected' : ''}}>Arkansas</option>
+                                            <option value="CA" {{($user->state == 'CA') ? 'selected' : ''}}>California</option>
+                                            <option value="CO" {{($user->state == 'CO') ? 'selected' : ''}}>Colorado</option>
+                                            <option value="CT" {{($user->state == 'CT') ? 'selected' : ''}}>Connecticut</option>
+                                            <option value="DE" {{($user->state == 'DE') ? 'selected' : ''}}>Delaware</option>
+                                            <option value="DC" {{($user->state == 'DC') ? 'selected' : ''}}>District Of Columbia</option>
+                                            <option value="FL" {{($user->state == 'FL') ? 'selected' : ''}}>Florida</option>
+                                            <option value="GA" {{($user->state == 'GA') ? 'selected' : ''}}>Georgia</option>
+                                            <option value="HI" {{($user->state == 'HI') ? 'selected' : ''}}>Hawaii</option>
+                                            <option value="ID" {{($user->state == 'ID') ? 'selected' : ''}}>Idaho</option>
+                                            <option value="IL" {{($user->state == 'IL') ? 'selected' : ''}}>Illinois</option>
+                                            <option value="IN" {{($user->state == 'IN') ? 'selected' : ''}}>Indiana</option>
+                                            <option value="IA" {{($user->state == 'IA') ? 'selected' : ''}}>Iowa</option>
+                                            <option value="KS" {{($user->state == 'KS') ? 'selected' : ''}}>Kansas</option>
+                                            <option value="KY" {{($user->state == 'KY') ? 'selected' : ''}}>Kentucky</option>
+                                            <option value="LA" {{($user->state == 'LA') ? 'selected' : ''}}>Louisiana</option>
+                                            <option value="ME" {{($user->state == 'ME') ? 'selected' : ''}}>Maine</option>
+                                            <option value="MD" {{($user->state == 'MD') ? 'selected' : ''}}>Maryland</option>
+                                            <option value="MA" {{($user->state == 'MA') ? 'selected' : ''}}>Massachusetts</option>
+                                            <option value="MI" {{($user->state == 'MI') ? 'selected' : ''}}>Michigan</option>
+                                            <option value="MN" {{($user->state == 'MN') ? 'selected' : ''}}>Minnesota</option>
+                                            <option value="MS" {{($user->state == 'MS') ? 'selected' : ''}}>Mississippi</option>
+                                            <option value="MO" {{($user->state == 'MO') ? 'selected' : ''}}>Missouri</option>
+                                            <option value="MT" {{($user->state == 'MT') ? 'selected' : ''}}>Montana</option>
+                                            <option value="NE" {{($user->state == 'NE') ? 'selected' : ''}}>Nebraska</option>
+                                            <option value="NV" {{($user->state == 'NV') ? 'selected' : ''}}>Nevada</option>
+                                            <option value="NH" {{($user->state == 'NH') ? 'selected' : ''}}>New Hampshire</option>
+                                            <option value="NJ" {{($user->state == 'NJ') ? 'selected' : ''}}>New Jersey</option>
+                                            <option value="NM" {{($user->state == 'NM') ? 'selected' : ''}}>New Mexico</option>
+                                            <option value="NY" {{($user->state == 'NY') ? 'selected' : ''}}>New York</option>
+                                            <option value="NC" {{($user->state == 'NC') ? 'selected' : ''}}>North Carolina</option>
+                                            <option value="ND" {{($user->state == 'ND') ? 'selected' : ''}}>North Dakota</option>
+                                            <option value="OH" {{($user->state == 'OH') ? 'selected' : ''}}>Ohio</option>
+                                            <option value="OK" {{($user->state == 'OK') ? 'selected' : ''}}>Oklahoma</option>
+                                            <option value="OR" {{($user->state == 'OR') ? 'selected' : ''}}>Oregon</option>
+                                            <option value="PA" {{($user->state == 'PA') ? 'selected' : ''}}>Pennsylvania</option>
+                                            <option value="RI" {{($user->state == 'RI') ? 'selected' : ''}}>Rhode Island</option>
+                                            <option value="SC" {{($user->state == 'SC') ? 'selected' : ''}}>South Carolina</option>
+                                            <option value="SD" {{($user->state == 'SD') ? 'selected' : ''}}>South Dakota</option>
+                                            <option value="TN" {{($user->state == 'TN') ? 'selected' : ''}}>Tennessee</option>
+                                            <option value="TX" {{($user->state == 'TX') ? 'selected' : ''}}>Texas</option>
+                                            <option value="UT" {{($user->state == 'UT') ? 'selected' : ''}}>Utah</option>
+                                            <option value="VT" {{($user->state == 'VT') ? 'selected' : ''}}>Vermont</option>
+                                            <option value="VA" {{($user->state == 'VA') ? 'selected' : ''}}>Virginia</option>
+                                            <option value="WA" {{($user->state == 'WA') ? 'selected' : ''}}>Washington</option>
+                                            <option value="WV" {{($user->state == 'WV') ? 'selected' : ''}}>West Virginia</option>
+                                            <option value="WI" {{($user->state == 'WI') ? 'selected' : ''}}>Wisconsin</option>
+                                            <option value="WY" {{($user->state == 'WY') ? 'selected' : ''}}>Wyoming</option>
                                         </select>
                                     </div>
                                     <!--end::Col-->

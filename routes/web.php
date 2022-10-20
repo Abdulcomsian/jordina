@@ -38,6 +38,8 @@ Route::get('test', [HomeController::class, 'test'])->name('test');
 /*****************ADMIN ROUTES*******************/
 Route::prefix('admin')->middleware('web')->group(function () {
     Route::resource('users', UsersController::class);
+    Route::get('/profile', [UsersController::class, 'editProfile'])->name('profile.edit');
+    Route::post('/update-profile', [UsersController::class, 'updateProfile'])->name('profile.update');
     Route::get('doctors', [UsersController::class, 'doctors'])->name('doctors.index');
     Route::get('pharmacists', [UsersController::class, 'pharmacists'])->name('pharmacists.index');
     Route::resource('diseases', DiseasesController::class);
@@ -58,7 +60,6 @@ Route::prefix('admin')->middleware('web')->group(function () {
 
 Route::resource('orders', OrdersController::class);
 Route::resource('products', ProductsController::class);
-Route::get('/profile', [DiseasesController::class, 'editProfile'])->name('profile.edit');
 Route::post('/profile', [DiseasesController::class, 'updateProfile']);
 Route::post('/transcript-store', [DiseasesController::class, 'transcriptStore'])->name('transcript.store');
 
