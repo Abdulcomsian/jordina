@@ -277,8 +277,8 @@ class AuthController extends ApiController
                 'description' => 'My First Test Customer (created for API docs at https://www.stripe.com/docs/api)',
             ]);
 
-            $user = User::findorfail($id);
-            $user->customer_id = $customer->id;
+            $user = User::findorfail(Auth::user()->id);
+            $user->stripe_cust_id = Auth::user()->id;
             $user->save();
 
             $user_payment = new UserPayment();
