@@ -193,6 +193,24 @@ class AuthController extends ApiController
             $success['token'] = $user->createToken('API TOKEN')->plainTextToken;
             $success['name'] = $user->first_name . ' ' . $user->last_name;
             $success['user_id'] = $user->id;
+            if($user->hasRole('admin') == 'admin')
+            {
+                $role = "admin";
+            }
+            if($user->hasRole('doctor') == 'doctor')
+            {
+                $role = "doctor";
+            }
+            if($user->hasRole('user') == 'user')
+            {
+                $role = "user";
+            }
+            if($user->hasRole('pharmacist') == 'pharmacist')
+            {
+                $role = "pharmacist";
+            }
+
+            $success['role'] = $role;
 
             return $this->successResponse($success, 'User Logged In Successfully.');
 
