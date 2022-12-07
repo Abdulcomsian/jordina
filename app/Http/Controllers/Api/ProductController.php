@@ -76,6 +76,7 @@ class ProductController extends ApiController
 
     public function getCalendy(Request $request)
     {
+     
         try {
             $user = User::findorfail($request->user_id);
             $doctor = DB::table('users')
@@ -83,7 +84,7 @@ class ProductController extends ApiController
                 ->where([['model_has_roles.role_id', '=', 2], ['users.state', '=', $user->state], ['users.calendy', '!=', null]])
                 ->select('users.*')
                 ->first();
-
+                // dd($doctor);
 //            $doctor = User::where('id', 2)->get();
             $appointment = Appointment::findorfail($request->appointment_id);
             $appointment->doctor_id = $doctor->id;
