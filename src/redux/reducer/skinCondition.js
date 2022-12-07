@@ -28,6 +28,11 @@ export default (state = initialState, action) => {
         ...state,
         diseasesArray: action.payload,
       };
+      case Actions.APPOINTMENT_USER_PAYMENT_SUCCESS:
+        return {
+          ...state,
+          diseasesArray: action.payload,
+        };
     default:
       return state;
   }

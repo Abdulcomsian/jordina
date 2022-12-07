@@ -1,8 +1,234 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
+import { ReactSearchAutocomplete } from "react-search-autocomplete";
 
 const PersonalInformationForm = ({ onSubmitInfo }) => {
+  const items = [
+    {
+      id: 0,
+      name: "Alabama",
+    },
+    {
+      id: 1,
+      name: "Georgia",
+    },
+    {
+      id: 2,
+      name: "South Carolina",
+    },
+    {
+      id: 3,
+      name: "Oregon",
+    },
+    {
+      id: 4,
+      name: "Florida",
+    },
+    {
+      id: 5,
+      name: "Alaska",
+    },
+    {
+      id: 6,
+      name: "Arizona",
+    },
+    {
+      id: 7,
+      name: "Arkansas",
+    },
+    {
+      id: 8,
+      name: "California",
+    },
+    {
+      id: 9,
+      name: "Colorado",
+    },
+    {
+      id: 10,
+      name: "Connecticut",
+    },
+    {
+      id: 11,
+      name: "Delaware",
+    },
+    {
+      id: 12,
+      name: "District Of Columbia",
+    },
+    {
+      id: 13,
+      name: "Hawaii",
+    },
+    {
+      id: 14,
+      name: "Idaho",
+    },
+    {
+      id: 15,
+      name: "Illinois",
+    },
+    {
+      id: 16,
+      name: "Indiana",
+    },
+    {
+      id: 17,
+      name: "Iowa",
+    },
+    {
+      id: 18,
+      name: "Kansas",
+    },
+    {
+      id: 19,
+      name: "Kentucky",
+    },
+    {
+      id: 20,
+      name: "Louisiana",
+    },
+    {
+      id: 21,
+      name: "Maine",
+    },
+    {
+      id: 22,
+      name: "Maryland",
+    },
+    {
+      id: 23,
+      name: "Massachusetts",
+    },
+    {
+      id: 24,
+      name: "Michigan",
+    },
+    {
+      id: 25,
+      name: "Minnesota",
+    },
+    {
+      id: 26,
+      name: "Mississippi",
+    },
+    {
+      id: 27,
+      name: "Missouri",
+    },
+    {
+      id: 28,
+      name: "Montana",
+    },
+    {
+      id: 29,
+      name: "Nebraska",
+    },
+    {
+      id: 30,
+      name: "Nevada",
+    },
+    {
+      id: 31,
+      name: "New Hampshire",
+    },
+    {
+      id: 32,
+      name: "New Jersey",
+    },
+    {
+      id: 33,
+      name: "New Mexico",
+    },
+    {
+      id: 34,
+      name: "New York",
+    },
+    {
+      id: 35,
+      name: "North Carolina",
+    },
+    {
+      id: 36,
+      name: "North Dakota",
+    },
+    {
+      id: 37,
+      name: "Ohio",
+    },
+    {
+      id: 38,
+      name: "Oklahoma",
+    },
+    {
+      id: 39,
+      name: "Oregon",
+    },
+    {
+      id: 40,
+      name: "Pennsylvania",
+    },
+    {
+      id: 41,
+      name: "Rhode Island",
+    },
+    {
+      id: 42,
+      name: "South Carolina",
+    },
+    {
+      id: 43,
+      name: "South Dakota",
+    },
+    {
+      id: 44,
+      name: "Tennessee",
+    },
+    {
+      id: 45,
+      name: "Texas",
+    },
+    {
+      id: 46,
+      name: "Utah",
+    },
+    {
+      id: 47,
+      name: "Vermont",
+    },
+    {
+      id: 48,
+      name: "Virginia",
+    },
+    {
+      id: 49,
+      name: "Washington",
+    },
+    {
+      id: 50,
+      name: "West Virginia",
+    },
+    {
+      id: 51,
+      name: "Wisconsin",
+    },
+    {
+      id: 52,
+      name: "Wyoming",
+    },
+  ];
+
+  const handleOnSelect = (item) => {
+    setState(item)
+  };
+  const formatResult = (item) => {
+    return (
+      <>
+        <span style={{ display: "block", textAlign: "left" }}>{item.name}</span>
+      </>
+    );
+  };
   const [userFirstName, setUserFirstName] = useState("");
   const [userLastName, setUserLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -10,21 +236,24 @@ const PersonalInformationForm = ({ onSubmitInfo }) => {
   const [state, setState] = useState("");
   const [password, setPassword] = useState("");
   const [confrimPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  
   return (
-    <div className="form_box">
+    <div className="form_box personal-info-div">
       <h3 className="title">Basic Information</h3>
       <form>
         <div className="form-group">
           <input
             className="form-control"
-            placeholder="Enter Your Name"
+            placeholder="First Name"
             onChange={(e) => setUserFirstName(e.target.value)}
           />
         </div>
         <div className="form-group">
           <input
             className="form-control"
-            placeholder="Enter Your Last Name"
+            placeholder="Last Name"
             onChange={(e) => setUserLastName(e.target.value)}
           />
         </div>
@@ -35,19 +264,47 @@ const PersonalInformationForm = ({ onSubmitInfo }) => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group position-relative">
           <input
+            type={showPassword ? "text" : "password"}
             className="form-control"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
+          <span className="position-absolute eye__icon">
+            {showPassword ? (
+              <i
+                class="fa-solid fa-eye-slash"
+                onClick={(e) => setShowPassword(!showPassword)}
+              ></i>
+            ) : (
+              <i
+                className="fa-solid fa-eye"
+                onClick={(e) => setShowPassword(!showPassword)}
+              ></i>
+            )}
+          </span>
         </div>
-        <div className="form-group">
+        <div className="form-group position-relative">
           <input
+          type={showConfirmPassword ? "text" : "password"}
             className="form-control"
             placeholder="Confirm Password"
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
+          <span className="position-absolute eye__icon">
+            {showConfirmPassword ? (
+              <i
+                class="fa-solid fa-eye-slash"
+                onClick={(e) => setShowConfirmPassword(!showConfirmPassword)}
+              ></i>
+            ) : (
+              <i
+                className="fa-solid fa-eye"
+                onClick={(e) => setShowConfirmPassword(!showConfirmPassword)}
+              ></i>
+            )}
+          </span>
         </div>
         <div className="form-group">
           <input
@@ -57,7 +314,14 @@ const PersonalInformationForm = ({ onSubmitInfo }) => {
           />
         </div>
         <div className="form-group">
-          <select
+        <ReactSearchAutocomplete
+                              items={items}
+                              onSelect={handleOnSelect}
+                              autoFocus
+                              formatResult={formatResult}
+                              placeholder="Select State"
+                            />
+          {/* <select
             className="form-control"
             onChange={(e) => setState(e.target.value)}
           >
@@ -113,7 +377,7 @@ const PersonalInformationForm = ({ onSubmitInfo }) => {
             <option value="WV">West Virginia</option>
             <option value="WI">Wisconsin</option>
             <option value="WY">Wyoming</option>
-          </select>
+          </select> */}
         </div>
         <Button
           className="common-btn"

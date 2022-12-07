@@ -5,7 +5,8 @@ const initialState = {
   userData: [],
   orderData: [],
   unPaidOrder: [],
-  refreshData:false
+  refreshData:false,
+  userMedication: []
 };
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -34,6 +35,11 @@ export default (state = initialState, action) => {
         ...state,
         refreshData: true
       };
+      case Actions.GET_USER_MEDICATION:
+        return {
+          ...state,
+          userMedication: action.payload,
+        };
     default:
       return state;
   }

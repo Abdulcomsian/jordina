@@ -98,6 +98,9 @@
     margin-right: 20px;
     font-size: 19px;
 }
+.side__bar ul li a i.fa-capsules{
+    margin-right: 14px;
+}
 
 @media screen and (max-width: 1200px) {
 

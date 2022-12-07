@@ -47,11 +47,11 @@ const SideBar = ({ profileClick, appoinmentClick, medicationClick,orderClick }) 
                 <span>Appointments</span>
               </a>
             </li> */}
-            {/* <li>
+            <li>
               <a onClick={medicationClick}>
                 <i className="fa-solid fa-capsules"></i> <span>Medication</span>
               </a>
-            </li> */}
+            </li>
             <li>
               <a onClick={orderClick}>
                 <i className="fa-solid fa-capsules"></i> <span>Orders</span>

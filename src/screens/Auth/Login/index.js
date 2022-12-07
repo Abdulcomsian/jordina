@@ -29,7 +29,7 @@ const Login = (props) => {
           setEmail(email);
           try {
            var response=await props.loginHandler(email, password);
-           console.log("Login :",response)
+       
           } catch (err) {
             setTimeout(() => {
               showLoader(false);

@@ -9,6 +9,45 @@
     cursor: pointer;
     padding: 15px 25px;
 }
+.total-payment p{
+    font-weight: 600;
+}
+.logout-text{
+    color: #AF6FAC;
+    font-weight: 600;
+    cursor: pointer;
+}
+.logout-text:hover{
+    color: #AF6FAC;
+}
+.cmyNjn{
+    width: 100%;
+}
+.hCpHso > div.line{
+    display: none;
+}
+.fDbOPw > input{
+    padding: 0px 0px 0px 5px !important;
+}
+.cmyNjn > .wrapper{
+    border-radius: 0.267rem !important;
+}
+.cmyNjn > .wrapper:hover{
+    box-shadow: none !important;
+}
+.eWFcRu {
+    fill: #1696b9 !important;
+}
+.fDbOPw > input,
+.ellipsis span{
+    font-size: 14px !important;
+    line-height: 1.4;
+    color: #475f7b !important;
+    font-family: SofiaProLight !important;
+}
+.logout-text i{
+    margin-left: 10px;
+}
 
 .payment_icon-card img {
     width: 85px;
@@ -147,4 +186,29 @@ button{
     padding: 17px 20px !important;
     border-radius: 0.267rem;
     border-color: #af6fac;
+}
+.personal-info-div .eye__icon{
+    top: 14px;
+    color: #AF6FAC;
+}
+.personal-info-div .fDbOPw{
+    min-height: 51px;
+}
+.personal-info-div .cmyNjn > .wrapper{
+    border-color: #af6fac;
+}
+.personal-info-div .eWFcRu{
+    fill: #AF6FAC !important;
+}
+select{text-transform:capitalize}
+
+.error-text{
+    color: red;
+    font-size: 12px;
+    position: absolute;
+    left: 0px;
+    font-weight: 700;
+}
+.form-control.error{
+    border-color: red !important;
 }

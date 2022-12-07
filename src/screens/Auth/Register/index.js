@@ -4,9 +4,235 @@ import { connect } from "react-redux";
 import { register } from "../../../redux/action/authAction";
 import { useNavigate } from "react-router-dom";
 import BounceLoader from "react-spinners/BounceLoader";
+import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import "../style.css";
 
 const Register = (props) => {
+  const items = [
+    {
+      id: 0,
+      name: "Alabama",
+    },
+    {
+      id: 1,
+      name: "Georgia",
+    },
+    {
+      id: 2,
+      name: "South Carolina",
+    },
+    {
+      id: 3,
+      name: "Oregon",
+    },
+    {
+      id: 4,
+      name: "Florida",
+    },
+    {
+      id: 5,
+      name: "Alaska",
+    },
+    {
+      id: 6,
+      name: "Arizona",
+    },
+    {
+      id: 7,
+      name: "Arkansas",
+    },
+    {
+      id: 8,
+      name: "California",
+    },
+    {
+      id: 9,
+      name: "Colorado",
+    },
+    {
+      id: 10,
+      name: "Connecticut",
+    },
+    {
+      id: 11,
+      name: "Delaware",
+    },
+    {
+      id: 12,
+      name: "District Of Columbia",
+    },
+    {
+      id: 13,
+      name: "Hawaii",
+    },
+    {
+      id: 14,
+      name: "Idaho",
+    },
+    {
+      id: 15,
+      name: "Illinois",
+    },
+    {
+      id: 16,
+      name: "Indiana",
+    },
+    {
+      id: 17,
+      name: "Iowa",
+    },
+    {
+      id: 18,
+      name: "Kansas",
+    },
+    {
+      id: 19,
+      name: "Kentucky",
+    },
+    {
+      id: 20,
+      name: "Louisiana",
+    },
+    {
+      id: 21,
+      name: "Maine",
+    },
+    {
+      id: 22,
+      name: "Maryland",
+    },
+    {
+      id: 23,
+      name: "Massachusetts",
+    },
+    {
+      id: 24,
+      name: "Michigan",
+    },
+    {
+      id: 25,
+      name: "Minnesota",
+    },
+    {
+      id: 26,
+      name: "Mississippi",
+    },
+    {
+      id: 27,
+      name: "Missouri",
+    },
+    {
+      id: 28,
+      name: "Montana",
+    },
+    {
+      id: 29,
+      name: "Nebraska",
+    },
+    {
+      id: 30,
+      name: "Nevada",
+    },
+    {
+      id: 31,
+      name: "New Hampshire",
+    },
+    {
+      id: 32,
+      name: "New Jersey",
+    },
+    {
+      id: 33,
+      name: "New Mexico",
+    },
+    {
+      id: 34,
+      name: "New York",
+    },
+    {
+      id: 35,
+      name: "North Carolina",
+    },
+    {
+      id: 36,
+      name: "North Dakota",
+    },
+    {
+      id: 37,
+      name: "Ohio",
+    },
+    {
+      id: 38,
+      name: "Oklahoma",
+    },
+    {
+      id: 39,
+      name: "Oregon",
+    },
+    {
+      id: 40,
+      name: "Pennsylvania",
+    },
+    {
+      id: 41,
+      name: "Rhode Island",
+    },
+    {
+      id: 42,
+      name: "South Carolina",
+    },
+    {
+      id: 43,
+      name: "South Dakota",
+    },
+    {
+      id: 44,
+      name: "Tennessee",
+    },
+    {
+      id: 45,
+      name: "Texas",
+    },
+    {
+      id: 46,
+      name: "Utah",
+    },
+    {
+      id: 47,
+      name: "Vermont",
+    },
+    {
+      id: 48,
+      name: "Virginia",
+    },
+    {
+      id: 49,
+      name: "Washington",
+    },
+    {
+      id: 50,
+      name: "West Virginia",
+    },
+    {
+      id: 51,
+      name: "Wisconsin",
+    },
+    {
+      id: 52,
+      name: "Wyoming",
+    },
+  ];
+
+  const handleOnSelect = (item) => {
+    setUserState(item)
+  };
+  const formatResult = (item) => {
+    return (
+      <>
+        <span style={{ display: "block", textAlign: "left" }}>{item.name}</span>
+      </>
+    );
+  };
   const {
     navigation,
     token,
@@ -33,6 +259,7 @@ const Register = (props) => {
   const [lastError, setLastError] = useState(false);
   let regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   const registerHandler = async (type, e) => {
+    console.log(stateUser.name)
     try {
       showLoader(true);
       if (
@@ -57,7 +284,7 @@ const Register = (props) => {
                 password,
                 confrimPassword,
                 address,
-                stateUser
+                stateUser.name
               );
             } catch (err) {
               showLoader(false);
@@ -298,7 +525,7 @@ const Register = (props) => {
                             <span className="position-absolute icon__span">
                               <i className="fa-solid fa-user"></i>
                             </span>
-                            <select
+                            {/* <select
                               className={
                                 errorMessage
                                   ? "form-control error"
@@ -358,7 +585,13 @@ const Register = (props) => {
                               <option value="WV">West Virginia</option>
                               <option value="WI">Wisconsin</option>
                               <option value="WY">Wyoming</option>
-                            </select>
+                            </select> */}
+                            <ReactSearchAutocomplete
+                              items={items}
+                              onSelect={handleOnSelect}
+                              autoFocus
+                              formatResult={formatResult}
+                            />
                           </div>
                           {/* {errorMessage && (
                             <p className="text-start error__text">{error}</p>

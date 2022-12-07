@@ -1,7 +1,6 @@
 import * as Actions from "../actionTypes";
 import axios from "axios";
-var base_url = "http://127.0.0.1:8000/api/";
-// var base_url = "https://portfolio.accrualhub.com/jordina-api/public/api/";
+import url from "../../constant/url/api_url";
 
 export const skinConditionTest = (
   skin_condition,
@@ -24,7 +23,7 @@ export const skinConditionTest = (
         question_5,
         question_6,
       };
-      const request = await axios(base_url + "registerStepTwo", {
+      const request = await axios(url.base_url  + "registerStepTwo", {
         method: "POST",
         data: body,
         headers: {
@@ -32,6 +31,7 @@ export const skinConditionTest = (
         },
       });
       const response = request;
+      console.log(response)
       if (response.status === 200) {
         dispatch({
           type: Actions.SKIN_TEST_SUCCESS,
@@ -49,7 +49,6 @@ export const skinConditionTest = (
     }
   };
 };
-
 export const maleAllergieExistHandler = (
   gender,
   height,
@@ -99,7 +98,7 @@ export const maleAllergieExistHandler = (
         appointment_id,
       };
       console.log("Action :", formData);
-      const request = await axios(base_url + "registerStepthree", {
+      const request = await axios(url.base_url  + "registerStepthree", {
         method: "POST",
         data: formData,
         dataType: "jsonp",
@@ -118,7 +117,7 @@ export const maleAllergieExistHandler = (
 export const getAllSkinDiseases = (token) => {
   return async (dispatch, getState) => {
     try {
-      const request = await axios(base_url + "getAllDiseases", {
+      const request = await axios(url.base_url  + "getAllDiseases", {
         method: "GET",
         headers: {
           authorization: "Bearer " + token,
@@ -142,13 +141,16 @@ export const getAllSkinDiseases = (token) => {
     }
   };
 };
-export const getCalendly = (user_id, token) => {
+export const getCalendly = (appointment_id,user_id, token) => {
   return async (dispatch, getState) => {
+    console.log("appointment_id :",appointment_id,"user_id :",user_id,"token :",token)
     try {
       const body = {
+        appointment_id,
         user_id,
       };
-      const request = await axios(base_url + "getCalendy", {
+      console.log("Body :", body)
+      const request = await axios(url.base_url + "getCalendy", {
         method: "POST",
         headers: {
           authorization: "Bearer " + token,
@@ -156,8 +158,8 @@ export const getCalendly = (user_id, token) => {
         data: body,
       });
       const response = request;
-      console.log("Calendly Reposnse :", response.data.data.doctor[0].calendy);
-      if (response.status === 200) {
+      console.log("Calendly Reposnse :", response.data);
+      if (response.status === "Success") {
         return response;
       } else {
         return response;
@@ -167,3 +169,36 @@ export const getCalendly = (user_id, token) => {
     }
   };
 };
+export const userAppointemtPayment = (
+  token
+) => {
+  return async (dispatch, getState) => {
+    try {
+      const request = await axios(url.base_url + "user-payment", {
+        method: "POST",
+        headers: {
+          authorization: "Bearer " + token,
+        },
+      });
+      const response = request;
+      if (request.status === 200) {
+        dispatch({
+          type: Actions.APPOINTMENT_USER_PAYMENT_SUCCESS,
+        });
+        return response;
+      } else {
+        dispatch({
+          type: Actions.APPOINTMENT_USER_PAYMENT_FAIL,
+          payload: response,
+        });
+        return response;
+      }
+    } catch (error) {
+      var err = error.response.data.message;
+      console.log("Sce :", error.response.data.message);
+      return err.toString();
+    }
+  };
+};
+
+

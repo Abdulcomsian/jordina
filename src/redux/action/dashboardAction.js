@@ -1,12 +1,11 @@
 import * as Actions from "../actionTypes";
 import axios from "axios";
-var base_url = "http://127.0.0.1:8000/api/";
-// var base_url = "https://portfolio.accrualhub.com/jordina-api/public/api/";
+import url from "../../constant/url/api_url";
 
 export const getUserDetail = (token) => {
   return async (dispatch, getState) => {
     try {
-      const request = await axios(base_url + "getLoggedInUser", {
+      const request = await axios(url.base_url + "getLoggedInUser", {
         method: "POST",
         headers: {
           authorization: "Bearer " + token,
@@ -44,7 +43,7 @@ export const updateClientProfile = (
         email,
         address,
       };
-      const request = await axios(base_url + "updateClientProfile", {
+      const request = await axios(url.base_url + "updateClientProfile", {
         method: "POST",
         headers: {
           authorization: "Bearer " + token,
@@ -69,7 +68,7 @@ export const updateClientProfile = (
 export const getClientOrder = (token) => {
   return async (dispatch, getState) => {
     try {
-      const request = await axios(base_url + "getCompletedOrders", {
+      const request = await axios(url.base_url + "getCompletedOrders", {
         method: "POST",
         headers: {
           authorization: "Bearer " + token,
@@ -94,7 +93,7 @@ export const getClientOrder = (token) => {
 export const getUnPaidOrder = (token) => {
   return async (dispatch, getState) => {
     try {
-      const request = await axios(base_url + "getCartItems", {
+      const request = await axios(url.base_url + "getCartItems", {
         method: "POST",
         headers: {
           authorization: "Bearer " + token,
@@ -120,7 +119,7 @@ export const removeUnPaidData = (order_id, token) => {
   return async (dispatch, getState) => {
     try {
       const body = { order_id };
-      const request = await axios(base_url + "deleteOrder", {
+      const request = await axios(url.base_url + "deleteOrder", {
         method: "POST",
         headers: {
           authorization: "Bearer " + token,
@@ -132,6 +131,31 @@ export const removeUnPaidData = (order_id, token) => {
       if (response.status === 200) {
         dispatch({
           type: Actions.REMOVE_UNPIAD_DATA_SUCCESS,
+        });
+        return response.status;
+      } else {
+        return response.message;
+      }
+    } catch (error) {
+      return error.response;
+    }
+  };
+};
+export const getUserMedication = (token) => {
+  return async (dispatch, getState) => {
+    try {
+      const request = await axios(url.base_url + "user-appointment", {
+        method: "POST",
+        headers: {
+          authorization: "Bearer " + token,
+        },
+      });
+      const response = request;
+      console.log("Response User Medication :", response.data.data.appointments);
+      if (response.status === 200) {
+        dispatch({
+          type: Actions.GET_USER_MEDICATION,
+          payload: response.data.data.appointments,
         });
         return response.status;
       } else {

@@ -12,13 +12,20 @@ import {
   getClientOrder,
   getUnPaidOrder,
   removeUnPaidData,
+  getUserMedication,
 } from "../../redux/action/dashboardAction";
 import "./style.css";
 import { ToastContainer, toast } from "react-toastify";
 
 const ClientDashboard = (props) => {
-  const { token, loginUser, orderPaidData, unPaidOrder, refreshData } = props;
-  console.log("Token Dahbaord :", unPaidOrder);
+  const {
+    token,
+    loginUser,
+    orderPaidData,
+    unPaidOrder,
+    refreshData,
+    userDashboardMedication,
+  } = props;
   const [appointment, setAppoinment] = useState(false);
   const [profile, setProfile] = useState(false);
   const [medication, setMedication] = useState(false);
@@ -68,14 +75,12 @@ const ClientDashboard = (props) => {
   const fetchLoginUserDetail = async () => {
     try {
       await props.userDetail(token);
-    } catch (err) {
-    }
+    } catch (err) {}
   };
   const fetchClientOrder = async () => {
     try {
       await props.clientOrder(token);
-    } catch (err) {
-    }
+    } catch (err) {}
   };
   const fetchClientOrderUnpaid = async () => {
     try {
@@ -84,10 +89,18 @@ const ClientDashboard = (props) => {
       // alert(err.message);
     }
   };
+  const fetchUserMedication = async () => {
+    try {
+      await props.userMedication(token);
+    } catch (err) {
+      // alert(err.message);
+    }
+  };
   useEffect(() => {
     fetchLoginUserDetail().catch(console.error);
     fetchClientOrder().catch(console.error);
     fetchClientOrderUnpaid().catch(console.error());
+    fetchUserMedication().catch(console.error());
   }, [token, refreshData]);
 
   const removeUnPaidData = async (e, id) => {
@@ -154,7 +167,7 @@ const ClientDashboard = (props) => {
                     removeUnPaidData={removeUnPaidData}
                   />
                 ) : (
-                  medication && <ClientMedication blurContent={loading} />
+                  medication && <ClientMedication blurContent={loading} medication={userDashboardMedication} />
                 )}
               </div>
             </div>
@@ -170,6 +183,7 @@ const mapStateToProps = (state) => ({
   orderPaidData: state.dashBoardReducer.orderData,
   unPaidOrder: state.dashBoardReducer.unPaidOrder,
   refreshData: state.dashBoardReducer.refreshData,
+  userDashboardMedication: state.dashBoardReducer.userMedication,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -177,5 +191,6 @@ const mapDispatchToProps = (dispatch) => ({
   clientOrder: (token) => dispatch(getClientOrder(token)),
   clientUnPaidOrder: (token) => dispatch(getUnPaidOrder(token)),
   removeDataHanlder: (id, token) => dispatch(removeUnPaidData(id, token)),
+  userMedication: (token) => dispatch(getUserMedication(token)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ClientDashboard);

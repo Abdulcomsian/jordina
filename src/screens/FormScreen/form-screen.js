@@ -6,13 +6,15 @@ import PersonalInfo from "../../components/Forms/personal-information";
 import SkinCondition from "../Skin/Skin-Condition/index";
 import SkinTestForm from "../../components/Forms/skin-test-form";
 import FormHeader from "../../components/Header/Form-Header/from-header";
-import PaymentForm from "../../components/StripePayment/indexDieasesPayment.js"
+import PaymentForm from "../../components/StripePayment/indexDieasesPayment.js";
 import GenderForm from "../../components/Forms/gender-form";
+import { CardElement } from "@stripe/react-stripe-js";
 import { connect } from "react-redux";
 import {
   skinConditionTest,
   maleAllergieExistHandler,
   getCalendly,
+  userAppointemtPayment,
 } from "../../redux/action/skinConditionAction";
 import { register } from "../../redux/action/authAction";
 import { ToastContainer, toast } from "react-toastify";
@@ -25,13 +27,19 @@ import url from "../../constant/url/api_url";
 
 const FormScreen = (props) => {
   const { token, message, user_id, appointmentId } = props;
-  console.log("Appoinment ID : ",appointmentId)
+  console.log("Appoinment ID : ", appointmentId);
   const [skinLook, setSkinLook] = useState("");
+  const [skinLookError, setSkinLookError] = useState(false);
   const [skinPores, setSkinPores] = useState("");
+  const [skinPoresError, setSkinPoresError] = useState(false);
   const [skinFeel, setSkinFeel] = useState("");
+  const [skinFeelError, setSkinFeelError] = useState(false);
   const [skinPimple, setSkinPimple] = useState("");
+  const [skinPimpleError, setSkinPimpleError] = useState(false);
   const [skinFeelFacial, setSkinFeelFacial] = useState("");
+  const [skinFeelFacialError, setSkinFeelFacialError] = useState(false);
   const [skinExposed, setSkinExposed] = useState("");
+  const [skinExposedError, setSkinExposedError] = useState(false);
   const [skinConditionChange, setSkinConditionChange] = useState(false);
   const [skinDeasesName, setSkinDeasesName] = useState("");
   const [showModal, setModalShow] = useState(false);
@@ -50,6 +58,7 @@ const FormScreen = (props) => {
   console.log("Appointment Id :", appointmentId);
   var alergi_exist = 0;
   let regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
   const submitInfo = async (
     firstName,
     lastName,
@@ -81,7 +90,7 @@ const FormScreen = (props) => {
               password,
               confrimPassword,
               address,
-              state
+              state.name
             );
             var status = reposnse.status;
             if (status === 401) {
@@ -152,7 +161,21 @@ const FormScreen = (props) => {
   };
   const paymentGet = async (type, e) => {
     setModalShow(true);
+    console.log(skinLook,skinPores,skinFeel,skinPimple,skinFeelFacial,skinExposed)
     try {
+      if(skinLook==""){
+        setSkinLookError(true)
+      } if(skinPores==""){
+        setSkinPoresError(true)
+      } if(skinFeel==""){
+        setSkinFeelError(true)
+      } if(skinPimple==""){
+        setSkinPimpleError(true)
+      } if(skinFeelFacial==""){
+        setSkinFeelFacialError(true)
+      } if(skinExposed==""){
+        setSkinExposedError(true)
+      }
       if (
         diseaseId !== "" &&
         skinLook !== "" &&
@@ -172,7 +195,7 @@ const FormScreen = (props) => {
           skinExposed,
           token
         );
-        console.log("Reponse Step Two : ",response)
+        console.log("Reponse Step Two : ", response);
         if (response.status === 200) {
           setTimeout(() => {
             setModalShow(false);
@@ -225,7 +248,6 @@ const FormScreen = (props) => {
         setModalShow(false);
       }, 1000);
       alert(err);
-      
     }
   };
   const givePayment = () => {
@@ -246,21 +268,27 @@ const FormScreen = (props) => {
     setSkinConditionChange(true);
   };
   const skinLookHandler = (e) => {
+    skinLookError && setSkinLookError(false);
     setSkinLook(e.target.value);
   };
   const skinPoresHandler = (e) => {
+    skinPoresError && setSkinPoresError(false);
     setSkinPores(e.target.value);
   };
   const skinFeelHandler = (e) => {
+    skinFeelError && setSkinFeelError(false);
     setSkinFeel(e.target.value);
   };
   const skinPimpleHandler = (e) => {
+    skinPimpleError && setSkinPimpleError(false);
     setSkinPimple(e.target.value);
   };
   const skinFeelFacialHandler = (e) => {
+    skinFeelFacialError && setSkinFeelFacialError(false);
     setSkinFeelFacial(e.target.value);
   };
   const skinExposedHandler = (e) => {
+    skinExposedError && setSkinExposedError(false);
     setSkinExposed(e.target.value);
   };
   const onSubmitGenderInfo = async (
@@ -323,10 +351,15 @@ const FormScreen = (props) => {
         );
         console.log("URL :", response);
         if (response.status === 200) {
-          var reposnseCalendly = await props.getCalendlyHandler(user_id, token);
+          var reposnseCalendly = await props.getCalendlyHandler(
+            appointmentId,
+            user_id,
+            token
+          );
+          console.log(reposnseCalendly.status);
           // var message = reposnseCalendly.data.message;
           if (reposnseCalendly.status === 200) {
-            setDoctorURL(reposnseCalendly.data.data.doctor[0].calendy);
+            setDoctorURL(reposnseCalendly.data.data.doctor.calendy);
             setTimeout(() => {
               setModalShow(false);
               setShowGetPayment(false);
@@ -392,96 +425,107 @@ const FormScreen = (props) => {
     // }, 1000);
     // setShowCalender(true);
   };
-  const handlePayment = async (e,stripe,elements) =>{
+  const handlePayment = async (e, stripe, elements) => {
     setModalShow(true);
     e.preventDefault();
-    console.log("hello",stripe,elements)
-    // if (!stripe || !elements) {
-    //   return;
-    // }
-    // const card = elements.getElement(CardElement);
-    // const result = await stripe.createToken(card);
-    // if (result.error) {
-    //   var error = result.error.message;
-    //   toast.error(error.toString(), {
-    //     position: "top-right",
-    //     autoClose: 5000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //     theme: "colored",
-    //   });
-    //   console.log(result.error.message);
-    // } else {
-    //   console.log(result.token);
-    //   try {
-    //     const response = await props.paymentHandler(
-    //       payment,
-    //       result.token.id,
-    //       token,
-    //       addedItems,
-    //       orderItemId
-    //     );
-    //     console.log(
-    //       "Response  :",
-    //       response,
-    //       response.data.data.result.client_secret
-    //     );
-    //     if (response.status === 200) {
-    //       const confrimPayment = await stripe.confirmCardPayment(
-    //         response.data.data.result.client_secret,
-    //         {
-    //           payment_method: { card: card },
-    //         }
-    //       );
-    //       console.log("ConfrimPayment :", confrimPayment);
-    //       const { paymentIntent } = confrimPayment;
-    //       if (paymentIntent.status === "succeeded") {
-    //         setShowLoader(false);
-    //         setShowSuccessLoader(true);
-    //       } else {
-    //         setShowLoader(false);
-    //         toast.error("Payment Failed !", {
-    //           position: "top-right",
-    //           autoClose: 5000,
-    //           hideProgressBar: false,
-    //           closeOnClick: true,
-    //           pauseOnHover: true,
-    //           draggable: true,
-    //           progress: undefined,
-    //           theme: "colored",
-    //         });
-    //       }
-    //     } else {
-    //       setShowLoader(false);
-    //       toast.error("Payment Failed !", {
-    //         position: "top-right",
-    //         autoClose: 5000,
-    //         hideProgressBar: false,
-    //         closeOnClick: true,
-    //         pauseOnHover: true,
-    //         draggable: true,
-    //         progress: undefined,
-    //         theme: "colored",
-    //       });
-    //     }
-    //   } catch (error) {
-    //     setShowLoader(false);
-    //     toast.error("Payment Failed !", {
-    //       position: "top-right",
-    //       autoClose: 5000,
-    //       hideProgressBar: false,
-    //       closeOnClick: true,
-    //       pauseOnHover: true,
-    //       draggable: true,
-    //       progress: undefined,
-    //       theme: "colored",
-    //     });
-    //   }
-    // }
-  }
+    console.log("hello", stripe, elements);
+    if (!stripe || !elements) {
+      return;
+    }
+    const card = elements.getElement(CardElement);
+    const result = await stripe.createToken(card);
+    console.log("Result :", result);
+    if (result.error) {
+      var error = result.error.message;
+      toast.error(error.toString(), {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      console.log(result.error.message);
+    } else {
+      console.log(result.token);
+      try {
+        const response = await props.userPaymentHandler(token);
+        console.log(
+          "Response  :",
+          response,
+          response.data.data.result.client_secret
+        );
+        if (response.status === 200) {
+          const confrimPayment = await stripe.confirmCardPayment(
+            response.data.data.result.client_secret,
+            {
+              payment_method: { card: card },
+            }
+          );
+          console.log("ConfrimPayment :", confrimPayment);
+          const { paymentIntent } = confrimPayment;
+          if (paymentIntent.status === "succeeded") {
+            setTimeout(() => {
+              setModalShow(false);
+              setShowGetPayment(false);
+              setShowGenderForm(true);
+              setShowImgColumn(false);
+              setProgressBarWidth("50%");
+            }, 1000);
+            toast.success("Payment Sucess !", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+          } else {
+            setModalShow(false);
+            toast.error("Payment Failed !", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+          }
+        } else {
+          setModalShow(false);
+          toast.error("Payment Failed !", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+      } catch (e) {
+        setModalShow(false);
+        console.log("error :", e);
+        toast.error("Payment Failed !", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
+    }
+  };
   useEffect(() => {
     // declare the data fetching function
     const fetchData = async () => {
@@ -581,6 +625,12 @@ const FormScreen = (props) => {
                 <SkinTestForm
                   onGetPayment={paymentGet}
                   skinLook={skinLookHandler}
+                  skinLookError={skinLookError}
+                  skinPoresError={skinPoresError}
+                  skinFeelError={skinFeelError}
+                  skinPimpleError={skinPimpleError}
+                  skinFeelFacialError={skinFeelFacialError}
+                  skinExposedError={skinExposedError}
                   skinPores={skinPoresHandler}
                   skinFeel={skinFeelHandler}
                   skinPimple={skinPimpleHandler}
@@ -588,7 +638,12 @@ const FormScreen = (props) => {
                   skinExposed={skinExposedHandler}
                 />
               )}
-              {showGetPayment && <PaymentForm onGivePayment={givePayment} handlePayment={handlePayment} />}
+              {showGetPayment && (
+                <PaymentForm
+                  onGivePayment={givePayment}
+                  handlePayment={handlePayment}
+                />
+              )}
               {showGenderForm && (
                 <GenderForm onSubmitInfo={onSubmitGenderInfo} />
               )}
@@ -687,25 +742,9 @@ const mapDispatchToProps = (dispatch) => ({
         token
       )
     ),
-  getCalendlyHandler: (
-    medication,
-    otherMedication,
-    file,
-    gender,
-    checkWeight,
-    checkHeight,
-    token
-  ) =>
-    dispatch(
-      getCalendly(
-        medication,
-        otherMedication,
-        file,
-        gender,
-        checkWeight,
-        checkHeight,
-        token
-      )
-    ),
+  getCalendlyHandler: (appointmentId, user_id, token) =>
+    dispatch(getCalendly(appointmentId, user_id, token)),
+
+  userPaymentHandler: (token) => dispatch(userAppointemtPayment(token)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(FormScreen);

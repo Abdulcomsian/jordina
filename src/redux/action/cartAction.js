@@ -1,7 +1,6 @@
 import * as Actions from "../actionTypes";
 import axios from "axios";
-var base_url = "http://127.0.0.1:8000/api/";
-// var base_url = "https://portfolio.accrualhub.com/jordina-api/public/api/";
+import url from "../../constant/url/api_url";
 
 export const addToCart = (id, allProduct) => {
   return async (dispatch, getState) => {
@@ -17,7 +16,7 @@ export const getAllCartProduct = (token) => {
   console.log("Token Action:", token);
   return async (dispatch, getState) => {
     try {
-      const request = await axios(base_url + "getAllProducts", {
+      const request = await axios(url.base_url + "getAllProducts", {
         method: "GET",
         headers: {
           authorization: "Bearer " + token,
@@ -80,7 +79,7 @@ export const checkOutPayment = (
   return async (dispatch, getState) => {
     try {
       const body = { amount, cardID, order_id };
-      const request = await axios(base_url + "payment", {
+      const request = await axios(url.base_url + "payment", {
         method: "POST",
         headers: {
           authorization: "Bearer " + token,
@@ -120,7 +119,7 @@ export const orderPlace = (newItem, token) => {
   return async (dispatch, getState) => {
     try {
       const body = newItem;
-      const request = await axios(base_url + "order", {
+      const request = await axios(url.base_url + "order", {
         method: "POST",
         headers: {
           authorization: "Bearer " + token,

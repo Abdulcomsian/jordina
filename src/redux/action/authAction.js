@@ -1,13 +1,12 @@
 import * as Actions from "../actionTypes";
 import axios from "axios";
-var base_url = "http://127.0.0.1:8000/api/";
-// var base_url = "https://portfolio.accrualhub.com/jordina-api/public/api/";
+import url from "../../constant/url/api_url.js";
 
 export const login = (email, password) => {
   return async (dispatch, getState) => {
     try {
       const body = { email, password };
-      const request = await axios(base_url + "login", {
+      const request = await axios(url.base_url + "login", {
         method: "POST",
         data: body,
       });
@@ -54,7 +53,7 @@ export const register = (
         state,
       };
       console.log("Register Body :", body);
-      const request = await axios(base_url + "register", {
+      const request = await axios(url.base_url + "register", {
         method: "POST",
         data: body,
       });
@@ -84,7 +83,7 @@ export const register = (
 export const logout = (token) => {
   return async (dispatch, getState) => {
     try {
-      const request = await axios(base_url + "logout", {
+      const request = await axios(url.base_url + "logout", {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -97,6 +96,7 @@ export const logout = (token) => {
           type: Actions.LOGOUT_SUCCESS,
           payload: response.data,
         });
+        return response;
       }
     } catch (err) {
       dispatch({

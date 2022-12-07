@@ -18,12 +18,15 @@ const PaymentForm = ({ onGivePayment,handlePayment,stripe,elements }) => {
       <Row style={{ justifyContent: "center" }}>
         <Col lg={6}>
           <div className="form_box">
-            <h3 className="title">Start Your Apostrophe Visit</h3>
-            <form onSubmit={(e,stripe,elements)=>handlePayment(e,stripe,elements)}>
+            <h3 className="title">Please enter your payment information</h3>
+            <form onSubmit={(e)=>handlePayment(e,stripe,elements)}>
               <div className="form-group">
-                <div className="payment_icon-card">
+                {/* <div className="payment_icon-card">
                   <p>Pay with</p>
                   <img src={Images.paymentIcon} className="img-fluid" />
+                </div> */}
+                <div className="total-payment payment_icon-card">
+                    <p>Consultation fee $75.00</p>
                 </div>
                 <div className="style_divider text-center">
                   <span>OR</span>
